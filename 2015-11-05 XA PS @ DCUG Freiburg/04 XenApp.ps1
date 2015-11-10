@@ -9,8 +9,8 @@ Get-BrokerController | select DNSName,ControllerVersion,State,DesktopsRegistered
 #region Worker
 
 # Auslesen von Maschinen und Setzen des Wartungsmodus
-Get-BrokerMachine | Select-Object DNSName,CatalogName,DesktopGroupName,RegistrationState,SessionCount | Format-Table
-Get-BrokerMachine | Where-Object {$_.DesktopGroupName -eq ''} | Set-BrokerMachine -InMaintenanceMode $true
+Get-BrokerMachine | Select-Object DNSName,CatalogName,DesktopGroupName,RegistrationState,InMaintenanceMode,SessionCount | Format-Table
+Get-BrokerMachine | Where-Object {$_.DesktopGroupName -eq 'DCUG Desktop Group 2'} | Set-BrokerMachine -InMaintenanceMode $true
 
 # Aktion auf bestimmten Maschinen
 Get-BrokerMachine | Where-Object {$_.DNSName -like 'vda-0*'} | ForEach-Object {
@@ -23,7 +23,7 @@ Get-BrokerMachine | Where-Object {$_.DNSName -like 'vda-0*'} | ForEach-Object {
 }
 
 # Entfernen einer Maschine aus einer Desktopgruppe
-Get-BrokerMachine | Where-Object {$_.DNSName -like 'vda-02.*'} | Remove-BrokerMachine -DesktopGroup 'DCUG Desktop Group'
+Get-BrokerMachine | Where-Object {$_.DNSName -like 'vda-02.*'} | Remove-BrokerMachine -DesktopGroup 'DCUG Desktop Group 2'
 
 # Anlegen und Konfigurieren einer Desktopgruppe
 $NewGroup = New-BrokerDesktopGroup -DeliveryType "DesktopsAndApps" -DesktopKind "Shared" -Name "DCUG Desktop Group 2" -PublishedName "DCUG Desktop Group 2" -SessionSupport "MultiSession"
