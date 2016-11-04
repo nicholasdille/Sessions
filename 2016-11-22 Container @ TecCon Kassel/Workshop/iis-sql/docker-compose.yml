@@ -1,0 +1,10 @@
+version: '2.0'
+services:
+  db:
+    image: microsoft/mssql-server-2014-express-windows
+    environment:
+      sa_password: 0123456789abcdef
+  web:
+    image: nicholasdille/iis
+    depends_on: 
+    - db

@@ -4,7 +4,7 @@ git clone https://github.com/nicholasdille/Sessions.git
 Set-Location -Path '.\Sessions\2016-11-22 Container @ TecCon Kassel'
 #endregion
 
-#region Build container host (stable release)
+#region Build container host (server / stable release)
 Add-WindowsFeature -Name Containers -Restart
 Install-PackageProvider -Name NuGet -Force
 Install-Module -Name DockerMsftProvider -Repository PSGallery -Force
@@ -12,7 +12,7 @@ Install-Package -Name docker -ProviderName DockerMsftProvider
 
 #endregion
 
-#region Build container host (bleeding edge)
+#region Build container host (client / bleeding edge)
 Invoke-WebRequest "https://master.dockerproject.org/windows/amd64/docker-1.13.0-dev.zip" -OutFile "$env:TEMP\docker-1.13.0-dev.zip" -UseBasicParsing
 Expand-Archive -Path "$env:TEMP\docker-1.13.0-dev.zip" -DestinationPath $env:ProgramFiles
 $env:path += ";c:\program files\docker"
@@ -20,6 +20,14 @@ $env:path += ";c:\program files\docker"
 dockerd --register-service
 '{"hosts": ["npipe://", "tcp://0.0.0.0:2375"]}' | Set-Content -Path 'C:\ProgramData\docker\config\daemon.json' -Force
 Start-Service Docker
+Set-ItemProperty -Path 'HKLM:SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\Containers' -Name VSmbDisableOplocks -Type DWord -Value 0 -Force
+#endregion
+
+#region Nested Virtualization
+Add-WindowsFeature -Name Hyper-V -IncludeManagementTools -Restart
+Set-VMProcessor -VMName hv-01 -ExposeVirtualizationExtensions $true -Count 2
+Set-VMMemory -VMName hv-01 -DynamicMemoryEnabled $false
+Get-VMNetworkAdapter -VMName hv-01 | Set-VMNetworkAdapter -MacAddressSpoofing On
 #endregion
 
 #region Remoting Docker
@@ -56,6 +64,5 @@ docker push nicholasdille/iis
 
 #region Compose
 Invoke-WebRequest -Uri 'https://github.com/docker/compose/releases/download/1.8.1/docker-compose-Windows-x86_64.exe' -OutFile "$Env:ProgramFiles\docker\docker-compose.exe" -UseBasicParsing
-# TODO
-docker run -p 1433:1433 --env sa_password=<YOUR SA PASSWORD> microsoft/mssql-server-2014-express-windows
+docker-compose up
 #endregion
