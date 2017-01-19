@@ -9,7 +9,7 @@ Add-WindowsFeature -Name Containers -Restart
 Install-PackageProvider -Name NuGet -Force
 Install-Module -Name DockerMsftProvider -Repository PSGallery -Force
 # The following requires KB3176936
-Install-Package -Name docker -ProviderName DockerMsftProvider
+Install-Package -Name docker -ProviderName DockerMsftProvider -Force
 Start-Service -Name docker
 #endregion
 
