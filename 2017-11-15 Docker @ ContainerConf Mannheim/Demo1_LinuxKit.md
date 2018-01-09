@@ -13,7 +13,9 @@ $ make
 
 ## Take a look at the configuration of LinuxKit
 
+```bash
 $ cat examples/minimal.yml
+```
 
 ## Build LinuxKit
 
