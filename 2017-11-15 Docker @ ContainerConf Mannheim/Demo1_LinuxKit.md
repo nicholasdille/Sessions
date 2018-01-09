@@ -25,6 +25,8 @@ The following take roughly one minute:
 $ ./bin/moby build -name docker -format iso-efi ./examples/docker.yml
 ```
 
+The resulting ISO can be used to boot in Hyper-V using a generation 2 VM.
+
 ## Check configuration
 
 ```bash
