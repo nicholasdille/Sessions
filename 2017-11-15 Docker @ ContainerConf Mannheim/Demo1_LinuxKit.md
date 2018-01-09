@@ -25,7 +25,7 @@ The following take roughly one minute:
 $ ./bin/moby build -name docker -format iso-efi ./examples/docker.yml
 ```
 
-## Chech configuration
+## Check configuration
 
 ```bash
 $ ip address
