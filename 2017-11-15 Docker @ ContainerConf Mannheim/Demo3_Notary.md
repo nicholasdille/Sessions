@@ -37,5 +37,4 @@ $ curl -sLH "Accept: application/vnd.docker.distribution.manifest.v2+json" http:
 # Verify signature
 
 ```bash
-$ curl -sLH "Accept: application/vnd.docker.distribution.manifest.v2+json" http://sandboxregistry:5000/v2/tools/manifests/latest | ./notary -s https://notaryserver:4443 verify -q sandboxregistry:5000/tools latest
-```
+$ curl -sLH "Accept: application/vnd.docker.distribution.manifest.v2+json" http://sandboxregistry:5000/v2/test/trusttest/manifests/latest | ./notary -s https://notaryserver:4443 verify -q sandboxregistry:5000/test/trusttest latest

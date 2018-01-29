@@ -13,7 +13,9 @@ $ make
 
 ## Take a look at the configuration of LinuxKit
 
+```bash
 $ cat examples/minimal.yml
+```
 
 ## Build LinuxKit
 
@@ -23,7 +25,9 @@ The following take roughly one minute:
 $ ./bin/moby build -name docker -format iso-efi ./examples/docker.yml
 ```
 
-## Chech configuration
+The resulting ISO can be used to boot in Hyper-V using a generation 2 VM.
+
+## Check configuration
 
 ```bash
 $ ip address
