@@ -1,5 +1,10 @@
 FROM ubuntu:xenial-20180123
-RUN apt update \
- && apt install -y nginx
+
+RUN apt-get update \
+ && apt-get -y install nginx
+
+# Expects the mode to be 0755
 ADD entrypoint.sh /
-ENTRYPOINT /entrypoint.sh
+
+# Mind the difference between shell and exec format
+ENTRYPOINT ["/entrypoint.sh"]
