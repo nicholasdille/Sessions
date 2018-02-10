@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Lessons Learned from Running Docker in Production</title>
+
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@3.6.0/css/reveal.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@3.6.0/css/theme/black.css" id="theme">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@3.6.0/lib/css/zenburn.css">
+
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? 'https://cdn.jsdelivr.net/npm/reveal.js@3.6.0/css/print/pdf.css' : 'https://cdn.jsdelivr.net/npm/reveal.js@3.6.0/css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+
+        <style>
+            .reveal section img {
+                border: none;
+            }
+            .reveal section h2 {
+                color: #6a9fb5;
+            }
+            .reveal a {
+                color: #6a9fb5;
+            }
+            .reveal a:hover {
+                color: #7cbad4;
+            }
+            .reveal section {
+                text-align: left;
+            }
+        </style>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+
+                <section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$" data-background="Containers.jpg" class="center" style="background-color:rgba(0, 0, 0, 0.5); text-align: center; vertical-align: middle;">
+                    <script type="text/template">
+                        ### Lessons Learned from Running Docker in Production
+
+                        *Nicholas Dille*
+
+                        Docker Captain & CDM MVP
+                    </script>
+                </section>
+
+                <section>
+                    <img src="Nicholas Dille.jpg" style="size: 50%; width: 30%; float: right;" />
+                    <h2>Nicholas Dille</h2>
+                    <p><em>Husband, father, geek, author</em></p>
+
+                    <p>Docker Captain since 2017</p>
+                    <p>Microsoft MVP since 2010</p>
+                    <p><a href="http://dille.name">Blog</a></p>
+                    <p><a href="https://twitter.com/@NicholasDille">@NicholasDille</a></p>
+                    <p>Co-author of three Hyper-V books</p>
+
+                    <aside class="notes">test</aside>
+                </section>
+
+                <section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$" data-separator-notes="^Note:">
+                    <script type="text/template">
+                        ## Do not use latest
+
+                        Latest is like buying a pig in a poke
+
+                        - ubuntu:latest = ubuntu:xenial **until new LTS**
+                        - ubuntu:xenial = ubuntu:xenial-20180123 **until new monthly patch**
+
+                        Latest breaks repeatability
+
+                        Derive from specific version
+
+                        Update regularly, fail early
+
+                        --
+
+                        ## Derive from specific version
+
+                        ```Dockerfile
+                        FROM ubuntu:xenial-20180123
+                        ```
+
+                        or
+
+                        ```Dockerfile
+                        FROM nginx:1.12.1
+                        ```
+                    </script>
+                </section>
+
+                <section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$" data-separator-notes="^Note:">
+                    <script type="text/template">
+                        ## Derive from Code
+
+                        Using community images is also like buying a pig in a poke
+
+                        - Community images may not receive updates
+                        - Community images may follow undesirable paths
+
+                        Fork Dockerfile and build yourself
+                    </script>
+                </section>
+
+                <section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$" data-separator-notes="^Note:">
+                    <script type="text/template">
+                        ## Plan for PID 1
+
+                        First process in container has PID 1
+
+                        Only PID 1 receives signals (TERM, KILL etc.)
+
+                        Other processes will not exit gracefully
+
+                        --
+
+                        ## Use exec format
+
+                        Otherwise the call is prefixed with `sh -c`
+
+                        ```Dockerfile
+                        FROM ubuntu:xenial-20180123
+
+                        RUN apt update \
+                        && apt install -y nginx
+
+                        ADD entrypoint.sh /
+                        ENTRYPOINT ["/entrypoint.sh"]
+                        ```
+
+                        --
+
+                        ## Use `exec`
+
+                        Otherwise `bash` remains the parent of the init process
+
+                        ```bash
+                        #!/bin/bash
+
+                        #...
+
+                        exec nginx -g daemon=off;
+                        ```
+
+                        --
+
+                        ## Multiple processes
+
+                        Use an init process
+
+                        ```Dockerfile
+                        FROM ubuntu:xenial-20180123
+
+                        RUN apt update \
+                        && apt install -y \
+                                nginx \
+                                supervisor
+
+                        ADD nginx.conf /etc/supervisor/conf.d/
+
+                        ENTRYPOINT [
+                            "supervisord",
+                            "-c",
+                            "/etc/supervisor/supervisord.conf"
+                        ]
+                        ```
+
+                        Note:
+
+                        Choices also include `tini` and `dumb-init`
+
+                        --
+
+                        ## Isolate in sidekicks
+
+                        Separate functionality into two or more Containers
+
+                        Direkt communication using TCP/IP
+
+                        Will not work for shared memory
+                    </script>
+                </section>
+
+                <section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$" data-separator-notes="^Note:">
+                    <script type="text/template">
+                        ## Use microlabeling
+
+                        Add information about origin to images
+
+                        Use [image annotations by the OCI](https://github.com/opencontainers/image-spec/blob/master/annotations.md)
+
+                        Deprecated: https://label-schema.org
+
+                        --
+
+                        ## Use microlabeling
+
+                        ```Dockerfile
+                        FROM ubuntu:xenial-20180123
+
+                        LABEL \
+                        org.opencontainers.image.created=“2018-01-31T20:00:00Z+01:00“ \
+                        org.opencontainers.image.authors=“nicholas@dille.name“ \
+                        org.opencontainers.image.source=“https://github.com/nicholasdille/docker“ \
+                        org.opencontainers.image.revision=“566a5e0“ \
+                        org.opencontainers.image.vendor=“Nicholas Dille“
+
+                        #...
+                        ```
+                    </script>
+                </section>
+
+                <section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$" data-separator-notes="^Note:">
+                    <script type="text/template">
+                        ## Parameterize
+
+                        Hardcoded values increase maintenance
+
+                        Separate environmental information
+
+                        - Use `ENV` in `Dockerfile`
+                        - Use `environment` in `docker-compose.yml`
+
+                        --
+
+                        ## Parameterize in Dockerfile
+
+                        ```Dockerfile
+                        FROM ubuntu:xenial-20180123
+
+                        ENV NGINX_VERSION=1.10.3
+
+                        RUN apt update \
+                         && apt -y install \
+                                nginx=${NGINX_VERSION}*
+                        ```
+
+                        --
+
+                        ## Parameterize in docker-compose.yml
+
+                        ```yaml
+                        version: '2.0'
+                        services:
+                          db:
+                            image: postgres-${POSTGRES_VERSION}
+                            environment:
+                              POSTGRES_PASSWORD: ${POSTGRES_ROOT_PASSWORD}
+                          web:
+                            image: nginx-${NGINX_VERSION}
+                        ```
+                    </script>
+                </section>
+
+                <section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$" data-separator-notes="^Note:">
+                    <script type="text/template">
+                        ## Readability beats size
+
+                        Myth: More layers reduce access time
+
+                        - My own tests prove otherwise
+
+                        Layers improve performance on pull (parallel downloads)
+
+                        One layer per installed tool
+
+                        Separate functionality into chains of images
+
+                        ```
+                        dind --> dind-gocd-agent
+                             --> linux-agent     --> linux-agent-gocd
+                                                 --> linux-agent-jenkins
+                        ```
+                    </script>
+                </section>
+
+                <section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$" data-separator-notes="^Note:">
+                    <script type="text/template">
+                        ## Tips and Tricks
+
+                        Building behind a proxy:
+
+                        ```bash
+                        docker build \
+                            --build-arg http_proxy \
+                            --build-arg https_proxy \
+                            --build-arg no_proxy \
+                            .
+                        ```
+
+                        --
+
+                        ## Tips and Tricks
+
+                        Running behind a proxy:
+
+                        ```bash
+                        docker run -it \
+                            --env http_proxy \
+                            --env https_proxy \
+                            --env no_proxy \
+                            ubuntu:xenial-2018
+                        ```
+
+                        --
+
+                        ## Tips and Tricks
+
+                        Implicit pull on build:
+
+                        ```bash
+                        docker build --pull .
+                        ```
+
+                        --
+
+                        ## Tips and Tricks
+
+                        Automatic cleanup:
+
+                        ```bash
+                        docker run -it --rm ubuntu:xenial
+                        ```
+
+                        --
+
+                        ## Tips and Tricks
+
+                        Derive dynamically:
+
+                        ```Dockerfile
+                        ARG VERSION=xenial-20180123
+                        FROM ubuntu:${VERSION}
+                        ```
+                    </script>
+                </section>
+
+                <section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$" data-separator-notes="^Note:">
+                    <script type="text/template">
+                        ## Learn your own lessons
+
+                        Do my lessons apply to you?!
+
+                        Automate
+
+                        Use CI/CD
+
+                        Containers are just one option
+
+                        Link to code: https://github.com/nicholasdille/Sessions/tree/master/2018-01-31%20Docker%20%40%20Devsmeetup
+                    </script>
+                </section>
+
+                <!--<section class="center">
+					<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
+						&ldquo;No server is easier to manage than no server.&rdquo; - CTO Amazon
+					</blockquote>
+                </section>-->
+
+                <!--<section class="center" style="text-align: center;">
+                    <video class="stretch" src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"></video>
+                </section>-->
+
+            </div>
+		</div>
+
+		<script src="https://cdn.jsdelivr.net/npm/reveal.js@3.6.0/lib/js/head.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/reveal.js@3.6.0/js/reveal.js"></script>
+		<script>
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: false,
+                transition: 'convex',
+                backgroundTransition: 'fade',
+
+				dependencies: [
+					{ src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.6.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.6.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.6.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.6.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.6.0/plugin/zoom-js/zoom.js', async: true },
+					{ src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.6.0/plugin/notes/notes.js' }
+				]
+			});
+		</script>
+
+	</body>
+</html>
