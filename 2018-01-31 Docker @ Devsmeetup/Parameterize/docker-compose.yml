@@ -1,8 +1,8 @@
-version: ‘2.0‘
+version: '2.0'
 services:
   db:
-    image: postgres-${POSTGRES_VERSION}
+    image: postgres:${POSTGRES_VERSION}
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_ROOT_PASSWORD}
   web:
-    image: nginx-${NGINX_VERSION}
+    image: nginx:${NGINX_VERSION}

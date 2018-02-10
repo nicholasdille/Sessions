@@ -1,5 +1,4 @@
 #!/bin/bash
 
-#...
-
-exec nginx -g daemon=off;
+# `exec` replaces bash in the process tree
+exec nginx -g "daemon off;"
