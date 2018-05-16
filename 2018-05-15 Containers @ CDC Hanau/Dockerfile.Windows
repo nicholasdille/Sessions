@@ -1,0 +1,13 @@
+FROM microsoft/iis:windowsservercore-1709
+
+SHELL [ "powershell", "-command" ]
+
+WORKDIR /inetpub/wwwroot
+ADD lib lib
+ADD images images
+ADD media media
+ADD slides slides
+ADD sponsors sponsors
+ADD slides_offline.html index.html
+
+RUN Remove-Item -Path c:\inetpub\wwwroot\iisstart.* -Force
