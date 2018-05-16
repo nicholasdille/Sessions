@@ -1,12 +1,12 @@
 ## Pipelines
 
-Pipelines allow for testing of artifacts
+Build and release pipelines FTW
 
-Images can be tested before publishing them
+Images should be tested before publishing them
 
 ![Test is an important step in pipelines](media/Testing.svg) <!-- .element: style="background: none; box-shadow: none;" -->
 
-Artifacts should be copied to production (no rebuild!)
+Artifacts should be *copied* to production (no rebuild!)
 
 ---
 

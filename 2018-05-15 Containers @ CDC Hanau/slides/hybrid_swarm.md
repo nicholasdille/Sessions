@@ -1,11 +1,11 @@
 ## Hybrid Swarm
 
-Swarm is the orchestrator by Docker to add...
+Swarm is the orchestrator by Docker adding...
 
-- Scheduling across several hosts
+- Scheduling across hosts
 - High availability
 
-Hybrid swarms allow nodes of multiple platforms, eg. Linux and Windows
+Swarm supports nodes of different platforms, eg. Linux and Windows
 
 --
 

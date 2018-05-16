@@ -15,11 +15,11 @@ CMD [ "powershell" ]
 Create image using:
 
 ```powershell
-docker build --tag nicholasdille/powershell .
+docker build --tag hypervps .
 ```
 
 Run image:
 
 ```powershell
-PS> docker run -it --rm nicholasdille/powershell
+PS> docker run -it --rm hypervps
 ```

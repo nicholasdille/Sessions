@@ -6,7 +6,7 @@ Dedicated resources
 
 Resource reservation / limitation
 
-But... it's just a process
+But... it's just a process <!-- .element: style="color: #ff8800;" -->
 
 --
 
