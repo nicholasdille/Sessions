@@ -1,0 +1,19 @@
+What are containers
+- Demo of Windows containers
+Flavours
+Custom Images
+- Demo of docker build
+DevOps (Learn from Dev)
+- Continuous Everything / Immutable infrastructure / Blue Green Deployment
+- Pipelines
+- Dependencies
+Docker
+- Automation
+- Package
+Hybrid Swarm
+- Demo
+LCOW
+- Demo
+Use Cases
+Legal
+Further Reading?

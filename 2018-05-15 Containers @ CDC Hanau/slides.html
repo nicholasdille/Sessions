@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+
+<title>Cloud and Datacenter Conference</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@3.6.0/css/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@3.6.0/css/theme/black.css" id="theme">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@3.6.0/lib/css/zenburn.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+<script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'https://cdn.jsdelivr.net/npm/reveal.js@3.6.0/css/print/pdf.css' : 'https://cdn.jsdelivr.net/npm/reveal.js@3.6.0/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+
+    (function(window) {
+        function setupVideo()
+        {
+            var v = document.getElementById('hovercontrols');
+            v.addEventListener('mouseover', function() { this.controls = true; }, false);
+            v.addEventListener('mouseout', function() { this.controls = false; }, false);
+        }
+
+        window.addEventListener('load', setupVideo, false);
+    })(window);
+</script>
+
+<style>
+    .reveal section img {
+        border: none;
+    }
+    .reveal section h2 {
+        color: #6a9fb5;
+    }
+    .reveal section h1 {
+        color: black;
+        font-size: 1.5em;
+    }
+    .reveal a {
+        color: #6a9fb5;
+    }
+    .reveal a:hover {
+        color: #7cbad4;
+    }
+    .reveal section {
+        text-align: left;
+    }
+
+    html.dimbg75 .slide-background {
+        opacity: 0.75 !important;
+    }
+</style>
+</head>
+
+<body>
+<div class="reveal">
+<div class="slides">
+
+<section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$" data-background="images/CDC_background_copy.jpg" data-background-size="100%" class="center" style="color: black; text-align: center; vertical-align: middle;">
+    <script type="text/template">
+        # Mehr Agilität im Betrieb mit Windows Containern
+
+        *Nicholas Dille*
+
+        Docker Captain & Microsoft MVP
+    </script>
+</section>
+
+<section data-markdown data-separator="^---$" data-separator-vertical="^--$" data-background="images/Containers.jpg" data-state="dimbg75" style="background-color:rgba(0, 0, 0, 0.5); padding-left: 1em; padding-right: 1em;">
+    <script type="text/template">
+        ![](images/Nicholas Dille.jpg) <!-- .element: style="size: 50%; width: 30%; float: right;" -->
+
+        ## Nicholas Dille
+
+        **Husband, father, geek, author**
+
+        Docker Captain since 2017
+
+        Microsoft MVP since 2010
+
+        DevOps Engineer @ Haufe Group
+
+        <i class="fas fa-rss"></i> [Blog](http://dille.name)
+
+        <i class="fab fa-twitter"></i> [@NicholasDille](https://twitter.com/@NicholasDille)
+
+        Co-author of three [Hyper-V books](https://www.rheinwerk-verlag.de/microsoft-hyper-v_4229/)
+    </script>
+</section>
+
+<section data-markdown="slides/containers.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+<section data-markdown="slides/flavours.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+<section data-markdown="slides/continuous.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+<section data-markdown="slides/deployment.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+<section data-markdown="slides/pipelines.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+<section data-markdown="slides/named_pipe.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+<section data-markdown="slides/hybrid_swarm.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+<section data-markdown="slides/lcow.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+<section data-markdown="slides/legal.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+<section data-markdown="slides/summary.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+
+<section data-markdown data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:">
+    <script type="text/template">
+        ## x-celerate
+
+        XXX
+    </script>
+</section>
+
+<section data-markdown data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:">
+    <script type="text/template">
+        ## Sponsors (1)
+
+        |  |   |   |
+        |:-|:-:|:-:|
+        | Platinum Sponsors | ![Rachfahl IT Solutions](sponsors/Rachfahl IT Solutions.jpg) <!-- .element: style="width: 200px;" --></br> | ![Tarox](sponsors/Tarox.jpg) <!-- .element: style="width: 200px;" --> |
+        | Gold Sponsors | ![interxion](sponsors/interxion.jpg) <!-- .element: style="width: 200px;" --></br> ![Mellanox](sponsors/Mellanox.jpg) <!-- .element: style="width: 200px;" --></br> ![Veeam](sponsors/veeam.jpg) <!-- .element: style="width: 200px;" --> | ![SecureGuard](sponsors/SecureGuard.jpg) <!-- .element: style="width: 200px;" --></br> ![Cisco](sponsors/Cisco.jpg) <!-- .element: style="width: 200px;" --></br> ![Lenovo](sponsors/Lenovo.jpg) <!-- .element: style="width: 200px;" --> |
+
+        --
+
+        ## Sponsors (2)
+
+        |  |   |   |
+        |:-|:-:|:-:|
+        | Gold Sponsors | ![Dell EMC](sponsors/Dell EMC.jpg) <!-- .element: style="width: 200px;" --></br> ![DataOn](sponsors/DataOn.jpg) <!-- .element: style="width: 200px;" --></br> ![Hewlett Packard Enterprise](sponsors/HPE.jpg) <!-- .element: style="width: 200px;" --> | ![Altaro](sponsors/Altaro.jpg) <!-- .element: style="width: 200px;" --></br> ![NetApp](sponsors/NetApp.jpg) <!-- .element: style="width: 200px;" --> |
+    </script>
+</section>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@3.6.0/lib/js/head.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@3.6.0/js/reveal.js"></script>
+<script>
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: false,
+        transition: 'convex',
+        backgroundTransition: 'fade',
+
+        dependencies: [
+            { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.6.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.6.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.6.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.6.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.6.0/plugin/zoom-js/zoom.js', async: true },
+            { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.6.0/plugin/notes/notes.js' }
+
+        ]
+    });
+</script>
+
+</body>
+</html>
