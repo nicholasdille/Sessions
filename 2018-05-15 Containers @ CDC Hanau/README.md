@@ -6,8 +6,8 @@ Die Demos wurden aus den Notizen in `demo.ps1` erstellt.
 
 ## Usage
 
-`slides.html`
+`slides.html` enthält die Präsentation mit Abhängigkeiten zu Online-Ressourcen.
 
-`slides_offline.html`
+`slides_offline.html` enthält die Präsentation ohne Abhängigkeiten zu Online-Ressourcen.
 
-`Dockerfile`
+`Dockerfile` dient zum Bauen eines Container-Images mit der Präsentation.
