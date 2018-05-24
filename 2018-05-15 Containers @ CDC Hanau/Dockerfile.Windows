@@ -1,5 +1,7 @@
+#escape=`
 FROM microsoft/iis:windowsservercore-1709
 
+RUN C:\Windows\System32\inetsrv\appcmd.exe set config "Default Web Site" -section:system.webServer/security/requestFiltering /+"fileExtensions.[fileExtension='.md',allowed='True']"
 SHELL [ "powershell", "-command" ]
 
 WORKDIR /inetpub/wwwroot
