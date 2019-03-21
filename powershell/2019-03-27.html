@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+
+<title>Professional PowerShell</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/css/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/css/theme/black.css" id="theme">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/lib/css/zenburn.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"><script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/css/print/pdf.css' : 'https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+
+    (function(window) {
+        function setupVideo()
+        {
+            var v = document.getElementById('hovercontrols');
+            v.addEventListener('mouseover', function() { this.controls = true; }, false);
+            v.addEventListener('mouseout', function() { this.controls = false; }, false);
+        }
+
+        window.addEventListener('load', setupVideo, false);
+    })(window);
+</script>
+
+<style>
+    .reveal section img {
+        border: none;
+    }
+    .reveal section h2 {
+        color: #6a9fb5;
+    }
+    .reveal section h1 {
+        color: black;
+        font-size: 1.5em;
+    }
+    .reveal a {
+        color: #6a9fb5;
+    }
+    .reveal a:hover {
+        color: #7cbad4;
+    }
+    .reveal section {
+        text-align: left;
+    }
+
+    html.dimbg75 .slide-background {
+        opacity: 0.75 !important;
+    }
+</style>
+</head>
+
+<body>
+<div class="reveal">
+<div class="slides">
+
+    <section data-markdown="00_introduction/01_title_generic.md" data-separator="^---$" data-separator-vertical="^--$" data-background="images/Ninjacat_Unicorn_DIY.png" data-background-size="75%" class="center" style="background-color:rgba(0, 0, 0, 0.5); text-align: center; vertical-align: middle;"></section>
+    <section data-markdown="00_introduction/02_bio.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+
+    <section data-markdown="01_basics/powershell.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+    <section data-markdown="01_basics/quickstart.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+
+    <section data-markdown="03_modules/modules.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+
+    <section data-markdown="04_cicd/cicd.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+
+    <section data-markdown="05_tips/tips.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+
+    <section data-markdown data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"><textarea data-template>
+        ## Summary
+
+        <div><i class="fas fa-check fa-10x"></i></div> <!-- .element: style="position: absolute; z-index: -1; width: 100%; text-align: center; -webkit-filter: opacity(.5); filter: opacity(.25);" -->
+
+        XXX
+    </textarea></section>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/lib/js/head.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/js/reveal.js"></script>
+<script>
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: false,
+        transition: 'convex',
+        backgroundTransition: 'fade',
+
+        dependencies: [
+            { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/plugin/zoom-js/zoom.js', async: true },
+            { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/plugin/notes/notes.js' }
+
+        ]
+    });
+</script>
+
+</body>
+</html>
