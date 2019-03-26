@@ -78,11 +78,11 @@ Add another step to your pipeline
 
 Pre-install required modules for `Update-ModuleManifest` to work
 
-Add build number to module manifest
+Add build number to `ModuleVersion` in module manifest
 
 `Update-ModuleManifest` mangles nicely formatted module manifest
 
-Do not test against `*.ps1` files
+Test against the module instead of the `*.ps1` files
 
 --
 
