@@ -1,7 +1,7 @@
 function ConvertTo-Base64 {
     [CmdletBinding()]
     param(
-        [Parameter(Mandatory)]
+        [Parameter(Mandatory, ValueFromPipeline)]
         [ValidateNotNullOrEmpty()]
         [string[]]$InputObject,
 
@@ -9,8 +9,10 @@ function ConvertTo-Base64 {
         [string]$Encoding = 'UTF8'
     )
 
-    foreach ($Line in $InputObject) {
-        $ByteArray = [System.Text.Encoding]::$Encoding.GetBytes($Item)
-        [Convert]::ToBase64String($ByteArray)
+    process {
+        foreach ($Line in $InputObject) {
+            $ByteArray = [System.Text.Encoding]::$Encoding.GetBytes($Line)
+            [Convert]::ToBase64String($ByteArray)
+        }
     }
 }
