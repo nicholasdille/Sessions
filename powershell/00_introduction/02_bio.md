@@ -16,4 +16,4 @@
 
 <i class="fab fa-docker" style="width: 1.5em; text-align: center;"></i> [Docker Captain](https://www.docker.com/captains/nicholas-dille) since 2017
 
-<i class="fas fa-briefcase" style="width: 1.5em; text-align: center;"></i> *DevOps Engineer* @ Haufe Group
+<i class="fas fa-briefcase" style="width: 1.5em; text-align: center;"></i> [Haufe.Group](https://www.haufe.com/) since 2016

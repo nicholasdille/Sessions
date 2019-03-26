@@ -17,9 +17,12 @@ New-ModuleManifest @Params
 code --add .
 
 # Test module
+#TODO
 
 # Add function to module
 Copy-Item -Path "$PSScriptRoot\ConvertTo-Base64.ps1" -Destination .
 # Add function to exports
+#TODO
 
 # Test module
+#TODO

@@ -8,14 +8,14 @@ Store code in repository:
 root
  |
  \-- $ModuleName
-      |
-      \-- $ModuleName.psd1
-      \-- $ModuleName.psm1
+ |    |
+ |    \-- $ModuleName.psd1
+ |    \-- $ModuleName.psm1
  |
  \-- Build.ps1
 ```
 
-Use internal build server or cloud service
+Focus on code maintenance
 
 --
 
@@ -39,4 +39,12 @@ Use internal build server or cloud service
 
 <div><i class="fas fa-code-branch fa-10x"></i></div> <!-- .element: style="position: absolute; z-index: -1; width: 100%; text-align: center; -webkit-filter: opacity(.5); filter: opacity(.25);" -->
 
-XXX
+Meaning of `master`
+
+Use of branches
+
+Prevent commits to common branches
+
+Use pull/merge requests
+
+Resolve concurrent development using feature branches
