@@ -2,7 +2,7 @@
 # file ConvertTo-Base64.ps1
 . "\ConvertTo-Base64.ps1"
 ConvertTo-Base64 'blarg', 'blubb'
-'foobar', 'snafu' | ConvertTo-Base64
+'fubar', 'snafu' | ConvertTo-Base64
 
 # Create a new module
 New-Item -Path ".\Base64" -ItemType Directory -Force
@@ -14,13 +14,11 @@ $Params = @{
     PowerShellVersion = $PSVersionTable.PSVersion
 }
 New-ModuleManifest @Params
-# Edit module manifest
-& code --new-window --add ".\Base64\Base64.psd1"
 
 # Test module
 Import-Module ".\Base64\Base64.psd1" -Force
 Get-Module
-Get-Module -Name Base64 | fl *
+Get-Module -Name Base64 | Format-List *
 
 # Add function to module
 New-Item -Path ".\Base64\Functions" -ItemType Directory -Force
