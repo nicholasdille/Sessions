@@ -1,74 +1,10 @@
 ## Tips and Tricks
 
-<div><i class="fas fa-vial fa-10x"></i></div> <!-- .element: style="position: absolute; z-index: -1; width: 100%; text-align: center; -webkit-filter: opacity(.5); filter: opacity(.25);" -->
+<div><i class="fas fa-magic fa-10x"></i></div> <!-- .element: style="position: absolute; z-index: -1; width: 100%; text-align: center; -webkit-filter: opacity(.5); filter: opacity(.25);" -->
 
-Test driven design (TDD) using pester [<i class="fas fa-external-link-alt"></i>](https://github.com/pester/Pester)
+Create coding guidelines
 
-Unit tests in PowerShell
-
-```powershell
-Import-Module Base64
-Describe 'ConvertTo-Base64` {
-  It 'Accepts parameter' {
-    { ConvertFrom 'BlargBlubb' } | Should Not Throw
-  }
-}
-```
-
-Place in separate files (`*.Tests.ps1`)
-
-Place in separate filder (`\Tests`)
-
-Also supports code coverage
-
---
-
-## Tips and Tricks
-
-<div><i class="fas fa-book fa-10x"></i></div> <!-- .element: style="position: absolute; z-index: -1; width: 100%; text-align: center; -webkit-filter: opacity(.5); filter: opacity(.25);" -->
-
-Comment-based help [<i class="fas fa-external-link-alt"></i>](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comment_based_help?view=powershell-6)
-
-```powershell
-function ConvertTo-Base64 {
-  <#
-  .SYNOPSIS
-  Converts strings to Base64
-  .PARAMETER InputObject
-  One or more strings
-  .PARAMETER Encoding
-  Encoding to use for conversion (default: UTF8)
-  #>
-
-  #...
-}
-```
-
-Automatically available through `-?` and `Get-Help`
-
-Also works for scripts
-
---
-
-## Tips and Tricks
-
-<div><i class="fas fa-book fa-10x"></i></div> <!-- .element: style="position: absolute; z-index: -1; width: 100%; text-align: center; -webkit-filter: opacity(.5); filter: opacity(.25);" -->
-
-Write your help files in markdown with platyPS [<i class="fas fa-external-link-alt"></i>](https://github.com/PowerShell/platyPS):
-
-Generate markdown help for existing functions:
-
-```powershell
-New-MarkdownHelp -Module MyAwesomeModule -OutputFolder .\docs
-```
-
-Generate PowerShell help files from markdown:
-
-```powershell
-New-ExternalHelp .\docs -OutputPath en-US\
-```
-
-Add another step to your pipeline
+Prevent re-inventing the wheel - except your wheel besser ;-)
 
 --
 
