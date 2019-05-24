@@ -1,0 +1,7 @@
+version: "2"
+
+services:
+	svc1:
+	  image: nginx
+	svc2:
+	  image: nginx
