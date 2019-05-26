@@ -3,11 +3,11 @@
 Substitute `docker version`:
 
 ```bash
-curl --unix-socket /var/run/docker.sock http:/version
+curl --unix-socket /var/run/docker.sock http://localhost/version
 ```
 
 If `curl` is missing:
 
 ```bash
-docker run --rm --volume /var/run/docker.sock:/var/run/docker.sock nathanleclaire/curl curl -s --unix-socket /var/run/docker.sock http:/version
+docker run --rm --volume /var/run/docker.sock:/var/run/docker.sock nathanleclaire/curl curl -s --unix-socket /var/run/docker.sock http://localhost/version
 ```

@@ -1,7 +1,10 @@
 version: "2"
 
 services:
-	svc1:
-	  image: nginx
+  svc1:
+		build:
+			context: .
+		container_name: svc1
 	svc2:
-	  image: nginx
+		image: nginx
+		container_name: svc2

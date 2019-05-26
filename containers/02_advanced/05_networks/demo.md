@@ -6,7 +6,7 @@ How to publish a container port in the bridge network:
 docker run -d -p 80:80 nginx
 ```
 
-How to publish a container:
+How to disable network isolation for a container:
 
 ```bash
 docker run -d --rm --network host nginx
@@ -18,8 +18,8 @@ Containers in the same `docker-compose.yml` are deployed to the same network:
 
 ```bash
 docker-compose up -d
-docker exec -it svc2 sh
-ping svc2
+docker network ls
+docker exec -it svc1 ping svc2
 ```
 
 ## Breaking the network context
@@ -43,5 +43,3 @@ It will not be able to see any service from the `docker-compose` files:
 ping svc1
 ping svc2
 ```
-
-##

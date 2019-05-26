@@ -1,10 +1,6 @@
 # SSH
 
-Introduced in Docker 18.09:
-
-```bash
-docker -H ssh://user@host version
-```
+Introduced in Docker 18.09: `docker -H ssh://user@host version`
 
 Also works against older Docker engines if `user@host` has the updated Docker CLI in the path:
 

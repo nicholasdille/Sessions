@@ -12,8 +12,6 @@ services:
 
   registry:
     image: registry:2
-    ports:
-      - 5000:5000
     labels:
       traefik.enable: "true"
       traefik.frontend.rule: "HostRegexp: registry.{domain:.+}"
