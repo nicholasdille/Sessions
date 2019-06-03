@@ -90,23 +90,32 @@
 
     <section data-markdown="000_introduction/01_title_generic.md" data-separator="^\n---\n$" data-separator-vertical="^\n--\n$" class="center"></section>
     <section data-markdown="000_introduction/02_bio.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+
     <section data-markdown="010_basics/01_containers/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+
+    <section data-markdown="020_advanced/title.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
     <section data-markdown="020_advanced/000_architecture/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
     <section data-markdown="020_advanced/010_build_from_git/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
     <section data-markdown="020_advanced/020_multi_stage/01_separation/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
     <section data-markdown="020_advanced/020_multi_stage/02_concurrency/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
-    <section data-markdown="020_advanced/025_build_cache/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
     <section data-markdown="020_advanced/030_layers/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+    <section data-markdown="020_advanced/025_build_cache/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
     <section data-markdown="020_advanced/040_volumes/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
     <section data-markdown="020_advanced/050_networks/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
     <section data-markdown="020_advanced/070_reverse_proxy/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
     <section data-markdown="020_advanced/080_docker_cli_plugins/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
     <section data-markdown="020_advanced/090_cnab/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+
+    <section data-markdown="030_remoting/title.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
     <section data-markdown="030_remoting/00_engine_api/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
     <section data-markdown="030_remoting/01_tcp/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
     <section data-markdown="030_remoting/02_ssh/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+
+    <section data-markdown="040_inception/title.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
     <section data-markdown="040_inception/01_dood/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
     <section data-markdown="040_inception/02_dind/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+
+    <section data-markdown="060_security/title.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
     <section data-markdown="060_security/00_docker_socket/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
     <section data-markdown="060_security/01_bind_mounts/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
     <section data-markdown="060_security/02_tcp_remoting/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
@@ -117,6 +126,19 @@
     <section data-markdown="060_security/07_image_signing/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
     <section data-markdown="060_security/08_pod_security_policy/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
     <section data-markdown="060_security/09_rootless/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+
+    <section data-markdown="080_ci_cd/title.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+    <section data-markdown="080_ci_cd/02_cloud_native/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+
+    <section data-markdown data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:">
+        ## Summary
+
+        Docker does not dominate container orchestration
+
+        Docker does dominate container image builds
+
+        XXX
+    </section>
 
 </div>
 </div>
@@ -134,6 +156,10 @@
 
         allottedTime: 3 * 60 * 1000,
         keyboard: {
+            // pause/resume time when Enter is pressed
+            13: () => {
+                ElapsedTimeBar.isPaused ? ElapsedTimeBar.resume() : ElapsedTimeBar.pause();
+            },
             // reset timer when 'r' is pressed
             82: () => {
                 ElapsedTimeBar.reset();

@@ -20,8 +20,14 @@
 
 ## File Permissions
 
-XXX mapping is useful for development
+Bind mounts are useful for development:
 
 ```
-docker run --user $(id -u):$(id -g) ...
+docker run \
+    --mount type=bind,source=$(pwd),target=/src \
+    --workdir /src \
+    --user $(id -u):$(id -g) \
+    maven
 ```
+
+XXX

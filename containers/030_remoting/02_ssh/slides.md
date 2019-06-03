@@ -13,4 +13,5 @@
 ### Alternative
 
 - Create remote Docker socket
-- `ssh ...`
+- `ssh -fNL $HOME/.docker.sock:/var/run/docker.sock user@host`
+- `docker -H unix://$HOME/.docker.sock version`
