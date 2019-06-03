@@ -4,7 +4,7 @@ XXX kernel capabilities
 
 Add only required capabilities:
 
-```
+```bash
 docker run -it --rm \
     --cap-add SYS_ADMIN \
     alpine
@@ -12,9 +12,9 @@ docker run -it --rm \
 
 Or at least, remove unneeded capabilities:
 
-```
+```bash
 docker run -it --rm \
-    --cap-??? SYS_ADMIN \
+    --cap-drop SYS_ADMIN \
     alpine
 ```
 

@@ -22,6 +22,18 @@ Plugin must support parameter `docker_cli_plugin_metadata` and return the follow
 
 ---
 
-## CLIP
+## Docker Client Plugins Manager (CLIP)
 
-XXX
+Created by [Docker Captain Łukasz Lach](https://www.docker.com/captains/%C5%82ukasz-lach)
+
+See [GitHub](https://github.com/lukaszlach/clip)
+
+### How it works
+
+Framework for running containerized client plugins
+
+Distributed using Docker registry
+
+### Plugin list
+
+expose, publish, showcontext, microscan, dive, runlike, sh, hello

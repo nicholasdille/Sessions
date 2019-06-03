@@ -3,7 +3,8 @@
 ### Port conflicts
 
 - Caused by multiple services on one host
-- For example: Docker registry and frontend
+- For example: Multiple stages of the same environment
+- For example: Multiple web-based services using the same port
 
 ### Reverse Proxy
 
@@ -13,5 +14,11 @@
 
 ### Desired Features
 
-- Manual or automatic wiring
-- ACME (Let's Encrypt)
+- Automatic wiring
+- Automatic certificates
+
+---
+
+## Reverse Proxy
+
+XXX

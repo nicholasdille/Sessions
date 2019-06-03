@@ -5,7 +5,7 @@
 
 <h3>Isolated</h3>
 
-<p>Process thinks it owns the OS</p>
+<p>Process Isolation</p>
 <p>Resource management</p>
 </div>
 
@@ -14,7 +14,7 @@
 
 <h3>Packaged</h3>
 
-<p>Everything the process needs</p>
+<p>Runtime environment</p>
 <p>Distributable package</p>
 </div>
 
@@ -31,14 +31,14 @@
 
 ## Internals
 
-Control groups (cgroups) for process isolation
+### Namespaces
 
-Namespaces for resource management
+* Used for resource isolation
+* Isolation of resource usage to limit visibility
+* Types are PID, network, mount
 
-Limitations and priorization
+### c(ontrol)groups
 
-Accounting
-
-Namespaces
-
-Isolation of resources used in cgroups
+* Used to limit resource usage for proceses
+* Limits and measures access to...
+* ...CPU, memory, network, IO

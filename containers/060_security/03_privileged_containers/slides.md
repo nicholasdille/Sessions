@@ -4,7 +4,7 @@ Privileged containers have access to all syscalls
 
 If able to start containers, just leave the isolation:
 
-```
+```bash
 docker run -it \
     --privileged \
     --pid=host \

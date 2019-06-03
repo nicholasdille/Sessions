@@ -2,7 +2,12 @@
 
 ### Features
 
-- `docker -H ssh://[<user>@]<host> version`
+- Specify Docker host using `ssh://` schema
+
+```bash
+docker -H ssh://[<user>@]<host> version
+```
+
 - SSH agent should be used for authentication
 
 ### Support
@@ -12,6 +17,7 @@
 
 ### Alternative
 
-- Create remote Docker socket
-- `ssh -fNL $HOME/.docker.sock:/var/run/docker.sock user@host`
-- `docker -H unix://$HOME/.docker.sock version`
+```bash
+ssh -fNL $HOME/.docker.sock:/var/run/docker.sock user@host
+docker -H unix://$HOME/.docker.sock version
+```
