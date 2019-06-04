@@ -19,3 +19,11 @@ COPY --from=builder ...
 
 - Added in Docker 17.09
 - Based on BuildKit
+
+--
+
+## Demo: Multi Stage Builds - Separation
+
+```
+docker build --tag hello-world-java:multi .
+```

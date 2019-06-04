@@ -1,6 +1,6 @@
 ## Capabilities
 
-XXX kernel capabilities
+Kernel [`capabilities(7)`](http://man7.org/linux/man-pages/man7/capabilities.7.html) groups syscalls in 38 groups
 
 Add only required capabilities:
 

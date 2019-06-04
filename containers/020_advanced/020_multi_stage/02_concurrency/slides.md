@@ -20,3 +20,19 @@ COPY --from=build2 /opt/binary2 /opt/
 
 - Added in Docker 17.09
 - Based on BuildKit
+
+--
+
+## Demo: Multi Stage Builds - Concurrency
+
+Default `docker build` works sequentially:
+
+```
+docker build .
+```
+
+BuildKit work in parallel:
+
+```
+DOCKER_BUILDKIT=1 docker build .
+```

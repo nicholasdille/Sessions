@@ -38,6 +38,57 @@ docker run --mount type=bind,source=$(pwd),target=/src alpine
 
 Throws error if source does not exist
 
+--
+
+## Demo: Bind Mounts /1
+
+### Bind mount using old syntax
+
+```
+docker run -it --rm \
+  --volume $(pwd):/src \
+  alpine
+```
+
+Local directory will be created silently:
+
+```
+docker run -it --rm \
+  --volume $(pwd)/missing:/src \
+  alpine
+```
+
+--
+
+## Demo: Bind Mounts /2
+
+### Bind mount using new syntax
+
+```
+docker run -it --rm \
+  --mount type=bind,source=$(pwd),target=/src \
+  alpine
+```
+
+Fails of local directory does not exist:
+
+```
+docker run -it --rm \
+  --mount type=bind,source=$(pwd)/missing,target=/src \
+  alpine
+```
+
+--
+
+## Demo: Volume Mount
+
+```
+docker volume create myvol
+docker volume ls
+docker volume inspect myvol
+docker -it --rm --volume myvol:/src alpine
+```
+
 ---
 
 ## File Permissions
@@ -61,4 +112,22 @@ docker run \
     --workdir /src \
     --user $(id -u):$(id -g) \
     maven
+```
+
+--
+
+## Demo: File Permissions
+
+### Access permissions:
+
+```
+docker -it --rm --volume myvol:/src:ro alpine
+```
+
+Works for bind mounts as well
+
+### Real temporary data:
+
+```
+docker run -it --rm --tmpfs /src alpine
 ```

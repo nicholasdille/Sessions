@@ -42,3 +42,37 @@
 * Used to limit resource usage for proceses
 * Limits and measures access to...
 * ...CPU, memory, network, IO
+
+---
+
+## Advantages of Docker
+
+### Immutable
+
+- XXX
+
+### Stateless
+
+- XXX
+
+### Automated
+
+- XXX
+
+---
+
+## Is Docker still relevant?
+
+### Orchestration
+
+- No, Kubernetes has won
+
+### Container runtime
+
+- Often, but [`containerd`](https://github.com/containerd/containerd) is growing quickly
+
+### Image build
+
+- Yes
+- Other image builders are still niche players
+- Examples: [`buildah`](https://github.com/containers/buildah), [`img`](https://github.com/genuinetools/img), [`kaniko`](https://github.com/GoogleContainerTools/kaniko) (list not exhaustive)

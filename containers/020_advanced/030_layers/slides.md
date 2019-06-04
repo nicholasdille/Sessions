@@ -19,6 +19,26 @@
 - Layers improve download performance
 - Layers enable reusability
 
+--
+
+## Demo: Layers
+
+### Preparation
+
+Upload image to local registry:
+
+```
+docker run -d -p 5000:5000 registry:2
+docker build --tag localhost:5000/hello-world-java .
+docker push localhost:5000/hello-world
+```
+
+### Investigate layers locally
+
+```
+docker history hello-world
+```
+
 ---
 
 ## Image Manifest
@@ -34,8 +54,121 @@
 - Contains command used to create layers
 - Stored as blob
 
+--
+
+## Demo: Image Manifest
+
+Download image manifest:
+
+```bash
+curl \
+  -sL \
+  -H "Accept: application/vnd.docker.distribution.manifest.v2+json" \
+  http://localhost:5000/v2/hello-world-java/manifests/latest
+```
+
+--
+
+## Demo: Image Configuration
+
+Download image configuration:
+
+```bash
+curl \
+  -sL \
+  -H "Accept: application/vnd.docker.container.image.v1+json" \
+  http://localhost:5000/v2/hello-world-java/manifests/latest
+```
+
+--
+
+## Demo: Download image layer
+
+```bash
+DIGEST=$(
+  curl \
+    -sL \
+    -H "Accept: application/vnd.docker.container.image.v1+json" \
+    http://localhost:5000/v2/hello-world-java/manifests/latest \
+  | jq --raw-output '.layers[-1].digest'
+)
+
+curl \
+  -sL \
+  -H "Accept: application/vnd.docker.image.rootfs.diff.tar.gzip" \
+  http://localhost:5000/v2/hello-world-java/blobs/${DIGEST} \
+| tar -tvz
+```
+
+--
+
+## Demo: Verifying a layer's digest
+
+```bash
+curl \
+  -sL \
+  -H "Accept: application/vnd.docker.container.image.v1+json" \
+  http://localhost:5000/v2/hello-world-java/manifests/latest \
+| jq --raw-output '.layers[-1]'
+
+curl \
+  -sL \
+  -H "Accept: application/vnd.docker.image.rootfs.diff.tar.gzip" \
+  http://localhost:5000/v2/hello-world-java/blobs/${DIGEST} \
+| sha256sum
+```
+
+--
+
+## Demo: Determining the content length
+
+```bash
+curl \
+  -sL \
+  -H "Accept: application/vnd.docker.container.image.v1+json" \
+  http://localhost:5000/v2/hello-world-java/manifests/latest \
+| jq --raw-output '.layers[-1]'
+
+curl \
+  -sL \
+  -H "Accept: application/vnd.docker.image.rootfs.diff.tar.gzip" \
+  http://localhost:5000/v2/hello-world-java/blobs/${DIGEST}
+| wc -c
+```
+
 ---
 
 ## Registries
 
 XXX
+
+### Further reading
+
+- [Registry API](https://docs.docker.com/registry/spec/api/)
+- [Image Manifest Specification v2.2](https://docs.docker.com/registry/spec/manifest-v2-2/)
+
+--
+
+## Demo: Registries
+
+### Tagging images remotely
+
+```bash
+# Download manifest from old name
+MANIFEST=$(
+  curl \
+    -sL \
+    -H "Accept: application/vnd.docker.distribution.manifest.v2+json" \
+    localhost:5000/v2/hello-world-java/manifests/latest
+)
+
+# Push manifest with new name
+curl \
+  -X PUT \
+  -H "Content-Type: application/vnd.docker.distribution.manifest.v2+json" \
+  -d "${MANIFEST}" \
+  localhost:5000/v2/hello-world-java/manifests/new
+
+# Test
+docker pull localhost:5000/v2/hello-world-java/manifests/new
+```
