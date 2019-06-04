@@ -19,6 +19,14 @@ Step 7/11 : ADD entrypoint.sh /
  ---> a6b2bb261372
 ```
 
+--
+
+## Demo: Build Cache
+
+1. First build
+1. Consecutive build
+1. Build after changes
+
 ---
 
 ## Build Cache Warming v1
@@ -40,6 +48,15 @@ Added in Docker 1.13
 
 Image must be present locally
 
+--
+
+## Demo: Build Cache Warming v1
+
+1. Push image
+1. Reset Docker
+1. Pull image
+1. Build with cache from local image
+
 ---
 
 ## Build Cache Warming v2
@@ -57,3 +74,10 @@ Same syntax using `--cache-from`
 ### Prerequisites
 
 Added in Docker 19.03
+
+--
+
+## Demo: Build Cache Warming v2
+
+1. Reset Docker
+1. Build with cache from remote image

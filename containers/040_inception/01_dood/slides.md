@@ -1,4 +1,4 @@
-## Docker-out-of-Docker
+## Docker-out-of-Docker (DooD)
 
 Using the existing Docker daemon
 
@@ -7,14 +7,20 @@ Using the existing Docker daemon
 - Containerized Docker CLI
 - Mapped Docker socket
 
-```bash
-docker run -it --rm \
-    --volume /var/run/docker.sock:/var/run/docker.sock \
-    docker:18.06
-    docker version
-```
-
 ### Disadvantages
 
 - Conflicts with other containers
 - Interferes with the host
+
+--
+
+## Demo: Docker-out-of-Docker (DooD)
+
+Mapping the daemon socket:
+
+```bash
+docker run -it --rm \
+  --volume /var/run/docker.sock:/var/run/docker.sock \
+  docker:18.09 \
+  docker version
+```
