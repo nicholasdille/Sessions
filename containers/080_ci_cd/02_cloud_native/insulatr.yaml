@@ -20,14 +20,12 @@ steps:
   - name: build
     image: openjdk:8-jdk
     commands:
-      - javac containers/020_advanced/020_multi_stage/01_separation/HelloWorld.java
-      - jar cf HelloWorld.jar HelloWorld.class
+      - javac -d . Sessions/containers/020_advanced/020_multi_stage/01_separation/HelloWorld.java
 
   - name: test
     image: openjdk:8-jre
     commands:
       - java HelloWorld
-      - java -jar HelloWorld.jar
 
   - name: package
     image: docker:stable
