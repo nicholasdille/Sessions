@@ -76,6 +76,8 @@ steps:
 
 ## Demo: Cloud Native Builds
 
+Use `insulatr` 1.0.1
+
 Enable privileged service:
 
 ```bash
