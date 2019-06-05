@@ -13,13 +13,14 @@ services:
   - name: dind
     image: docker:stable-dind
     privileged: true
+    suppress_log: true
 
 steps:
 
   - name: build
     image: openjdk:8-jdk
     commands:
-      - javac containers/020_multi_stage/01_separation/HelloWorld.java
+      - javac containers/020_advanced/020_multi_stage/01_separation/HelloWorld.java
       - jar cf HelloWorld.jar HelloWorld.class
 
   - name: test
