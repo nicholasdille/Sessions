@@ -19,6 +19,23 @@
 - Layers improve download performance
 - Layers enable reusability
 
+---
+
+## Image Manifest
+
+### Layers
+
+- Lists layers in the image
+- Layers are referenced as blobs
+- References are SHA256 hashed: `sha256:...`
+
+### Image configuration
+
+- Contains command used to create layers
+- Stored as blob
+
+![](020_advanced/030_layers/image.svg) <!-- .element: style="display: block; margin-left: auto; margin-right: auto;" -->
+
 --
 
 ## Demo: Layers
@@ -38,21 +55,6 @@ docker push localhost:5000/hello-world
 ```
 docker history hello-world
 ```
-
----
-
-## Image Manifest
-
-### Layers
-
-- Lists layers in the image
-- Layers are referenced as blobs
-- References are SHA256 hashed: `sha256:...`
-
-### Image configuration
-
-- Contains command used to create layers
-- Stored as blob
 
 --
 
@@ -140,7 +142,10 @@ curl \
 
 ## Registries
 
-XXX
+- REST API
+- No UI
+- Manage images, layers, configurations
+- Upload, list, update, delete
 
 ### Further reading
 
@@ -155,16 +160,13 @@ XXX
 
 ```bash
 # Download manifest from old name
-MANIFEST=$(
-  curl \
-    -sL \
+MANIFEST=$(curl -sL \
     -H "Accept: application/vnd.docker.distribution.manifest.v2+json" \
     localhost:5000/v2/hello-world-java/manifests/latest
 )
 
 # Push manifest with new name
-curl \
-  -X PUT \
+curl -X PUT \
   -H "Content-Type: application/vnd.docker.distribution.manifest.v2+json" \
   -d "${MANIFEST}" \
   localhost:5000/v2/hello-world-java/manifests/new

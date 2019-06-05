@@ -1,7 +1,15 @@
 ## TCP
 
-XXX dangers
+Docker Engine API can be published on TCP port
 
-XXX do not open directly
+Unfortunately, very easy to publish insecurely
 
-XXX use containerized
+Certificate based server and client authentication is painful
+
+Insecure `dockerd` enables breakout
+
+### Recommendation
+
+Do not open TCP directly
+
+Use [containerized reverse proxy](https://dille.name/blog/2018/11/18/publishing-the-docker-daemon-using-a-containerized-reverse-proxy/)

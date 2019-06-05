@@ -2,9 +2,20 @@
 
 ### Where are we today?
 
-XXX build prerequisites
+Build instructions require tools
 
-XXX dependency on build agent
+```bash
+javac HelloWorld.java
+jar cf HelloWorld.jar HelloWorld.jar
+```
+
+Builds are usually more complex
+
+Tools are installed on build agents
+
+Build agents become critical infrastructure components
+
+Automated installation only addresses symptom
 
 ---
 
@@ -22,11 +33,12 @@ steps:
   - image: openjdk:8-jdk
     commands:
       - javac HelloWorld.java
+      - jar cf HelloWorld.jar HelloWorld.jar
 ```
 
-- Advantage 1
-- Advantage 2
-- Advantage 3
+- Pipeline as code
+- Easier to track in `git`
+- Easier to read than script
 
 ---
 
@@ -45,12 +57,27 @@ steps:
 
 ## Cloud Native Builds
 
-### My solutions
+### Enter `insulatr`
 
-XXX `insulatr`
+- Independent of build server
+- No server component
+- Called as only step of automated build
+- https://github.com/nicholasdille/insulatr
+
+### Features
+
+- Clone multiple repositories
+- State passed between steps in Docker volume
+- Start services running during the build
+- Inject files before build
+- Extract files after build
 
 --
 
 ## Demo: Cloud Native Builds
 
-XXX call with `--allow-privileged`
+Enable privileged service:
+
+```bash
+insulatr --file insulatr.yaml --allow-privileged
+```

@@ -1,6 +1,6 @@
 ## Reverse Proxy
 
-### Port conflicts
+### Why? Port conflicts!
 
 - Caused by multiple services on one host
 - For example: Multiple stages of the same environment
@@ -14,6 +14,7 @@
 
 ### Desired Features
 
+- HTTP(S)
 - Automatic wiring
 - Automatic certificates
 
@@ -21,7 +22,11 @@
 
 ## Reverse Proxy
 
-XXX
+HTTP: Routing based on `Host` header
+
+HTTPS: Routing based on Server Name Indication (SNI)
+
+![](020_advanced/070_reverse_proxy/reverse-proxy.svg) <!-- .element: class="center-image" -->
 
 --
 

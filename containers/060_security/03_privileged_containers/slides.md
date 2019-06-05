@@ -40,6 +40,10 @@ docker run --rm --privileged --pid=host -it alpine:3.8 \
 
 ## Taming Privileges Containers
 
-XXX kata containers
+### For example
 
-XXX Google gVisor
+![](https://katacontainers.io/assets/img/logo_white.e69d7ea6.svg) <!-- .element: style="width: 35%" -->
+
+Isolates containers in a lightweight VM
+
+Configured as a container runtime (instead of `runc`)

@@ -2,6 +2,13 @@ repos:
   - name: source
     location: https://github.com/nicholasdille/Sessions
 
+files:
+  - inject: Dockerfile
+    content: |-
+      FROM openjdk:8-jre
+      COPY HelloWorld.class
+      CMD [ "java", "HelloWorld" ]
+
 services:
   - name: dind
     image: docker:stable-dind
@@ -12,24 +19,23 @@ steps:
   - name: build
     image: openjdk:8-jdk
     commands:
-      - cd containers/020_multi_stage/01_separation
-      - javac HelloWorld.java
+      - javac containers/020_multi_stage/01_separation/HelloWorld.java
+      - jar cf HelloWorld.jar HelloWorld.class
 
-  - name: build
+  - name: test
     image: openjdk:8-jre
     commands:
-      - cd containers/020_multi_stage/01_separation
       - java HelloWorld
+      - java -jar HelloWorld.jar
 
   - name: package
     image: docker:stable
     environment:
       - DOCKER_HOST=tcp://dind:2375
     commands:
-      - cd containers/020_multi_stage/01_separation
       - docker build --tag hello-world-java .
 
-  - name: test
+  - name: integration
     image: docker:stable
     environment:
       - DOCKER_HOST=tcp://dind:2375

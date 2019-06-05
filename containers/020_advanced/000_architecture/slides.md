@@ -1,3 +1,9 @@
+## Under the Hood
+
+![](020_advanced/000_architecture/dockerd-moby-containerd-runc.svg) <!-- .element: style="display: block; margin-left: auto; margin-right: auto;" -->
+
+---
+
 <!-- .slide: class="two_column_list" -->
 
 ## Under the Hood
@@ -28,6 +34,12 @@
 - Belongs to OCI (Linux Foundation)
 - Implements OCI runtime specification
 - Donated by Docker in 2015
+
+---
+
+## Under the Hood
+
+![](020_advanced/000_architecture/containerd-shim.svg) <!-- .element: style="display: block; margin-left: auto; margin-right: auto;" -->
 
 --
 

@@ -1,9 +1,11 @@
 ## Community Images
 
-XXX trust?
+This is a question of trust!
 
-XXX security updates?
+### You must ask yourself
 
-XXX development?
+1. Do you know the maintainer?
+1. Is the image actively maintained?
+1. Are security updates applied?
 
-Is suspicious, derive from code!
+### If suspicious, derive from code!

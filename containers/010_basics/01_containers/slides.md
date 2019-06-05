@@ -3,9 +3,9 @@
 <div style="width: 32%; padding-right: 2%; float: left; text-align: center">
 <p><i class="fas fa-umbrella fa-2x"></i></p>
 
-<h3>Isolated</h3>
+<h3>Isolated</h3> <!-- .element: style="font-size: 0.8em;" -->
 
-<p>Process Isolation</p>
+<p>Process isolation</p>
 <p>Resource management</p>
 </div>
 
@@ -23,7 +23,7 @@
 
 <h3>Automated</h3>
 
-<p>Builds are reproducible</p>
+<p>Reproducible tasks</p>
 <p>Fast deployments</p>
 </div>
 
@@ -45,23 +45,32 @@
 
 ---
 
-## Advantages of Docker
+## Docker
+
+### Packaged
+
+- Includes dependencies
+- Distributable
 
 ### Immutable
 
-- XXX
-
-### Stateless
-
-- XXX
+- Incremental changes not supported
+- Changes require rollout
 
 ### Automated
 
-- XXX
+- Image builds
+- Deployments
+
+### Stateless
+
+- By default, no persistence
 
 ---
 
 ## Is Docker still relevant?
+
+With regard to...
 
 ### Orchestration
 
