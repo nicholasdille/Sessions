@@ -21,9 +21,9 @@
 Using `docker build`:
 
 ```
-docker build --tag hello-world-java:git \
-    github.com/nicholasdille/Sessions#master:containers/02_advanced/01_build_from_git
-docker run hello-world-java:git
+docker build --tag hello-world-java \
+    github.com/nicholasdille/Sessions#master:containers/020_advanced/010_build_from_git
+docker run hello-world-java
 ```
 
 Using `docker-compose`:

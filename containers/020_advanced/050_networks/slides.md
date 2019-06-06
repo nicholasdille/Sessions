@@ -93,3 +93,20 @@ It will not be able to see any service from the `docker-compose` files:
 ping svc1
 ping svc2
 ```
+
+--
+
+## Demo: Fixing the Broken Network Context
+
+Continue to test inside the `dind` service:
+
+```bash
+docker run -it --rm --network test_default alpine
+```
+
+Once the container is started in the network used by the deployment, it can see other services:
+
+```bash
+ping svc1
+ping svc2
+```

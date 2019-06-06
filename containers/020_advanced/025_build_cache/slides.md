@@ -42,6 +42,8 @@ docker pull myimage:1
 docker build --cache-from myimage:1 --tag myimage:2
 ```
 
+Internal build cache is ignored when using `--cache-from`
+
 ### Prerequisites
 
 Added in Docker 1.13
@@ -67,6 +69,8 @@ docker pull localhost:5000/hello-world-java
 # Build with cache from local image
 docker build --cache-from localhost:5000/hello-world-java .
 ```
+
+Internal build cache is still used when cache image does not exist
 
 ---
 

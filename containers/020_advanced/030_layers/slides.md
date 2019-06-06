@@ -66,7 +66,7 @@ Download image manifest:
 curl \
   -sL \
   -H "Accept: application/vnd.docker.distribution.manifest.v2+json" \
-  http://localhost:5000/v2/hello-world-java/manifests/latest
+  http://localhost:5000/v2/hello-world-java/manifests/latest \
 | jq
 ```
 
@@ -80,7 +80,7 @@ Download image configuration:
 curl \
   -sL \
   -H "Accept: application/vnd.docker.container.image.v1+json" \
-  http://localhost:5000/v2/hello-world-java/manifests/latest
+  http://localhost:5000/v2/hello-world-java/manifests/latest \
 | jq
 ```
 
@@ -140,7 +140,7 @@ DIGEST=$(
 curl \
   -sL \
   -H "Accept: application/vnd.docker.image.rootfs.diff.tar.gzip" \
-  http://localhost:5000/v2/hello-world-java/blobs/${DIGEST}
+  http://localhost:5000/v2/hello-world-java/blobs/${DIGEST} \
 | wc -c
 ```
 

@@ -9,7 +9,7 @@
 ### Docker Content Trust
 
 - Part of Docker Enterprise (paid)
-- Based on Notary
+- Based on Notary (open source)
 
 --
 
