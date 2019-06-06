@@ -24,18 +24,20 @@ Plugin must support parameter `docker_cli_plugin_metadata` and return the follow
 
 ## Demo: Docker CLI Plugins
 
-Place `docker_distribution` in `~/.docker/cli-plugins`
+Place `docker-distribution` in `~/.docker/cli-plugins`
 
 ### Prepare:
 
-```
+```bash
 docker build --tag cli-plugin .
 ```
 
 ### Enter container and test:
 
-```
-docker
+```bash
+docker run -it --rm \
+    --volume /var/run/docker.sock:/var/run/docker.sock \
+    cli-plugin
 ```
 
 ---
@@ -55,9 +57,3 @@ Distributed using Docker registry
 ### Plugin list
 
 expose, publish, showcontext, microscan, dive, runlike, sh, hello
-
---
-
-## Demo: CLIP
-
-XXX

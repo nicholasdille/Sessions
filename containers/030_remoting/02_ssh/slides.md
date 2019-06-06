@@ -29,16 +29,20 @@ docker -H unix://$HOME/.docker.sock version
 Test containerized:
 
 ```bash
+ssh-keygen
 docker run -d --rm \
-  --volume /root/.ssh:/root/.ssh \
+  --volume $HOME/.ssh:/root/.ssh \
   --privileged \
   nicholasdille/docker-ssh:18.09
+
 docker run -it --rm \
-  --volume /root/.ssh:/root/.ssh \
+  --volume $HOME/.ssh:/root/.ssh \
   docker:18.09
+
 apk --update --no-cache openssh
 exit
-docker -H ssh://user@1.2.3.4 version
+
+docker -H ssh://root@172.17.0.2 version
 ```
 
 --

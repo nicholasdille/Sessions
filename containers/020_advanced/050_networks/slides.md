@@ -74,19 +74,22 @@ docker exec -it svc1 ping svc2
 Containers launched over the mapped daemon socket do not end up in the same network context:
 
 ```bash
-docker-compose --file docker-compose.yml --file docker-compose.context.yml up -d
+docker-compose \
+    --file docker-compose.yml \
+    --file docker-compose.context.yml \
+    up -d
 docker-compose exec dind sh
 ```
 
 Inside of the `dind` service, start a new container:
 
-```
+```bash
 docker run -it alpine
 ```
 
 It will not be able to see any service from the `docker-compose` files:
 
-```
+```bash
 ping svc1
 ping svc2
 ```

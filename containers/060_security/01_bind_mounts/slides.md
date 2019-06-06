@@ -38,4 +38,4 @@ docker run -it --rm \
     alpine
 ```
 
-XXX user namespace remapping
+This is solved by user namespace remapping

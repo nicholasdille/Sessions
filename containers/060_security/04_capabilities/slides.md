@@ -27,7 +27,7 @@ All capabilities is equivalent to privileged
 Specifying required capabilities:
 
 ```bash
-docker run -it --rm --cap-add SYS_ADMIN ubuntu
+docker run -it --rm --cap-add SYS_ADMIN ubuntu:xenial
 ```
 
 Check default capabilities of processes in privileged container:

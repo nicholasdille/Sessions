@@ -31,7 +31,7 @@ Default `docker build` works sequentially:
 docker build .
 ```
 
-BuildKit work in parallel:
+BuildKit works in parallel:
 
 ```
 DOCKER_BUILDKIT=1 docker build .

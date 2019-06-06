@@ -1,5 +1,7 @@
 ## Under the Hood
 
+Contributing projects:
+
 ![](020_advanced/000_architecture/dockerd-moby-containerd-runc.svg) <!-- .element: style="display: block; margin-left: auto; margin-right: auto;" -->
 
 ---
@@ -38,6 +40,8 @@
 ---
 
 ## Under the Hood
+
+Processes:
 
 ![](020_advanced/000_architecture/containerd-shim.svg) <!-- .element: style="display: block; margin-left: auto; margin-right: auto;" -->
 

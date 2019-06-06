@@ -4,7 +4,7 @@
 
 ## Nicholas Dille
 
-**Husband, father, automator, isolator**
+**Husband, father, automator**
 
 <i class="fas fa-globe" style="width: 1.5em; text-align: center;"></i> [Blogger](https://dille.name) since 2003
 

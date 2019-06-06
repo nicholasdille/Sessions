@@ -44,7 +44,7 @@ Throws error if source does not exist
 
 ### Bind mount using old syntax
 
-```
+```bash
 docker run -it --rm \
   --volume $(pwd):/src \
   alpine
@@ -52,7 +52,7 @@ docker run -it --rm \
 
 Local directory will be created silently:
 
-```
+```bash
 docker run -it --rm \
   --volume $(pwd)/missing:/src \
   alpine
@@ -64,7 +64,7 @@ docker run -it --rm \
 
 ### Bind mount using new syntax
 
-```
+```bash
 docker run -it --rm \
   --mount type=bind,source=$(pwd),target=/src \
   alpine
@@ -72,7 +72,7 @@ docker run -it --rm \
 
 Fails of local directory does not exist:
 
-```
+```bash
 docker run -it --rm \
   --mount type=bind,source=$(pwd)/missing,target=/src \
   alpine
@@ -82,7 +82,7 @@ docker run -it --rm \
 
 ## Demo: Volume Mount
 
-```
+```bash
 docker volume create myvol
 docker volume ls
 docker volume inspect myvol
@@ -120,7 +120,7 @@ docker run \
 
 ### Access permissions:
 
-```
+```bash
 docker -it --rm --volume myvol:/src:ro alpine
 ```
 
@@ -128,6 +128,6 @@ Works for bind mounts as well
 
 ### Real temporary data:
 
-```
+```bash
 docker run -it --rm --tmpfs /src alpine
 ```
