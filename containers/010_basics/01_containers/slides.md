@@ -1,87 +1,66 @@
-## Why Containers
+## My First Contaienr
 
-<div style="width: 32%; padding-right: 2%; float: left; text-align: center">
-<p><i class="fas fa-umbrella fa-2x"></i></p>
+### Hands-on
 
-<h3>Isolated</h3> <!-- .element: style="font-size: 0.8em;" -->
+```
+$ docker run -it ubuntu
+root@12345678# hostname
+root@12345678# whoami
+root@12345678# ps faux
+root@12345678# ls –l /
+root@12345678# exit
+$ docker run -it ubuntu ping localhost
+```
 
-<p>Process isolation</p>
-<p>Resource management</p>
-</div>
+XXX interactive
 
-<div style="width: 32%; padding-right: 2%; float: left; text-align: center">
-<p><i class="fas fa-suitcase fa-2x"></i></p>
+--
 
-<h3>Packaged</h3>
+## Background containers
 
-<p>Runtime environment</p>
-<p>Distributable package</p>
-</div>
+### First process keeps container alive
 
-<div style="width: 32%; float: right; text-align: center">
-<p><i class="fas fa-cog fa-2x"></i></p>
+### Containers are not purged automatically
 
-<h3>Automated</h3>
+### Hands-on
 
-<p>Reproducible tasks</p>
-<p>Fast deployments</p>
-</div>
+```
+$ docker run -it ubuntu hostname
+$ docker run –d ubuntu ping localhost
+$ docker ps
+$ docker stop <NAME>
+$ docker rm <NAME>
+```
 
----
+--
 
-## Internals
+## Exploration
 
-### Namespaces
+### Name containers
 
-* Used for resource isolation
-* Isolation of resource usage to limit visibility
-* Types are PID, network, mount
+```
+$ docker run -d --name websrv nginx
+$ docker ps
+```
 
-### c(ontrol)groups
+### Learn about containers
 
-* Used to limit resource usage for proceses
-* Limits and measures access to...
-* ...CPU, memory, network, IO
+```
+$ docker logs websrv
+$ docker inspect websrv
+```
 
----
+XXX id
 
-## Docker
+### Execute commands inside containers
 
-### Packaged
+```
+$ docker exec websrv ps faux
+$ ps faux
+```
 
-- Includes dependencies
-- Distributable
+### Enter containers interactively
 
-### Immutable
-
-- Incremental changes not supported
-- Changes require rollout
-
-### Automated
-
-- Image builds
-- Deployments
-
-### Stateless
-
-- By default, no persistence
-
----
-
-## Is Docker still relevant?
-
-With regard to...
-
-### Orchestration
-
-- No, Kubernetes has won
-
-### Container runtime
-
-- Often, but [`containerd`](https://github.com/containerd/containerd) is growing quickly
-
-### Image build
-
-- Yes
-- Other image builders are still niche players
-- Examples: [`buildah`](https://github.com/containers/buildah), [`img`](https://github.com/genuinetools/img), [`kaniko`](https://github.com/GoogleContainerTools/kaniko) (list not exhaustive)
+```
+$ docker exec -it websrv bash
+```
