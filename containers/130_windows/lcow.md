@@ -13,14 +13,6 @@ Same behaviour as hybrid swarm
 
 --
 
-## DEMO
-
-<video id="hovercontrols">
-    <source data-src="videos/LCOW.mp4" type="video/mp4" />
-</video>
-
---
-
 ## Code
 
 docker-compose.yml:

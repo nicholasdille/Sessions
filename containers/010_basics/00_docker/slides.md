@@ -217,3 +217,15 @@ With regard to...
 - Yes
 - Other image builders are still niche players
 - Examples: [`buildah`](https://github.com/containers/buildah), [`img`](https://github.com/genuinetools/img), [`kaniko`](https://github.com/GoogleContainerTools/kaniko) (list not exhaustive)
+
+--
+
+## Containers
+
+Process Isolation
+
+Dedicated resources
+
+Resource reservation / limitation
+
+But... it's just a process <!-- .element: style="color: #ff8800;" -->

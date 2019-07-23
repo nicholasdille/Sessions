@@ -12,14 +12,6 @@ Mapping named pipe into containers requires...
 
 ## DEMO
 
-<video id="hovercontrols">
-    <source data-src="videos/Named Pipe.mp4" type="video/mp4" />
-</video>
-
---
-
-## DEMO
-
 Commands:
 
 ```
