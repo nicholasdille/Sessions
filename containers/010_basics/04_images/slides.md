@@ -4,16 +4,22 @@
 
 hub.docker.com
 
-### Images are named [`user/`]name:tag
+### Images are named `[user/]name:tag`
 
-### Hands-on
+```bash
+docker pull ubuntu
+docker pull ubuntu:16.04
+docker rmi ubuntu
+```
+
+### Different distributions
 
 ```bash
 docker pull centos
-docker rmi centos
+docker run -it centos
 ```
 
-XXX look and feel of distribution but host kernel
+Look and feel of that distribution with host kernel
 
 --
 
@@ -31,17 +37,78 @@ Adds tools and functionality
 
 Simple but sufficient scripting language
 
-### Hands-on
-
 ```Dockerfile
 FROM ubuntu:xenial
 RUN apt update && apt -y install nginx
 ```
 
-XXX
+Build image from `Dockerfile`:
 
 ```bash
 docker build --tag myimage .
+```
+
+--
+
+## Dockerfile
+
+### Specify first process to run
+
+```Dockerfile
+FROM openjdk:11-jre
+CMD java -version
+```
+
+### Use variables
+
+```bash
+FROM ubuntu
+ENV VERSION=1.24.1
+RUN curl -Lo /usr/local/bin/docker-compose https://github.com/docker/compose/releases/download/${VERSION}/docker-compose-`uname -s`-`uname -m` \
+ && chmod +x /usr/local/bin/docker-compose
+```
+
+--
+
+## Shell versus Exec Notation
+
+Shell notation wraps command in shell:
+
+```text
+RUN java -version   # sh -c 'java -version'
+```
+
+Exec notation starts process without shell:
+
+```Dockerfile
+FROM openjdk:11-jre
+CMD [ "java", "-version" ]
+```
+
+Equivalent to...
+
+```bash
+docker run -it openjdk:11-jre java -version
+```
+
+--
+
+## ENTRYPOINT
+
+`ENTRYPOINT` defined process
+
+`CMD` defines parameters
+
+```Dockerfile
+FROM openjdk:11-jre
+ENTRYPOINT [ "java" ]
+CMD [ "-version" ]
+```
+
+Override parameters from the command line:
+
+```bash
+docker run -it myjava -help
 ```
 
 --
@@ -50,9 +117,7 @@ docker build --tag myimage .
 
 ### Docker Hub is not the only source for images
 
-### Private registries based on Docker Distribution
-
-### Hands-on
+### Private registries based on [Docker Distribution](https://github.com/docker/distribution)
 
 ```bash
 docker tag myimage nicholasdille/coolnginx
@@ -69,10 +134,12 @@ localhost:5000 is preconfigured as insecure registry
 
 Other registries must be secure (HTTPS)
 
-### Hands-On
-
 ```bash
 docker run -d --name registry -p 5000:5000 registry
 docker tag ubuntu localhost:5000/groot/ubuntu
 docker push localhost:5000/groot/ubuntu
 ```
+
+Docker only accepts secure (HTTPS) registries
+
+By default, `localhost:5000` is accepted as insecure registry

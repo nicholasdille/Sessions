@@ -1,6 +1,8 @@
 ## Tagging strategies
 
-### Latest has no universal meaning
+### Tags are aliases for image versions
+
+### `Latest` has no universal meaning
 
 ### Individual version / build number
 
@@ -10,11 +12,15 @@ stable for tested images
 
 dev or vnext for untested images
 
+master for builds of master branch
+
 ### More tags = choice
 
-v1.1.0 should also be tagged as v1.1, v1 and stable
+Latest v1.1.x should also be tagged as v1.1, v1 and stable
 
-Latest v1.1.0-alpine should also be tagged as stable-alpine
+Latest v1.1.x-alpine should also be tagged as stable-alpine
+
+Latest build of `master` branch should be tagged master
 
 --
 
