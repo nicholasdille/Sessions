@@ -108,7 +108,8 @@ CMD [ "-version" ]
 Override parameters from the command line:
 
 ```bash
-docker run -it myjava -help
+docker build --tag java .
+docker run -it java -help
 ```
 
 --
@@ -120,9 +121,11 @@ docker run -it myjava -help
 ### Private registries based on [Docker Distribution](https://github.com/docker/distribution)
 
 ```bash
-docker tag myimage nicholasdille/coolnginx
-docker push nicholasdille/coolnginx
+docker tag java nicholasdille/java
+docker push nicholasdille/java
 ```
+
+You must be logged in to Docker Hub and push to a repository owned by the account
 
 --
 
@@ -130,16 +133,12 @@ docker push nicholasdille/coolnginx
 
 ### Security
 
-localhost:5000 is preconfigured as insecure registry
+`localhost:5000` is preconfigured as insecure registry
 
 Other registries must be secure (HTTPS)
 
 ```bash
 docker run -d --name registry -p 5000:5000 registry
-docker tag ubuntu localhost:5000/groot/ubuntu
-docker push localhost:5000/groot/ubuntu
+docker tag java localhost:5000/java
+docker push localhost:5000/java
 ```
-
-Docker only accepts secure (HTTPS) registries
-
-By default, `localhost:5000` is accepted as insecure registry

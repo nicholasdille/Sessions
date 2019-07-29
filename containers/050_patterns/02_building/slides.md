@@ -32,7 +32,7 @@ My own tests prove otherwise
 
 ### Separate functionality into chains of images
 
-```
+```text
 dind -> dind-gocd-agent
         linux-agent     -> linux-agent-gocd
                         -> linux-agent-jenkins
@@ -81,8 +81,8 @@ Create file hash after manual download
 
 Check file hash during image build
 
-```
-$ echo “${HASH} *${FILENAME}“ | sha256sum
+```bash
+echo "${HASH} *${FILENAME}" | sha256sum --check
 ```
 
 --
@@ -99,7 +99,7 @@ Add USER statement after setting up image
 
 Some services handle this for you (nginx)
 
-```
+```Dockerfile
 FROM ubuntu
 # install
 USER go
@@ -113,7 +113,7 @@ Install more tools
 
 Change back to user
 
-```
+```Dockerfile
 FROM derived
 USER root
 # install
@@ -130,17 +130,17 @@ Easily find corresponding code
 
 ## Use image annotations by the OCI
 
-Deprecated: https://label-schema.org
+Deprecated: [https://label-schema.org](https://label-schema.org)
 
 ### Also breaks the build cache :-(
 
 --
 
-## Microlabeling
+## Microlabeling in action
 
 ### Dockerfile
 
-```
+```Dockerfile
 FROM ubuntu:xenial-20180123
 
 LABEL \
@@ -159,7 +159,7 @@ org.opencontainers.image.vendor=“Nicholas Dille“
 
 Prevent usage of outdated images
 
-```
+```bash
 docker build --pull ...
 ```
 
@@ -167,7 +167,7 @@ docker build --pull ...
 
 Synchronize time
 
-```
+```bash
 docker run -v /etc/localtime:/etc/localtime ...
 ```
 
@@ -175,7 +175,7 @@ docker run -v /etc/localtime:/etc/localtime ...
 
 Build argument defines default base image
 
-```
+```Dockerfile
 ARG VERSION=xenial-20180123
 FROM ubuntu:${VERSION}
 ```

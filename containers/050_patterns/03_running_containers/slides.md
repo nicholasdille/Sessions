@@ -6,7 +6,7 @@ You Never Know What You‘re Gonna Get
 
 ### Outdated image
 
-New containers are started based on existing images  Pull policy
+New containers are started based on existing images
 
 ### Multiple services using different latest
 
@@ -28,7 +28,7 @@ Many exited containers remain behind
 
 ### Temporary containers can be removed automatically
 
-```
+```bash
 docker run --rm ...
 ```
 
@@ -46,7 +46,7 @@ Save space
 
 ### Commands
 
-```
+```bash
 docker ps -aq | xargs -r docker rm -f
 docker images -q | xargs -r docker rmi -f
 ```
@@ -61,9 +61,23 @@ Output of most Docker commands creates line breaks
 
 ### Define condensed output
 
-Most Docker commands allow custom formats using --format
+Most Docker commands allow custom formats using `--format`
 
-XXX
+```bash
+docker ps --format "table {{.ID}}\\t{{.Names}}\\t{{.Image}}\\t{{.Status}}"
+```
+
+Or in `~/.docker/config.json`:
+
+```json
+{
+    "psFormat": "table {{.ID}}\\t{{.Names}}\\t{{.Image}}\\t{{.Status}}",
+    "imagesFormat": "table {{.ID}}\\t{{.Repository}}\\t{{.Tag}}\\t{{.Size}}",
+    "servicesFormat": "table {{.ID}}\\t{{.Name}}\\t{{.Image}}\\t{{.Mode}}\\t{{.Replicas}}"
+}
+```
+
+IP address can only be retrieved using `docker inspect`
 
 --
 
@@ -82,5 +96,12 @@ Those cannot be removed by user
 ### Solution
 
 Launch container with different user
+
+```Dockerfile
+FROM openjdk:11-jre
+USER groot
+ENTRYPOINT ["java"]
+CMD ["-version"]
+```
 
 May break container!

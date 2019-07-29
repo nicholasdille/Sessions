@@ -22,6 +22,14 @@ Latest v1.1.x-alpine should also be tagged as stable-alpine
 
 Latest build of `master` branch should be tagged master
 
+### Options for tagging
+
+1. Tagging requires pull
+
+1. Tagging after build is cheap
+
+1. Tagging against Registry API is always cheap
+
 --
 
 ## One process per container
@@ -36,7 +44,13 @@ Enabling scalability
 
 Multiple processes in a container may make sense
 
-Depends on server
+Depends on service
+
+### Thinking in pods
+
+Separate containers even if 1:1 relation
+
+Share network namespace (see advanced topics)
 
 --
 
@@ -50,17 +64,38 @@ Features to enable
 
 Use build arguments
 
-Define with ARG statement in Dockerfile
+Define with `ARG` statement in Dockerfile
 
-Supply on build: docker build --build-arg <name>=<value>
+Supply on build: docker build --build-arg NAME=VALUE
+
+```Dockerfile
+FROM alpine
+RUN apk add --update-cache --no-cache \
+        curl \
+        git \
+        make \
+        bash
+ARG VERSION=6.0.0
+RUN cd $(mktemp -d) \
+ && git clone https://github.com/dylanaraps/neofetch . \
+ && git checkout ${VERSION} \
+ && make install \
+ && cd /tmp \
+ && rm -rf tmp.*
+ENTRYPOINT ["/usr/bin/neofetch"]
+```
 
 ### Runtime parameters
 
 Configure behaviour
 
-Use environment variables (ENV statement in Dockerfile)
+Use environment variables
 
-See Tweaking runtime behaviour
+`ENV` statement in Dockerfile
+
+See tweaking runtime behaviour
+
+XXX example
 
 --
 
@@ -70,15 +105,19 @@ See Tweaking runtime behaviour
 
 ### During build
 
+```bash
 docker run --build-arg http_proxy --build-arg https_proxy .
+```
 
 ### During runtime
 
+```bash
 docker run --env http_proxy --env https_proxy ubuntu
+```
 
-###Docker daemon
+### Docker daemon
 
-Honours environment variables http_proxy, https_proxy and no_proxy
+Honours environment variables `http_proxy`, `https_proxy` and `no_proxy`
 
 --
 
@@ -92,19 +131,35 @@ Use environment variables
 
 Set reasonable defaults
 
+Available to all processes inside the container
+
 ### CMD and ENTRYPOINT
 
 Changes behaviour on start
+
+```Dockerfile
+FROM alpine
+COPY entrypoint.sh /
+ENTRYPOINT /entrypoint.sh
+```
 
 ### Shell and exec notation
 
 Determines whether a command is wrapped by a new shell
 
+```bash
+#!/bin/bash
+
+# DO YOU MAGIC HERE
+
+exec nginx -g "daemon off;"
+```
+
 --
 
-## Version pinning versus latest
+## Version pinning versus `latest`
 
-### Downsides of using latest
+### Downsides of using `latest`
 
 Breaks reproducibility
 
@@ -114,13 +169,13 @@ Version pinning in Dockerfile
 
 Hard/impossible to determine running image version (see microlabeling)
 
-### Upsides of using latest
+### Upsides of using `latest`
 
 No need for version pinning
 
 Always receive updates
 
-### Strong downs but weak ups
+### Strong downs but weak ups for using `latest`
 
 --
 
