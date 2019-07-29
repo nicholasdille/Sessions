@@ -5,8 +5,7 @@ RUN apk add --update-cache --no-cache \
         git \
         bash
 
-ENV SOURCE
-ENV ROOT
+ENV SOURCE=https://github.com/nicholasdille/Sessions
 COPY default.conf /etc/nginx/conf.d/
 COPY entrypoint.sh /
 ENTRYPOINT /entrypoint.sh
