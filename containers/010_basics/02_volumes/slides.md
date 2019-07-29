@@ -1,22 +1,65 @@
+## Storage
+
+By default, processes only get locally persistent storage
+
+Why should containers work differently?
+
+Containers are even worse by default
+
 ## Non-persistent data
 
+Enter container:
+
+```bash
+docker run -it ubuntu
 ```
-$ docker run -it ubuntu
-root@12345678# touch /file.txt
-root@12345678# ls -l /
-root@12345678# exit
-$ docker run -it ubuntu
+
+Inside container:
+
+```bash
+touch /file.txt
+ls -l /
+exit
 ```
+
+XXX look for file in new instance:
+
+```bash
+docker run -it ubuntu
+```
+
+XXX gone
 
 --
 
-### Locally persistent storage
+## Locally persistent storage
 
+Enter container with bind mount:
+
+```bash
+docker run -it -v /source:/source ubuntu
 ```
-$ docker run -it -v /source:/source ubuntu
-root@12345678# touch /file
-root@12345678# ls –l /
-root@12345678# exit
-$ docker run -it -v /source:/source ubuntu
-root@12345678# ls –l /
+
+Create file:
+
+```bash
+touch /file
+ls –l /
+exit
 ```
+
+XXX look for file in new instance:
+
+```bash
+docker run -it -v /source:/source ubuntu
+```
+
+XXX found
+
+## Persistent storage
+
+XXX hard problem for green field
+
+XXX NFS
+
+XXX Docker storage plugins

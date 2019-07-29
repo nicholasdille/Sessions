@@ -1,8 +1,16 @@
 ## Network internals
 
-![](../images/Network.png)
+![Port mapping](../images/Network.png)
 
-Daemon controls 172.16.0.0/12
+Daemon provides local network
+
+CIDR 172.16.0.0/12
+
+172.16.0.0 - 172.31.255.255
+
+Netmask 255.240.0.0
+
+1.048.576 IP addresses
 
 Containers are assigned a local IP address
 
@@ -20,9 +28,8 @@ Only one container can use a published port
 
 ## Network hands-on
 
-```
-$ ifconfig docker0
-$ docker run –d --name nginx1 nginx
-$ docker run -d --name nginx2 -p 80:80 nginx
-$ docker ps
+```bash
+docker run –d --name nginx1 nginx
+docker run -d --name nginx2 -p 80:80 nginx
+docker ps
 ```

@@ -72,7 +72,7 @@ XXX illustration
 
 ## Advantages
 
-![](../images/DevOps.png)
+![DevOps infinite loop](../images/DevOps.png)
 
 ### Development
 
@@ -110,7 +110,7 @@ XXX
 
 ## Container
 
-![](../images/Container.png)
+![Container](../images/Container.png)
 
 ### Isolated processes
 
@@ -181,42 +181,42 @@ XXX
 
 ### Packaged
 
-- Includes dependencies
-- Distributable
+* Includes dependencies
+* Distributable
 
 ### Immutable
 
-- Incremental changes not supported
-- Changes require rollout
+* Incremental changes not supported
+* Changes require rollout
 
 ### Automated
 
-- Image builds
-- Deployments
+* Image builds
+* Deployments
 
 ### Stateless
 
-- By default, no persistence
+* By default, no persistence
 
 ---
 
-## Is Docker still relevant?
+## Relevance of Docker
 
 With regard to...
 
 ### Orchestration
 
-- No, Kubernetes has won
+* No, Kubernetes has won
 
 ### Container runtime
 
-- Often, but [`containerd`](https://github.com/containerd/containerd) is growing quickly
+* Often, but [`containerd`](https://github.com/containerd/containerd) is growing quickly
 
 ### Image build
 
-- Yes
-- Other image builders are still niche players
-- Examples: [`buildah`](https://github.com/containers/buildah), [`img`](https://github.com/genuinetools/img), [`kaniko`](https://github.com/GoogleContainerTools/kaniko) (list not exhaustive)
+* Yes
+* Other image builders are still niche players
+* Examples: [`buildah`](https://github.com/containers/buildah), [`img`](https://github.com/genuinetools/img), [`kaniko`](https://github.com/GoogleContainerTools/kaniko) (list not exhaustive)
 
 --
 

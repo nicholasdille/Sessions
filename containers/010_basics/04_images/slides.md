@@ -4,14 +4,16 @@
 
 hub.docker.com
 
-### Images are named user/name:tag
+### Images are named [`user/`]name:tag
 
 ### Hands-on
 
+```bash
+docker pull centos
+docker rmi centos
 ```
-$ docker pull centos
-$ docker rmi centos
-```
+
+XXX look and feel of distribution but host kernel
 
 --
 
@@ -31,12 +33,15 @@ Simple but sufficient scripting language
 
 ### Hands-on
 
-```
-$ cat Dockerfile
+```Dockerfile
 FROM ubuntu:xenial
 RUN apt update && apt -y install nginx
+```
 
-$ docker build --tag myimage .
+XXX
+
+```bash
+docker build --tag myimage .
 ```
 
 --
@@ -49,9 +54,9 @@ $ docker build --tag myimage .
 
 ### Hands-on
 
-```
-$ docker tag myimage nicholasdille/coolnginx
-$ docker push nicholasdille/coolnginx
+```bash
+docker tag myimage nicholasdille/coolnginx
+docker push nicholasdille/coolnginx
 ```
 
 --
@@ -66,8 +71,8 @@ Other registries must be secure (HTTPS)
 
 ### Hands-On
 
-```
-$ docker run -d --name registry -p 5000:5000 registry
-$ docker tag ubuntu localhost:5000/groot/ubuntu
-$ docker push localhost:5000/groot/ubuntu
+```bash
+docker run -d --name registry -p 5000:5000 registry
+docker tag ubuntu localhost:5000/groot/ubuntu
+docker push localhost:5000/groot/ubuntu
 ```
