@@ -133,6 +133,13 @@ Set reasonable defaults
 
 Available to all processes inside the container
 
+```Dockerfile
+FROM openjdk:11-jre
+
+ENV JAVA_OPTS="-Xms256m -Xmx1024m -server"
+ENTRYPOINT [ "java" ]
+```
+
 ### CMD and ENTRYPOINT
 
 Changes behaviour on start
@@ -153,6 +160,16 @@ Determines whether a command is wrapped by a new shell
 # DO YOU MAGIC HERE
 
 exec nginx -g "daemon off;"
+```
+
+Running from command line:
+
+```bash
+#!/bin/bash
+
+# DO YOUR MAGIC HERE
+
+exec "$@"
 ```
 
 --
@@ -176,6 +193,24 @@ No need for version pinning
 Always receive updates
 
 ### Strong downs but weak ups for using `latest`
+
+Manage versions explicitly:
+
+```Dockerfile
+FROM ubuntu:bionic-20181018
+
+RUN apt-get update \
+ && apt-get -y install docker-ce=18.09.*
+```
+
+Update on every build:
+
+```Dockerfile
+FROM ubuntu:bionic
+
+RUN apt-get update \
+ && apt-get -y install docker-ce
+```
 
 --
 
