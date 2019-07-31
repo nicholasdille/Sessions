@@ -114,23 +114,15 @@ Plce to store images
 
 ## Container
 
-![Container](images/Container.png)
+![Container](images/Container.png) <!-- .element: style="float: right; width: 50%;" -->
 
 ### Isolated processes
 
-XXX
-
 ### Shared, read-only image
-
-XXX
 
 ### Dedicated, writable volume
 
-XXX
-
 ### Network
-
-XXX
 
 --
 

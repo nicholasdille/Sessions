@@ -2,7 +2,7 @@
 
 ### Egress
 
-![Port mapping](images/Network.png)
+![Port mapping](images/Network.png) <!-- .element: style="width: 50%; float: right;" -->
 
 Daemon provides local network
 
@@ -18,7 +18,7 @@ Outgoing traffic is translated (source NAT)
 
 ## Network internals
 
-![Port mapping](images/Network.png)
+![Port mapping](images/Network.png) <!-- .element: style="width: 50%; float: right;" -->
 
 Containers are not reachable directly
 

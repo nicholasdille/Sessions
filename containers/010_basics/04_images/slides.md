@@ -23,7 +23,7 @@ Look and feel of that distribution with host kernel
 
 --
 
-![](images/Containers_like_VMs.png)
+![](images/Containers_like_VMs.png) <!-- .element: style="display: block; margin-left: auto; margin-right: auto;" -->
 
 --
 
