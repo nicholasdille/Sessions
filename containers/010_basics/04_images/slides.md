@@ -23,7 +23,7 @@ Look and feel of that distribution with host kernel
 
 --
 
-![](../images/Containers_like_VMs.png)
+![](images/Containers_like_VMs.png)
 
 --
 

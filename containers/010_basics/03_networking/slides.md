@@ -1,20 +1,24 @@
 ## Network internals
 
-![Port mapping](../images/Network.png)
+### Egress
+
+![Port mapping](images/Network.png)
 
 Daemon provides local network
 
-CIDR 172.16.0.0/12
+CIDR 172.16.0.0/12 (netmask 255.240.0.0)
 
-172.16.0.0 - 172.31.255.255
-
-Netmask 255.240.0.0
-
-1.048.576 IP addresses
+172.16.0.0 - 172.31.255.255 (1.048.576 addresses)
 
 Containers are assigned a local IP address
 
 Outgoing traffic is translated (source NAT)
+
+--
+
+## Network internals
+
+![Port mapping](images/Network.png)
 
 Containers are not reachable directly
 
@@ -26,7 +30,7 @@ Only one container can use a published port
 
 --
 
-## Network hands-on
+## Network internals
 
 ```bash
 docker run –d --name nginx1 nginx

@@ -6,6 +6,8 @@ Why should containers work differently?
 
 Containers are even worse by default
 
+--
+
 ## Non-persistent data
 
 Enter container:
@@ -22,13 +24,13 @@ ls -l /
 exit
 ```
 
-XXX look for file in new instance:
+Look for file in new instance:
 
 ```bash
 docker run -it ubuntu
 ```
 
-XXX gone
+It's gone!
 
 --
 
@@ -48,18 +50,20 @@ ls –l /
 exit
 ```
 
-XXX look for file in new instance:
+Look for file in new instance:
 
 ```bash
 docker run -it -v /source:/source ubuntu
 ```
 
-XXX found
+It's alive!
+
+--
 
 ## Persistent storage
 
-XXX hard problem for green field
+Hard problem for green field
 
-XXX NFS
+NFS shares are a good option
 
-XXX Docker storage plugins
+Docker storage plugins connect to storage backends

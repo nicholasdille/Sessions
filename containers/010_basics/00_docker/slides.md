@@ -52,7 +52,7 @@ Resource management
 
 ### Containers are immutable
 
-XXX
+Configuration changes only when created
 
 --
 
@@ -96,21 +96,25 @@ Dependency management
 
 ### Container
 
-XXX
+Isolated process
+
+Runtime environment
 
 ### Image
 
-XXX
+Base image to create identical containers from
+
+Immutable
 
 ### Registry
 
-XXX
+Plce to store images
 
 --
 
 ## Container
 
-![Container](../images/Container.png)
+![Container](images/Container.png)
 
 ### Isolated processes
 

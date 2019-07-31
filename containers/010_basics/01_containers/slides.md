@@ -1,4 +1,4 @@
-## My First Contaienr
+## My First Container
 
 Start containerized process:
 
@@ -17,6 +17,28 @@ $ ps faux
 USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
 root         1  0.2  0.0  18508  3456 pts/0    Ss   07:27   0:00 bash
 root        14  0.0  0.0  34400  2964 pts/0    R+   07:27   0:00 ps faux
+$ uname -a
+Linux abbbea946294 4.15.0-52-generic #56-Ubuntu SMP Tue Jun 4 22:49:08 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+$ cat /etc/lsb-release
+DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=18.04
+DISTRIB_CODENAME=bionic
+DISTRIB_DESCRIPTION="Ubuntu 18.04.2 LTS"
+```
+
+--
+
+## My First Container
+
+Start containerized process:
+
+```bash
+docker run -it ubuntu bash
+```
+
+Work inside container:
+
+```bash
 $ ls –l /
 total 64
 drwxr-xr-x   2 root root 4096 Jul 18 21:21 bin
@@ -38,15 +60,12 @@ dr-xr-xr-x  13 root root    0 Jul  4 19:25 sys
 drwxrwxrwt   2 root root 4096 Jul 18 21:21 tmp
 drwxr-xr-x   1 root root 4096 Jul 18 21:18 usr
 drwxr-xr-x   1 root root 4096 Jul 18 21:21 var
-$ uname -a
-Linux abbbea946294 4.15.0-52-generic #56-Ubuntu SMP Tue Jun 4 22:49:08 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
-$ cat /etc/lsb-release
-DISTRIB_ID=Ubuntu
-DISTRIB_RELEASE=18.04
-DISTRIB_CODENAME=bionic
-DISTRIB_DESCRIPTION="Ubuntu 18.04.2 LTS"
 $ exit
 ```
+
+--
+
+## My First Container
 
 Run specific tool:
 
@@ -54,11 +73,11 @@ Run specific tool:
 docker run -it centos ping localhost
 ```
 
-XXX interactive
+### Containers can be interactive
 
-XXX how do I know it's isolated?
+### How do I know it's isolated?
 
-XXX look at processes and PID 1
+Look at processes and PID 1 (`ps faux`)
 
 --
 
@@ -66,19 +85,17 @@ XXX look at processes and PID 1
 
 ```bash
 $ docker run -d nginx
-a1b2c3d4
+e10ddad9ec5b
 $ docker ps
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
 e10ddad9ec5b        nginx               "nginx -g 'daemon of…"   56 seconds ago      Up 55 seconds       80/tcp              awesome_minsky
 ```
 
-XXX id, generated name
+Note 64-byte ID and generated name.
 
 ### First process keeps container alive
 
-XXX process ends --> container stops
-
-XXX container follows process
+Container stops when process ends
 
 ### Containers are not purged automatically
 
@@ -93,16 +110,20 @@ docker ps -a
 Stop containers:
 
 ```bash
-docker stop <NAME>
+docker stop awesome_minsky
 ```
 
 Remove containers:
 
 ```bash
-docker rm <NAME>
+docker rm awesome_minsky
 ```
 
 Removing running containers must be force (`-f`)
+
+--
+
+## Container Management
 
 Named containers:
 
@@ -121,6 +142,10 @@ XXX:
 ```bash
 docker inspect websrv
 ```
+
+--
+
+## Container Management
 
 Execute commands inside containers:
 
@@ -153,7 +178,7 @@ XXX -t
 
 ## Docker commands
 
-Old versus new
+### Old versus new
 
 docker run --> docker container run
 
@@ -161,6 +186,12 @@ docker ps --> docker container ps
 
 docker logs --> docker container logs
 
-docker exec --> docker container exec
+### Why?
 
-XXX why?
+`docker` has more than one purpose
+
+Containers: `run`, `rm`, `ps`, `exec`, `logs` etc.
+
+Images: `build`, `rmi`
+
+etc.
