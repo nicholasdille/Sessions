@@ -6,5 +6,7 @@ RUN apk add --update-cache --no-cache \
         bash
 
 ENV SOURCE
+ENV ROOT
+COPY default.conf /etc/nginx/conf.d/
 COPY entrypoint.sh /
 ENTRYPOINT /entrypoint.sh
