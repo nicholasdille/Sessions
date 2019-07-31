@@ -1,4 +1,4 @@
-<!-- .slide: data-background="images/containers.jpg" style="text-align: center; vertical-align: middle; background: rgba(0, 0, 0, 0.5);" -->
+<!-- .slide: data-background="images/Containers.jpg" style="text-align: center; vertical-align: middle; background: rgba(0, 0, 0, 0.5);" -->
 
 # Docker
 

@@ -15,17 +15,6 @@
     link.type = 'text/css';
     link.href = window.location.search.match( /print-pdf/gi ) ? 'https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/css/print/pdf.css' : 'https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/css/print/paper.css';
     document.getElementsByTagName( 'head' )[0].appendChild( link );
-
-    (function(window) {
-        function setupVideo()
-        {
-            var v = document.getElementById('hovercontrols');
-            v.addEventListener('mouseover', function() { this.controls = true; }, false);
-            v.addEventListener('mouseout', function() { this.controls = false; }, false);
-        }
-
-        window.addEventListener('load', setupVideo, false);
-    })(window);
 </script>
 
 <style>
@@ -186,7 +175,7 @@
         transition: 'convex',
         backgroundTransition: 'fade',
 
-        allottedTime: 180 * 60 * 1000,
+        allottedTime: 4 * 60 * 60 * 1000,
         keyboard: {
             // pause/resume time when Enter is pressed
             13: () => {
