@@ -6,4 +6,4 @@
 1. Create `.drone.yml` with build instructions for `base`
 1. Run build
 1. Repeat for `derived`
-1. Discuss whether one repository makes sense.
+1. Discuss whether one repository makes sense

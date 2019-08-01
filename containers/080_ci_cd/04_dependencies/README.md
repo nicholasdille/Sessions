@@ -5,4 +5,4 @@
 1. Check build
 1. Check registry
 1. Repeat for `backend`
-1. Releat for `frontend`
+1. Repeat for `frontend`

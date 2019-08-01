@@ -62,7 +62,7 @@ steps:
 - Independent of build server
 - No server component
 - Called as only step of automated build
-- https://github.com/nicholasdille/insulatr
+- [https://github.com/nicholasdille/insulatr](https://github.com/nicholasdille/insulatr)
 
 ### Features
 
@@ -76,7 +76,7 @@ steps:
 
 ## Demo: Cloud Native Builds
 
-https://github.com/nicholasdille/insulatr
+[https://github.com/nicholasdille/insulatr](https://github.com/nicholasdille/insulatr)
 
 Use `insulatr` >=1.0.1
 
