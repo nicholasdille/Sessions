@@ -15,6 +15,17 @@
     link.type = 'text/css';
     link.href = window.location.search.match( /print-pdf/gi ) ? 'https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/css/print/pdf.css' : 'https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/css/print/paper.css';
     document.getElementsByTagName( 'head' )[0].appendChild( link );
+
+    (function(window) {
+        function setupVideo()
+        {
+            var v = document.getElementById('hovercontrols');
+            v.addEventListener('mouseover', function() { this.controls = true; }, false);
+            v.addEventListener('mouseout', function() { this.controls = false; }, false);
+        }
+
+        window.addEventListener('load', setupVideo, false);
+    })(window);
 </script>
 
 <style>
@@ -91,11 +102,11 @@
     <section data-markdown data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:">
         ## What you can expect
 
-        Basic understanding of Docker
+        Internals
 
-        Container management
+        Advanced topics
 
-        Image creation
+        CI/CD
 
         Flexibility
 
@@ -105,16 +116,16 @@
 
         ## What I expect
 
-        - You know Linux (a bit)
-        - You are interested
+        - You know how to manage containers
+        - You know how to build container images
         - You challenge me
 
-        ### What you have
+        ### One of the following
 
-        1. A web browser (provided by you)
-        1. Credentials to access a workshop VM (provided by me)
+        1. You have a Docker host
+        1. You have a working session in [Play-With-Docker](https://play-with-docker.com)
 
-        ### Self-paced?
+        ### All of the below
 
         ```bash
         git clone https://github.com/nicholasdille/Sessions
@@ -123,26 +134,42 @@
         ```
     </section>
 
-    <section data-markdown="010_basics/title.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
-    <section data-markdown="010_basics/00_docker/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
-    <section data-markdown="010_basics/01_containers/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
-    <section data-markdown="010_basics/02_volumes/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
-    <section data-markdown="010_basics/03_networking/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
-    <section data-markdown="010_basics/04_images/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+    <section data-markdown="020_advanced/title.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+    <section data-markdown="020_advanced/000_architecture/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+    <section data-markdown="020_advanced/010_build_from_git/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+    <section data-markdown="020_advanced/020_multi_stage/01_separation/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+    <section data-markdown="020_advanced/020_multi_stage/02_concurrency/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+    <section data-markdown="020_advanced/030_layers/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+    <section data-markdown="020_advanced/025_build_cache/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+    <section data-markdown="020_advanced/040_volumes/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+    <section data-markdown="020_advanced/050_networks/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+    <section data-markdown="020_advanced/070_reverse_proxy/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+    <section data-markdown="020_advanced/080_docker_cli_plugins/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
 
-    <section data-markdown="050_patterns/title.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
-    <section data-markdown="050_patterns/01_image_design/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
-    <section data-markdown="050_patterns/02_building/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
-    <section data-markdown="050_patterns/03_running_containers/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+    <section data-markdown="030_remoting/title.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+    <section data-markdown="030_remoting/00_engine_api/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+    <section data-markdown="030_remoting/01_tcp/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+    <section data-markdown="030_remoting/02_ssh/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+
+    <section data-markdown="040_inception/title.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+    <section data-markdown="040_inception/01_dood/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+    <section data-markdown="040_inception/02_dind/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+
+    <section data-markdown="080_ci_cd/title.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+    <section data-markdown="080_ci_cd/00_gitops/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+
+    <section data-markdown data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:">
+        ## CI/CD
+
+        See sub-chapters
+    </section>
 
     <section data-markdown data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:">
         ## Summary
 
-        Container management
+        Remoting
 
-        Image creation
-
-        Patterns for image creation
+        Inception
 
         GitOps FTW
     </section>
@@ -173,7 +200,7 @@
         transition: 'convex',
         backgroundTransition: 'fade',
 
-        allottedTime: 4 * 60 * 60 * 1000,
+        allottedTime: 180 * 60 * 1000,
         keyboard: {
             // pause/resume time when Enter is pressed
             13: () => {
