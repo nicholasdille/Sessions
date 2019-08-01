@@ -1,29 +1,22 @@
-# Introduction
+## `HelloWorld.java`
 
 Code for many examples
 
-## Build
+### Build
 
 ```bash
 javac HelloWorld.java
 ```
 
-## Package
+### Package
 
 ```bash
 jar -cvf HelloWorld.jar HelloWorld.class
 ```
 
-## Run
-
-Plain:
+### Run
 
 ```bash
 java HelloWorld
-```
-
-Jar:
-
-```bash
 java -jar HelloWorld.jar
 ```

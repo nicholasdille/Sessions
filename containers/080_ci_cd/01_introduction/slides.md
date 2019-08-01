@@ -1,4 +1,4 @@
-# Steps
+## Introduction
 
 1. Create repository called `introduction` from `java-hello-world`
 1. Add repository to drone

@@ -1,6 +1,6 @@
-# Steps
+## Fan-in
 
-Extends 04_dependencies
+Extends example for dependencies
 
 1. Create empty repository called `fan-in`
 1. Add repository to drone and make trusted

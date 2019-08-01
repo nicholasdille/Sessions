@@ -1,4 +1,4 @@
-# Steps
+## Derived images
 
 1. Create empty repository called `base_derived`
 1. Add repository to drone and make trusted

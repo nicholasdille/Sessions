@@ -1,6 +1,6 @@
-# Steps
+## Registry
 
-Extends 11_parameters
+Extends example for parameters
 
 1. Create empty repository called `registry`
 1. Add repository to drone, make trusted and add secrets `REGISTRY_USER`, `REGISTRY_PASS`

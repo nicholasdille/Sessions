@@ -1,6 +1,6 @@
-# Steps
+## Tagging
 
-Extends 09_testing
+Extends example for testing
 
 1. Update `.drone.yml`
 1. Check build

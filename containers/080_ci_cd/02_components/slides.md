@@ -1,4 +1,4 @@
-# Steps
+## Software components
 
 1. Create empty repository called `components`
 1. Add repository to drone and make trusted

@@ -1,6 +1,6 @@
-# Steps
+## Trigger
 
-Extends 05_fan-in
+Extends example for fan-in
 
 1. Obtain token from drone
 1. Add secret `downstream_token` with token to the following repositories:

@@ -1,4 +1,4 @@
-# Steps
+## Testing
 
 1. Create empty repository called `testing`
 1. Add repository in drone and make trusted

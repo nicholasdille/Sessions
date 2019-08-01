@@ -1,8 +1,8 @@
-# Steps
+## Packaging
 
-Extends 07_artifact
+Extends example for artifacts
 
-## Package
+### Package
 
 1. Create empty repository called `package`
 1. Add repository in drone, make trusted and add secrets `WEBDAV_USER` and `WEBDAV_PASS`
@@ -10,7 +10,7 @@ Extends 07_artifact
 1. Check build
 1. Check registry
 
-## Add trigger
+### Add trigger
 
 1. Obtain token in drone
 1. Add secret `downstream_token` with token in drone
