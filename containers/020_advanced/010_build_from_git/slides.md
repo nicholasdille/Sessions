@@ -14,6 +14,8 @@
 - Supported by `docker build`
 - Supported by `docker-compose`
 
+### Supports build cache
+
 --
 
 ## Demo: Build from git

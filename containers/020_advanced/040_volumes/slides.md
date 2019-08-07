@@ -16,6 +16,8 @@
 - Real temporary data
 - Removed with containers
 
+### No remote bind mount!
+
 ---
 
 ## Bind Mounts
@@ -131,3 +133,27 @@ Works for bind mounts as well
 ```bash
 docker run -it --rm --tmpfs /src alpine
 ```
+
+--
+
+## Bind Mount in `docker-compose`
+
+XXX https://docs.docker.com/compose/compose-file/#long-syntax-3
+
+--
+
+## Volumes caused by `VOLUME`
+
+XXX creates new volume
+
+XXX volume is not cleaned
+
+XXX docker container rm --volumes
+
+XXX docker run --rm removes those volumes
+
+--
+
+## Dangling Images
+
+XXX

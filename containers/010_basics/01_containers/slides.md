@@ -162,6 +162,23 @@ docker exec -it websrv bash
 
 --
 
+## Data Exchange
+
+XXX
+
+```bash
+docker cp CONTAINER:/path/file .
+docker cp /path/file CONTAINER:/path/file
+```
+
+XXX
+
+```bash
+docker exec -i CONTAINER tar -C /path -c . | tar -xv
+```
+
+--
+
 ## Configuration Changes
 
 XXX immutable

@@ -28,6 +28,8 @@ HTTPS: Routing based on Server Name Indication (SNI)
 
 ![](020_advanced/070_reverse_proxy/reverse-proxy.svg) <!-- .element: class="center-image" -->
 
+XXX maybe use multiple networks (frontend / backend)
+
 --
 
 ## Demo: Reverse Proxy
