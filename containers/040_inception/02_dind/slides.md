@@ -23,12 +23,7 @@ docker run -d --rm \
   --name dind \
   docker:stable-dind
 
-IP=$(
-  docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' dind
-)
-export DOCKER_HOST="tcp://$IP:2375"
-
-docker version
+docker exec -it dind docker version
 ```
 
 Also refer to security!

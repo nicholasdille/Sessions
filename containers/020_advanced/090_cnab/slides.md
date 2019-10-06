@@ -1,5 +1,9 @@
 ## Cloud Native Application Bundle
 
+XXX https://deislabs.io/posts/state-of-cnab-part-1/
+
+XXX https://deislabs.io/posts/state-of-cnab-part-2/
+
 XXX https://cnab.io/
 
 - Specification: https://github.com/deislabs/cnab-spec

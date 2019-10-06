@@ -34,6 +34,8 @@ How to disable network isolation for a container:
 docker run -d --rm --network host nginx
 ```
 
+XXX conflict!
+
 ---
 
 ## Network Context
@@ -67,6 +69,8 @@ docker network ls
 docker exec -it svc1 ping svc2
 ```
 
+XXX note `/etc/resolve.conf`
+
 --
 
 ## Demo: Breaking the Network Context
@@ -94,6 +98,8 @@ ping svc1
 ping svc2
 ```
 
+XXX note `/etc/resolve.conf`
+
 --
 
 ## Demo: Fixing the Broken Network Context
@@ -110,6 +116,8 @@ Once the container is started in the network used by the deployment, it can see 
 ping svc1
 ping svc2
 ```
+
+XXX note `/etc/resolve.conf`
 
 ## Multiple networks
 

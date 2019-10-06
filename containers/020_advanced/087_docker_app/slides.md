@@ -1,5 +1,7 @@
 # docker-app
 
+XXX https://github.com/mikesir87/docker-summit-19-docker-app-workshop
+
 Home: https://github.com/docker/app
 
 ## Installation

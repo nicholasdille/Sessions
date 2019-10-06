@@ -5,3 +5,7 @@ XXX tools are always missing
 XXX create container image with required tools
 
 XXX run and share network namespace
+
+```
+docker run -it --net container:broken --pid container:broken alpine
+```

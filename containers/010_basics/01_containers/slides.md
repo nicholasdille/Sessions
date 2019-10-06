@@ -103,6 +103,8 @@ Container stops when process ends
 docker ps -a
 ```
 
+XXX filters, e.g. `docker ps --filter ancestor=nginx`
+
 --
 
 ## Container Management

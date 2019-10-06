@@ -45,6 +45,8 @@ Processes:
 
 ![](020_advanced/000_architecture/containerd-shim.svg) <!-- .element: style="display: block; margin-left: auto; margin-right: auto;" -->
 
+XXX `docker-proxy` (builtin reverse proxy for published ports)
+
 --
 
 # Demo: Under the Hood
