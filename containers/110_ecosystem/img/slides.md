@@ -1,6 +1,6 @@
 ## Image building using img
 
-XXX
+XXX kaniki, buildah
 
 Create a pod with multiple containers using `docker`:
 

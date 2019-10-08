@@ -57,3 +57,5 @@ Testing access to the registry API:
 ```bash
 curl -s --resolve registry.me:$IP http://registry.me/v2/
 ```
+
+XXX traefik v2
