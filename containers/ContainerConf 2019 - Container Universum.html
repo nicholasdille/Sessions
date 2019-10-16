@@ -15,17 +15,6 @@
     link.type = 'text/css';
     link.href = window.location.search.match( /print-pdf/gi ) ? 'https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/css/print/pdf.css' : 'https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/css/print/paper.css';
     document.getElementsByTagName( 'head' )[0].appendChild( link );
-
-    (function(window) {
-        function setupVideo()
-        {
-            var v = document.getElementById('hovercontrols');
-            v.addEventListener('mouseover', function() { this.controls = true; }, false);
-            v.addEventListener('mouseout', function() { this.controls = false; }, false);
-        }
-
-        window.addEventListener('load', setupVideo, false);
-    })(window);
 </script>
 
 <style>
@@ -96,19 +85,19 @@
 <div class="reveal">
 <div class="slides">
 
-    <section data-markdown data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:">
+    <section data-markdown data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"><textarea data-template>
         <!-- .slide: data-background="images/Containers.jpg" style="text-align: center; vertical-align: middle; background: rgba(0, 0, 0, 0.5);" -->
 
-        # Docker
+        # Containers
 
         *Nicholas Dille*
 
         Docker Captain & Microsoft MVP
-    </section>
+    </textarea></section>
 
     <section data-markdown="000_introduction/02_bio.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
 
-    <section data-markdown data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:">
+    <section data-markdown data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"><textarea data-template>
         ## Agenda
 
         Docker
@@ -118,9 +107,9 @@
         Tips & Tricks
 
         Kubernetes
-    </section>
+    </textarea></section>
 
-    <section data-markdown data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:">
+    <section data-markdown data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"><textarea data-template>
         ## Slides
 
         Docker 19.03
@@ -142,12 +131,11 @@
         Cloud Native CI
 
         GitOps Pull Deployment
-    </section>
+    </textarea></section>
 
-    <section data-markdown="020_advanced/010_build_from_git/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
     <section data-markdown="110_ecosystem/buildkit/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
     <section data-markdown="020_advanced/020_multi_stage/01_separation/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
-    <section data-markdown="020_advanced/020_multi_stage/02/concurrency/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
+    <section data-markdown="020_advanced/020_multi_stage/02_concurrency/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
     <section data-markdown="020_advanced/085_build_secrets/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
     <section data-markdown="110_ecosystem/build_secrets/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
     <section data-markdown="060_security/05_build_secrets/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
@@ -175,11 +163,11 @@
     <section data-markdown="120_kubernetes/service_meshes/slides.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
     <section data-markdown="110_ecosystem/notes.md" data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"></section>
 
-    <section data-markdown data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:">
+    <section data-markdown data-separator="^---$" data-separator-vertical="^--$" data-separator-notes="^Note:"><textarea data-template>
         ## Summary
 
         XXX
-    </section>
+    </textarea></section>
 
 </div>
 </div>
@@ -195,7 +183,7 @@
         transition: 'convex',
         backgroundTransition: 'fade',
 
-        allottedTime: 180 * 60 * 1000,
+        allottedTime: 75 * 60 * 1000,
         keyboard: {
             // pause/resume time when Enter is pressed
             13: () => {
