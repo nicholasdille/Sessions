@@ -1,7 +1,5 @@
 ## k8s: Tools
 
-XXX kubectx
+XXX [kubectx / kubens](https://github.com/ahmetb/kubectx)
 
-XXX kubens
-
-XXX top?
+XXX [kube-capacity](https://github.com/robscott/kube-capacity)

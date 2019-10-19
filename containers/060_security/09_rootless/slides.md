@@ -13,4 +13,4 @@ Reduce attack surface
 - Experimental preview in Docker 19.03
 - See [slides](https://de.slideshare.net/AkihiroSuda/dockercon-2019-hardening-docker-daemon-with-rootless-mode) by Aikihiro Suda
 
-XXX
+XXX https://medium.com/@tonistiigi/experimenting-with-rootless-docker-416c9ad8c0d6
