@@ -1,4 +1,4 @@
-## Build Secrets
+## Build Secrets - Mounts
 
 Enable BuildKit:
 
@@ -6,10 +6,17 @@ Enable BuildKit:
 export DOCKER_BUILDKIT=1
 ```
 
-Note the comment and the `--mount` parameter in `Dockerfile`!
-
 Build image:
 
 ```bash
-docker build --secret id=mysite.key,src=./mysite.key --progress plain .
+docker build \
+    --secret id=mysite.key,src=./mysite.key \
+    --progress plain \
+    .
 ```
+
+Note the comment and the `--mount` parameter in `Dockerfile`!
+
+XXX demo file never ends up in container
+
+XXX ref to `docker buildx`

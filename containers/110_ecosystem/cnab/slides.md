@@ -1,8 +1,6 @@
 ## Cloud Native Application Bundle
 
-XXX https://deislabs.io/posts/state-of-cnab-part-1/
-
-XXX https://deislabs.io/posts/state-of-cnab-part-2/
+XXX State of CNAB: [part 1](https://deislabs.io/posts/state-of-cnab-part-1/) [part 2](https://deislabs.io/posts/state-of-cnab-part-2/)
 
 XXX https://cnab.io/
 
@@ -18,11 +16,4 @@ XXX https://porter.sh/
 
 - https://github.com/deislabs/porter/tree/master/examples
 
-XXX https://github.com/docker/app
-
-- Now a Docker CLI plugin
-- Fully compliant with CNAB
-- Same feature set as `docker-app`
-- Create package from `docker-compose.yml`
-- Push to registry
-- Inspect manifest and blob
+XXX relation to `docker-app`?

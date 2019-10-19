@@ -40,7 +40,7 @@ docker run -it --rm \
     cli-plugin
 ```
 
----
+--
 
 ## Docker Client Plugins Manager (CLIP)
 
@@ -57,3 +57,5 @@ Distributed using Docker registry
 ### Plugin list
 
 expose, publish, showcontext, microscan, dive, runlike, sh, hello
+
+XXX UPDATE

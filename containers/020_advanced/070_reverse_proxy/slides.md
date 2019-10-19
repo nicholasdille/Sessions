@@ -18,7 +18,7 @@
 - Automatic wiring
 - Automatic certificates
 
----
+--
 
 ## Reverse Proxy
 

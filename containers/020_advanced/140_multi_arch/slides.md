@@ -38,6 +38,8 @@ Image: openjdk:8-jdk-nanoserver
    - windows/amd64:10.0.14393.1770
 ```
 
+--
+
 ## Multi-Arch Image: hello-world
 
 ```bash
@@ -83,6 +85,9 @@ Image: hello-world
 XXX
 
 ```bash
+# enable experimental mode for client
+export DOCKER_CLI_EXPERIMENTAL=enabled
+
 # enable qemu
 # taken from https://github.com/multiarch/qemu-user-static?
 docker run --rm --privileged docker/binfmt:820fdd95a9972a5308930a2bdfb8573dd4447ad3

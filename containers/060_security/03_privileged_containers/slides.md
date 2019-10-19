@@ -36,7 +36,7 @@ docker run --rm --privileged --pid=host -it alpine:3.8 \
     nsenter -t 1 -m -u -n -i sh
 ```
 
----
+--
 
 ## Taming Privileges Containers
 
@@ -48,7 +48,7 @@ Isolates containers in a lightweight VM
 
 Configured as a container runtime (instead of `runc`)
 
----
+--
 
 ## Docker Engine API Filter
 
