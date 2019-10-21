@@ -1,8 +1,8 @@
-## Tools on Demand for Troubleshooting
+## Commando: Tools on Demand
 
-XXX Commando
+[Commando](https://github.com/lukaszlach/commando) created by [Docker Captain Łukasz Lach](https://www.docker.com/captains/%C5%82ukasz-lach)
 
-XXX https://github.com/lukaszlach/commando
+Container images are created on demand
 
 ```bash
 docker run -it --rm cmd.cat/curl/jq

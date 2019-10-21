@@ -85,23 +85,53 @@ Image: hello-world
 XXX
 
 ```bash
-# enable experimental mode for client
+# enable experimental mode for client and enable qemu
 export DOCKER_CLI_EXPERIMENTAL=enabled
-
-# enable qemu
-# taken from https://github.com/multiarch/qemu-user-static?
-docker run --rm --privileged docker/binfmt:820fdd95a9972a5308930a2bdfb8573dd4447ad3
+docker run --rm --privileged \
+    docker/binfmt:820fdd95a9972a5308930a2bdfb8573dd4447ad3
 
 # build multi-arch
-docker buildx build --platform linux/arm,linux/arm64,linux/amd64 -t nicholasdille/hello . --push
+docker buildx build \
+    --platform linux/arm,linux/arm64,linux/amd64 \
+    --tag nicholasdille/hello \
+    . \
+    --push
 
 # Inspect result
 docker buildx imagetools inspect nicholasdille/hello
+```
 
-# Build proper multi-arch
-docker buildx build --platform linux/arm -t nicholasdille/hello:arm . --push
-docker buildx build --platform linux/arm64 -t nicholasdille/hello:arm64 . --push
-docker buildx build --platform linux/amd64 -t nicholasdille/hello:amd64 . --push
-docker manifest create --amend nicholasdille/hello nicholasdille/hello:arm nicholasdille/hello:arm64 nicholasdille/hello:amd64
+--
+
+## Build multi-arch with proper tags (1)
+
+Build individual images to control tagging
+
+```bash
+# arm
+docker buildx build --platform linux/arm \
+    --tag nicholasdille/hello:arm . --push
+# arm64
+docker buildx build --platform linux/arm64 \
+    --tag nicholasdille/hello:arm64 . --push
+# amd64
+docker buildx build --platform linux/amd64 \
+    --tag nicholasdille/hello:amd64 . --push
+```
+
+This allows for proper versioning
+
+--
+
+## Build multi-arch with proper tags (2)
+
+Create manifest list with all images:
+
+```bash
+docker manifest create --amend nicholasdille/hello
+    nicholasdille/hello:arm \
+    nicholasdille/hello:arm64 \
+    nicholasdille/hello:amd64
+
 docker manifest inspect nicholasdille/hello
 ```
