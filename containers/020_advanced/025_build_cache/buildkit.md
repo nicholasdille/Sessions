@@ -1,22 +1,29 @@
 ## Buildkit Cache Warming
 
-Large image downloads for few helpful layers
-
 ### How it works
 
-Use remote images to warm cache
+- Use remote images to warm cache
+- Image layers will be downloaded as needed
+- Same syntax using `--cache-from`
+- Prerequisites: Docker 19.03
 
-Image layers will be downloaded as needed
+### Build with cache from remote image
 
-Same syntax using `--cache-from`
+```bash
+export DOCKER_BUILDKIT=1
 
-### Prerequisites
+# Build image with cache information
+docker build --tag myimage \
+    --build-arg BUILDKIT_INLINE_CACHE=1 \
+    .
 
-Added in Docker 19.03
+# Build image from cache
+docker build --cache-from myimage .
+```
 
 --
 
-## Demo: Buildkit Cache Warming
+### Demo: Buildkit Cache Warming
 
 Build with cache from remote image:
 

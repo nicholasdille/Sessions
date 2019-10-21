@@ -2,9 +2,11 @@
 
 ### Features
 
-- Build and runtime environment
-- Multiple `FROM` sections
+- Separate build and runtime environments
+- Multiple `FROM` sections in `Dockerfile`
 - Last section represents final image
+- Intermediate images built using `--target`
+- Prerequisites: Docker 17.09
 
 ```Dockerfile
 FROM openjdk:8-jdk as builder
@@ -15,14 +17,7 @@ COPY --from=builder ...
 #...
 ```
 
-### Support
-
-- Added in Docker 17.09
-- Based on BuildKit
-
---
-
-## Demo: Multi Stage Builds - Separation
+### Demo: Multi Stage Builds - Separation
 
 ```
 DOCKER_BUILDKIT=1 docker build --tag hello-world-java:multi .

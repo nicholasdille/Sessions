@@ -1,7 +1,24 @@
 ## Troubleshooting `FROM scratch`
 
-XXX often only single binary (plus accompanying files)
+### Missing tools
 
-XXX no shell
+- Containers only contain a single binary
+- No shell, no tools
 
-XXX dump root partition content into container (`docker cp`)
+### Solution: Dump root partition content into container
+
+```bash
+# Container with image FROM scratch
+docker run -d --name traefik traefik:v1.7
+
+# Create local rootfs
+docker create --name alpine alpine
+docker cp alpine:/ .
+
+# Copy into container
+rm /etc/hosts /etc/hostname /etc/resolv.conf
+docker cp . traefik:/
+
+# Enter container
+docker exec -it traefik /bin/sh
+```
