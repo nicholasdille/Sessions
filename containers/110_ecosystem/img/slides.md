@@ -31,3 +31,11 @@ fi
 
 docker exec --user 0 img apk add --update-cache curl git bash
 ```
+
+XXX build and push
+
+```bash
+docker exec -it img bash
+img build --tag localhost:5000/test .
+img push localhost:5000/test
+```
