@@ -1,12 +1,14 @@
 ## Cloud Native Storage
 
-XXX OCI Registry As Storage
+### OCI Registry As Storage
+
+- https://github.com/deislabs/oras
+- Generalize artifact store
+- Based on registry, e.g. Docker registry
 
 XXX https://stevelasker.blog/2019/05/11/authoring-oci-registry-artifacts-quick-guide/
 
 XXX https://stevelasker.blog/2019/08/08/oci-artifact-authoring-annotations-config-json/
-
-XXX https://github.com/deislabs/oras
 
 ### Supports
 
