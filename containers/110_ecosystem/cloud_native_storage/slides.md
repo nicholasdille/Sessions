@@ -10,22 +10,14 @@ XXX https://github.com/deislabs/oras
 
 ```bash
 # Start local registry
-docker run -d -p 5000:5000 registry:2
+docker run -d -p 127.0.0.1:5000:5000 registry:2
 
 # Push multiple files
-oras push localhost:5000/buildx:latest hello.c Dockerfile
+oras push localhost:5000/img/shell:latest img.sh
 
 # Check registry (BROKEN)
-curl http://localhost:5000/v2/buildx/tags/list
-curl -H "Accept: application/vnd.docker.distribution.manifest.v2+json" http://localhost:5000/v2/buildx/manifests/latest
-```
-
-Previous notes:
-
-```bash
-oras login registry.dille.io
-oras push registry.dille.io/kubeconfig:tst kubeconfig.aes
-curl -u "X:Y" -H "Accept: application/vnd.oci.image.manifest.v1+json" https://registry.dille.io/v2/kubeconfig/manifests/tst | jq
+curl http://localhost:5000/v2/img/shell/tags/list
+curl -H "Accept: application/vnd.oci.image.manifest.v1+json" http://localhost:5000/v2/img/shell/manifests/latest
 # empty config blob
 # layers are base64 encoded and encrypted with salted passwort
 oras pull registry.dille.io/kubeconfig:tst --output ./output
