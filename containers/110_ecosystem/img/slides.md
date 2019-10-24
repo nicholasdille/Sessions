@@ -1,6 +1,8 @@
 ## Image building using img
 
-XXX kaniki, buildah
+XXX kaniko: ???
+
+XXX buildah: script based, not using Dockerfile, much more complex
 
 Create a pod with multiple containers using `docker`:
 
@@ -32,10 +34,10 @@ fi
 docker exec --user 0 img apk add --update-cache curl git bash
 ```
 
-XXX build and push
+Building and pushing using `img`:
 
 ```bash
 docker exec -it img bash
 img build --tag localhost:5000/test .
-img push localhost:5000/test
+img push --insecure-registry localhost:5000/test
 ```
