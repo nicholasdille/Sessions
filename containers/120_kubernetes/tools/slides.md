@@ -1,5 +1,9 @@
 ## k8s: Tools
 
+### kubectl explain
+
+XXX
+
 ### [kubectx / kubens](https://github.com/ahmetb/kubectx)
 
 - `kubectx` switches context
