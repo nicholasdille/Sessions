@@ -1,8 +1,28 @@
 ## Image building using img
 
-XXX kaniko: ???
+### kaniko
 
-XXX buildah: script based, not using Dockerfile, much more complex
+- https://github.com/GoogleContainerTools/kaniko
+- daemonless
+- running in userspace
+- uses Dockerfile
+
+### buildah
+
+- https://github.com/containers/buildah
+- script based
+- not using Dockerfile
+- much more complex
+
+### img
+
+- daemonless
+- unprivileged
+- uses Dockerfile
+
+--
+
+## Demo: img (1)
 
 Create a pod with multiple containers using `docker`:
 
@@ -33,6 +53,8 @@ fi
 
 docker exec --user 0 img apk add --update-cache curl git bash
 ```
+
+### Demo: img (2)
 
 Building and pushing using `img`:
 
