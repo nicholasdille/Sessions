@@ -53,8 +53,6 @@ docker ps
 - Join host to `k3s` cluster
 - Prerequisites: SSH
 
-*Alex is also the creator of [OpenFaaS](https://www.openfaas.com/)*
-
 ### Demo: Run against fresh remote host
 
 ```bash

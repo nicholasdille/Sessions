@@ -52,4 +52,14 @@ Configured as a container runtime (instead of `runc`)
 
 ## Docker Engine API Filter
 
-XXX
+XXX https://github.com/buildkite/sockguard
+
+- No privileged containers
+- No host bind mounts
+- No host network
+
+```bash
+/sockguard \
+    -upstream-socket /var/run/docker-raw.sock \
+    -filename /var/run/docker.sock
+```

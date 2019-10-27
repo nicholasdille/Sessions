@@ -19,6 +19,5 @@ trivy \
 
 ### Cache management
 
-Databases are cached locally
-
-Persist across builds
+- Databases are cached locally
+- Persist across builds

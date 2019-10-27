@@ -1,4 +1,4 @@
-# docker-app
+## docker-app
 
 XXX https://github.com/mikesir87/docker-summit-19-docker-app-workshop
 
@@ -6,7 +6,7 @@ Home: https://github.com/docker/app
 
 --
 
-## Installation
+## docker-app: Installation
 
 ```bash
 curl -sL \
@@ -19,18 +19,19 @@ source <(docker-app completion bash)
 
 --
 
-## Preparation
+## docker-app:Preparation
 
 Start local registry:
 
 ```bash
 docker run -d -p 5000:5000 registry:2
-wget https://github.com/nicholasdille/docker-lab/raw/master/advanced/docker-compose/docker-compose.yml
 ```
+
+XXX example
 
 --
 
-## Creation
+## docker-app:Creation
 
 Create an app stack:
 
@@ -52,7 +53,7 @@ docker-app push registry \
 
 --
 
-# Reuse
+# docker-app:Reuse
 
 Download to subdirectory:
 
@@ -62,7 +63,7 @@ docker-app fork localhost:5000/registry:1.0
 
 --
 
-# Deployment
+# docker-app:Deployment
 
 Check app stack from registry:
 
@@ -79,7 +80,7 @@ docker-app render registry | docker-compose -f - up -d
 
 --
 
-# Internals
+# docker-app:Internals
 
 Stored like an image
 

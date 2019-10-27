@@ -2,12 +2,21 @@
 
 ### kubectl explain
 
-XXX
+- Check fields of API objects
+
+```bash
+kubectl explain deployment
+kubectl explain deployment.spec
+```
 
 ### [kubectx / kubens](https://github.com/ahmetb/kubectx)
 
 - `kubectx` switches context
 - `kubens` switches namespace
+
+--
+
+## k8s: Tools
 
 ### [kube-capacity](https://github.com/robscott/kube-capacity)
 

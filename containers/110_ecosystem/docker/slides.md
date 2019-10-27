@@ -13,7 +13,8 @@ With regard to...
 ### Image build
 
 * Yes
-* Other image builders are still niche players
-* Examples: [`buildah`](https://github.com/containers/buildah), [`img`](https://github.com/genuinetools/img), [`kaniko`](https://github.com/GoogleContainerTools/kaniko) (list not exhaustive)
+* Other image builders are still niche players (e.g. [`buildah`](https://github.com/containers/buildah), [`img`](https://github.com/genuinetools/img), [`kaniko`](https://github.com/GoogleContainerTools/kaniko))
 
-XXX capital
+### Venture capital
+
+XXX
