@@ -14,6 +14,7 @@ DIRS=$(for INCLUDE in ${INCLUDES}; do echo $(dirname ${INCLUDE}); done)
 
 # TODO: Remove
 DIRS=$(echo "${DIRS}" | grep k3s)
+echo "### Processing dirs: ${DIRS}"
 
 for DIR in ${DIRS}; do
     echo
@@ -54,19 +55,31 @@ echo
 echo "Waiting for demo to start. Press enter to continue..."
 read
 
-# TODO: Offer commands from slides instead of starting bash
 for DIR in ${DIRS}; do
     pushd ${PWD}
     clear
     echo "### Demo for ${DIR}"
-    echo
     NAME=${DIR////-}
     NAME=${NAME//_/}
     if hcloud server list --selector demo=true,dir=${NAME} | grep --quiet "${NAME}"; then
         echo "    VM ${NAME}"
     fi
+    echo
     cd "${PWD}/${DIR}"
     bash
+    #cat slides.md | sed -n '/^```/,/^```/ p' | grep -vE '^```$' | csplit - '/```bash/' {*} --prefix=slides.md.bash. --elide-empty-files --quiet
+    #for FILE in $(ls slides.md.bash.*); do
+    #    echo
+    #    COMMANDS=$(cat ${FILE} | grep -v '^```bash$')
+    #    echo ${COMMANDS}
+    #    echo
+    #    echo "Do you want to execute this (Y/n)?"
+    #    read -N 1 REPLY
+    #    if test "${REPLY}" == "" || test "${REPLY}" == "y"; then
+    #        eval ${COMMANDS}
+    #    fi
+    #done
+    #rm slides.md.bash.*
     popd
 done
 

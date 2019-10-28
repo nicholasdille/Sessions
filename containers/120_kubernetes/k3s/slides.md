@@ -11,11 +11,9 @@
 ### Demo: SSH into fresh VM
 
 ```bash
-root@k3s:~# curl -sfL https://get.k3s.io | sh -
-#...
-root@k3s:~# kubectl get nodes
-NAME   STATUS   ROLES    AGE   VERSION
-k3s    Ready    master   76s   v1.15.4-k3s.1
+# Run k3s server
+k3s server &
+k3s kubectl get nodes
 ```
 
 --
@@ -30,15 +28,10 @@ k3s    Ready    master   76s   v1.15.4-k3s.1
 ### Demo: Run on fresh Docker host
 
 ```bash
-# Install kubectl
-curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
-chmod +x kubectl
-mv kubectl /usr/local/bin/
-
-# Install k3d and deploy cluster
-curl -s https://raw.githubusercontent.com/rancher/k3d/master/install.sh | bash
+# Deploy k3s cluster
 k3d create --name k3d --workers 3
 export KUBECONFIG="$(k3d get-kubeconfig --name='k3d')"
 kubectl cluster-info
 docker ps
 ```
+
