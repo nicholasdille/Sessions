@@ -1,3 +1,16 @@
 #!/bin/bash
 
 curl -fL https://get.docker.com | sh
+
+# k3s
+#curl -sfL https://get.k3s.io | sh -
+curl -sLf https://github.com/rancher/k3s/releases/download/v0.10.0/k3s > /usr/local/bin/k3s
+chmod +x /usr/local/bin/k3s
+
+# kubectl
+curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+chmod +x kubectl
+mv kubectl /usr/local/bin/
+
+# k3d
+curl -s https://raw.githubusercontent.com/rancher/k3d/master/install.sh | bash

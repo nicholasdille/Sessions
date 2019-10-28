@@ -12,22 +12,72 @@ fi
 INCLUDES=$(xmlstarlet sel -N x="http://www.w3.org/1999/xhtml" -t -m "//x:section/@data-markdown" -v . -n "${FILE}" | grep -vE '^$')
 DIRS=$(for INCLUDE in ${INCLUDES}; do echo $(dirname ${INCLUDE}); done)
 
+# TODO: Remove
+DIRS=$(echo "${DIRS}" | grep k3s)
+
 for DIR in ${DIRS}; do
-    if test -f "${PWD}/${DIR}/prep.sh"; then
-        echo "### Preparing ${DIR}"
-        ssh docker-hcloud bash < "${PWD}/${DIR}/prep.sh"
-    fi
+    echo
+    echo "### Preparing ${DIR}"
+
+    NAME=docker-hcloud
     if test -f "${PWD}/${DIR}/user-data.txt"; then
-        echo "### Deploying VM for ${DIR}"
+        echo "    Deploying VM"
         NAME=${DIR////-}
         NAME=${NAME//_/}
         echo "    Name=${NAME}"
-        hcloud server create \
-            --name ${NAME} \
-            --location fsn1 \
-            --image ubuntu-18.04 \
-            --ssh-key 209622 \
-            --type cx21 \
-            --user-data-from-file "${PWD}/${DIR}/user-data.txt"
+        if ! hcloud server list --selector demo=true,dir=${NAME} | grep --quiet "${NAME}"; then
+            hcloud server create \
+                --name ${NAME} \
+                --location fsn1 \
+                --image ubuntu-18.04 \
+                --ssh-key 209622 \
+                --type cx21 \
+                --user-data-from-file "${PWD}/${DIR}/user-data.txt"
+            hcloud server add-label ${NAME} demo=true
+            hcloud server add-label ${NAME} dir=${NAME}
+        fi
     fi
+
+    if test -f "${PWD}/${DIR}/prep.sh"; then
+        echo "    Installing tools"
+        # TODO: Decide where to install the tools
+        #ssh ${NAME} bash < "${PWD}/${DIR}/prep.sh"
+        ssh docker-hcloud bash < "${PWD}/${DIR}/prep.sh"
+    fi
+
+    echo "    Done."
+done
+
+bash ~/hcloud2ssh.sh
+
+echo
+echo "Waiting for demo to start. Press enter to continue..."
+read
+
+# TODO: Offer commands from slides instead of starting bash
+for DIR in ${DIRS}; do
+    pushd ${PWD}
+    clear
+    echo "### Demo for ${DIR}"
+    echo
+    NAME=${DIR////-}
+    NAME=${NAME//_/}
+    if hcloud server list --selector demo=true,dir=${NAME} | grep --quiet "${NAME}"; then
+        echo "    VM ${NAME}"
+    fi
+    cd "${PWD}/${DIR}"
+    bash
+    popd
+done
+
+echo
+echo "Waiting for demo to end. Press enter to continue..."
+read
+
+for DIR in ${DIRS}; do
+    echo
+    echo "### Cleaning up in ${DIR}"
+    NAME=${DIR////-}
+    NAME=${NAME//_/}
+    hcloud server delete ${NAME}
 done
