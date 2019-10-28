@@ -2,7 +2,7 @@
 
 XXX Kubernetes Pod
 
-```
+```bash
 docker run -d --name pod alpine sh -c 'while true; do sleep 10; done'
 
 docker run -d --name registry --pid container:pod --network container:pod registry:2

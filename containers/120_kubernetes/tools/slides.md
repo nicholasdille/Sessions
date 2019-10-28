@@ -26,9 +26,6 @@ kubectl explain deployment.spec
 Demo: Run against k8s/k3s cluster:
 
 ```bash
-curl -sLf \
-    https://github.com/robscott/kube-capacity/releases/download/0.3.2/kube-capacity_0.3.2_Linux_x86_64.tar.gz \
-| tar -xvz -C /usr/local/bin/ kube-capacity
 kube-capacity
 kube-capacity --containers
 ```

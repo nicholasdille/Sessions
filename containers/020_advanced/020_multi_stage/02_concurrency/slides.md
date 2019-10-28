@@ -16,7 +16,7 @@ COPY --from=build2 /opt/binary2 /opt/
 
 ### Demo: Multi Stage Builds - Concurrency
 
-```
+```bash
 # Builds sequentially
 docker build .
 

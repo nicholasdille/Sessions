@@ -22,9 +22,6 @@ XXX https://stevelasker.blog/2019/08/08/oci-artifact-authoring-annotations-confi
 Test command line tool [oras](https://github.com/deislabs/oras)
 
 ```bash
-# Install oras
-curl -sLf https://github.com/deislabs/oras/releases/download/v0.7.0/oras_0.7.0_linux_amd64.tar.gz | tar -xvz -C /usr/local/bin/ oras
-
 # Start registry
 docker run -d -p 127.0.0.1:5000:5000 registry:2
 

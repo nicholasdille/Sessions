@@ -19,6 +19,6 @@ COPY --from=builder ...
 
 ### Demo: Multi Stage Builds - Separation
 
-```
+```bash
 DOCKER_BUILDKIT=1 docker build --tag hello-world-java:multi .
 ```
