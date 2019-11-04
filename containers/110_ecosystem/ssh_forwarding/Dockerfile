@@ -3,5 +3,6 @@
 FROM alpine
 
 RUN apk add --no-cache openssh-client
-RUN --mount=type=ssh ssh-add -l
-CMD cat /keys.txt
+RUN --mount=type=ssh \
+    printenv | sort \
+ && ssh-add -l

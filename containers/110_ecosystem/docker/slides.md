@@ -14,7 +14,3 @@ With regard to...
 
 * Yes
 * Other image builders are still niche players (e.g. [`buildah`](https://github.com/containers/buildah), [`img`](https://github.com/genuinetools/img), [`kaniko`](https://github.com/GoogleContainerTools/kaniko))
-
-### Venture capital
-
-XXX

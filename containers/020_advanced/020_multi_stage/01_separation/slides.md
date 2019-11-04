@@ -11,14 +11,18 @@
 ```Dockerfile
 FROM openjdk:8-jdk as builder
 #...
-
 FROM openjdk:8-jre
 COPY --from=builder ...
 #...
 ```
 
+--
+
 ### Demo: Multi Stage Builds - Separation
 
+Internal buildkit is a non-default feature:
+
 ```bash
-DOCKER_BUILDKIT=1 docker build --tag hello-world-java:multi .
+export DOCKER_BUILDKIT=1
+docker build --tag hello-world-java:multi .
 ```

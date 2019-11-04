@@ -1,15 +1,25 @@
-## Build Secrets - SSH Agent Forwarding
+## SSH Agent Forwarding
 
-Enable BuildKit:
+Do not copy secrets into image layers
+
+Buildkit can forward the SSH agent socket
+
+XXX image representing secrets/forwarding/ssh
+
+--
+
+## Demo: SSH Agent Forwarding
+
+Buildkit forwards the SSH agent socket
 
 ```bash
+# Prepare SSH agent
+ssh-keygen -f id_rsa_test
+eval $(ssh-agent -s)
+ssh-add id_rsa_test
+ssh-add -l
+
+# Forward into build
 export DOCKER_BUILDKIT=1
-```
-
-Note the command and the `--mount` parameter in `Dockerfile`!
-
-Build image:
-
-```bash
 docker build --ssh default --progress plain .
 ```

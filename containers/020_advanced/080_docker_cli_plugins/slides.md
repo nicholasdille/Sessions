@@ -1,14 +1,14 @@
 ## Docker CLI Plugins
 
-Extend `docker` with new functionality
+Extend `docker` CLI with new sub commands
 
 Located in `~/.docker/cli-plugins`
 
-Executable file called `docker-*` where `*` is the new command
+Executable file called `docker-<command>`
 
-Command line parameters are passed to `docker-*`
+Command line parameters are passed as parameters
 
-Plugin must support parameter `docker_cli_plugin_metadata` and return the following
+Plugin must provide metdata using parameter `docker-cli-plugin-metadata`, e.g.
 
 ```json
 {
@@ -24,29 +24,53 @@ Plugin must support parameter `docker_cli_plugin_metadata` and return the follow
 
 ## Demo: Docker CLI Plugins
 
-Place `docker-distribution` in `~/.docker/cli-plugins`
-
-### Prepare:
+Place `docker-distribution` in `~/.docker/cli-plugins`:
 
 ```bash
-docker build --tag cli-plugin .
+mkdir -p ~/.docker/cli-plugins
+cp docker-distribution ~/.docker/cli-plugins
+chmod +x ~/.docker/cli-plugins/docker-distribution
 ```
 
-### Enter container and test:
+XXX
 
 ```bash
-docker run -it --rm \
-    --volume /var/run/docker.sock:/var/run/docker.sock \
-    cli-plugin
+docker
+docker distribution
+```
+
+--
+
+## Demo: Docker CLI Plugins
+
+Prepare local registry:
+
+```bash
+mkdir -p auth
+docker run --entrypoint htpasswd registry:2 \
+    -Bbn testuser testpassword > auth/htpasswd
+docker run -d -p 127.0.0.1:5000:5000 --name registry \
+    --mount type=bind,source=$(pwd)/auth,target=/auth \
+    --env REGISTRY_AUTH=htpasswd \
+    --env REGISTRY_AUTH_HTPASSWD_REALM=registry \
+    --env REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd \
+    registry:2
+```
+
+Test against local registry:
+
+```bash
+docker pull alpine
+docker tag alpine localhost:5000/alpine
+docker push localhost:5000/alpine
+docker distribution list-tags localhost:5000/alpine
 ```
 
 --
 
 ## Docker Client Plugins Manager (CLIP)
 
-Created by [Docker Captain Łukasz Lach](https://www.docker.com/captains/%C5%82ukasz-lach)
-
-See [GitHub](https://github.com/lukaszlach/clip)
+[CLIP](https://github.com/lukaszlach/clip) created by [Docker Captain Łukasz Lach](https://www.docker.com/captains/%C5%82ukasz-lach)
 
 ### How it works
 
@@ -58,4 +82,23 @@ Distributed using Docker registry
 
 expose, publish, showcontext, microscan, dive, runlike, sh, hello
 
-XXX UPDATE
+--
+
+## Demo: Docker Client Plugins Manager (CLIP)
+
+Install CLIP:
+
+```bash
+cd ~/.docker/cli-plugins
+FILEPATH=lukaszlach/clip/master/docker-clip
+curl -sLfO https://raw.githubusercontent.com/${FILEPATH}
+chmod +x docker-clip
+```
+
+Test plugin for `dive`:
+
+```bash
+docker clip add lukaszlach/clips:dive
+docker clip ls
+docker dive localhost:5000/alpine
+```

@@ -2,11 +2,13 @@
 
 Docker registry is able to use shared storage
 
-XXX S3
+Multiple instances can use the same storage volume
+
+Backend can even be Amazon S3
 
 ### Start
 
-XXX volume for service
+Emulate using volume for all instances:
 
 ```bash
 # Start registry
@@ -15,9 +17,9 @@ docker-compose up -d
 
 --
 
-## Registry HA: Basic testing
+## Demo: Registry HA
 
-XXX
+Basic testing:
 
 ```bash
 # Test registry
@@ -30,9 +32,9 @@ curl http://localhost:5000/v2/_catalog
 
 --
 
-## Registry HA: Scale-out
+## Demo: Registry HA
 
-XXX random ports
+Scale-out with random ports:
 
 ```bash
 # Scale registry
@@ -50,9 +52,9 @@ curl http://localhost:32769/v2/_catalog
 
 --
 
-## Registry HA: Concurrency
+## Demo: Registry HA
 
-XXX
+Test concurrency:
 
 ```bash
 docker pull centos

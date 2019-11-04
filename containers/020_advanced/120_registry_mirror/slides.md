@@ -1,6 +1,10 @@
 ## Registry Mirror
 
-XXX
+`docker build` always downloads from upstream
+
+`dockerd` can use separate registry as cache
+
+XXX image representing cache
 
 --
 
@@ -9,12 +13,13 @@ XXX
 Start test environment:
 
 ```bash
-# Start registry and dockerd
+# Start registry
 docker run -d --name registry \
     --env REGISTRY_PROXY_REMOTEURL=https://registry-1.docker.io \
     --env REGISTRY_PROXY_USERNAME=nicholasdille \
     --env REGISTRY_PASSWORD='mypass' \
     registry:2
+# Start dockerd
 docker run -d --privileged \
     --network container:registry \
     --pid container:registry \
@@ -30,7 +35,12 @@ docker run -d --privileged \
 Enter test environment:
 
 ```bash
-docker run -it --env DOCKER_HOST=tcp://127.0.0.1:2375 --network container:registry --pid container:registry docker:stable sh
+docker run -it \
+    --env DOCKER_HOST=tcp://127.0.0.1:2375 \
+    --network container:registry \
+    --pid container:registry \
+    docker:stable \
+    sh
 ```
 
 Test content of registry:

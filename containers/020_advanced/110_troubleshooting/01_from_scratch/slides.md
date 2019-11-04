@@ -2,7 +2,7 @@
 
 ### Missing tools
 
-- Containers only contain a single binary
+- Modern containers only contain a single binary
 - No shell, no tools
 
 ### Solution: Dump root partition content into container

@@ -14,7 +14,14 @@ COPY --from=build1 /opt/binary1 /opt/
 COPY --from=build2 /opt/binary2 /opt/
 ```
 
-### Demo: Multi Stage Builds - Concurrency
+--
+
+## Demo: Multi Stage Builds - Concurrency
+
+### Stages have a delay of 10 seconds
+
+* Sequential build will take ~20 seconds
+* Parallel build ~10 seconds
 
 ```bash
 # Builds sequentially

@@ -24,18 +24,15 @@ Image: openjdk:8-jdk
  * Manifest List: Yes
  * Supported platforms:
    - linux/amd64
-   - linux/arm/v5
-   - linux/arm/v7
-   - linux/arm64/v8
-   - linux/386
-   - linux/ppc64le
-   - linux/s390x
-
+   - windows/amd64:10.0.17763.805
+   - windows/amd64:10.0.17134.1069
+   - windows/amd64:10.0.14393.3274
 $ docker run mplatform/mquery openjdk:8-jdk-nanoserver
 Image: openjdk:8-jdk-nanoserver
  * Manifest List: Yes
  * Supported platforms:
-   - windows/amd64:10.0.14393.1770
+   - windows/amd64:10.0.17763.802
+   - windows/amd64:10.0.17134.1069
 ```
 
 --
@@ -50,12 +47,12 @@ Image: hello-world
    - linux/amd64
    - linux/arm/v5
    - linux/arm/v7
-   - linux/arm64/v8
+   - linux/arm64
    - linux/386
    - linux/ppc64le
    - linux/s390x
-   - windows/amd64:10.0.14393.1770
-   - windows/amd64:10.0.16299.19
+   - windows/amd64:10.0.17134.1069
+   - windows/amd64:10.0.17763.802
 ```
 
 --
@@ -64,25 +61,20 @@ Image: hello-world
 
 ```bash
 $ docker run mplatform/mquery docker
-Image: hello-world
+Image: docker
  * Manifest List: Yes
  * Supported platforms:
    - linux/amd64
-   - linux/arm/v5
+   - linux/arm/v6
    - linux/arm/v7
-   - linux/arm64/v8
-   - linux/386
-   - linux/ppc64le
-   - linux/s390x
-   - windows/amd64:10.0.14393.1770
-   - windows/amd64:10.0.16299.19
+   - linux/arm64
 ```
 
 --
 
-## Building for other Architectures
+## Demo: Building for other Architectures
 
-XXX
+New sub command `buildx`:
 
 ```bash
 # enable experimental mode for client and enable qemu
@@ -103,7 +95,7 @@ docker buildx imagetools inspect nicholasdille/hello
 
 --
 
-## Build multi-arch with proper tags (1)
+## Demo: Build multi-arch with proper tags (1)
 
 Build individual images to control tagging
 
@@ -123,7 +115,7 @@ This allows for proper versioning
 
 --
 
-## Build multi-arch with proper tags (2)
+## Demo: Build multi-arch with proper tags (2)
 
 Create manifest list with all images:
 
