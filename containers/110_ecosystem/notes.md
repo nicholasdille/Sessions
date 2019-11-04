@@ -6,10 +6,12 @@ XXX
 
 ### Ops view
 
-User experience! Developer experience! Ops experience?
+- User experience!
+- Developer experience!
+- Ops experience?
 
 ### Observability
 
-- Performance metrics
-- Log aggregation
-- Tracing
+- Performance metrics (Prometheus, InfluxData etc.)
+- Log aggregation (Graylog, Loki etc.)
+- Tracing (Jaeger etc.)

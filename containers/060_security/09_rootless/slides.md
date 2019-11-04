@@ -17,4 +17,24 @@ Reduce attack surface
 
 ## Demo: Rootless Docker
 
-XXX https://medium.com/@tonistiigi/experimenting-with-rootless-docker-416c9ad8c0d6
+### Running Docker as unprivileged user
+
+- Based on user namespaces (map UIDs to unprivileged range)
+- Handling of namespaces is based on [`rootlesskit`](https://github.com/rootless-containers/rootlesskit) by Akihiro Suda
+- Networking is based on [`moby/vpnkit`](https://github.com/moby/vpnkit)
+
+```bash
+curl -sSL https://get.docker.com/rootless | sh
+```
+
+### What does not work
+
+- Only Ubuntu supports `overlay` fs
+- Other distributions use `vfs` (not recommended for production)
+
+### Rootless Everything
+
+Akihiro is also working on...
+
+- [Rootless kubernetes](https://github.com/rootless-containers/usernetes)
+- [Rootless buildkit](https://github.com/moby/buildkit/blob/master/docs/rootless.md)

@@ -1,8 +1,12 @@
 ## docker-app
 
-XXX https://github.com/mikesir87/docker-summit-19-docker-app-workshop
+https://github.com/docker/app
 
-Home: https://github.com/docker/app
+Standalone binary in version <= 0.6
+
+Docker CLI plugin in version >= 0.7
+
+XXX https://github.com/mikesir87/docker-summit-19-docker-app-workshop
 
 --
 
@@ -10,11 +14,10 @@ Home: https://github.com/docker/app
 
 ```bash
 curl -sL \
-    https://github.com/docker/app/releases/download/\
-    v0.6.0/docker-app-linux.tar.gz \
+    https://github.com/docker/app/releases/download/v0.9.0-zeta1/docker-app-linux.tar.gz \
 | tar -xvz
-mv docker-app-linux /usr/local/bin/docker-app
-source <(docker-app completion bash)
+mv docker-app-plugin-linux ~/.docker/cli-plugins/docker-app
+export DOCKER_CLI_EXPERIMENTAL=enabled
 ```
 
 --
@@ -36,7 +39,7 @@ XXX example
 Create an app stack:
 
 ```bash
-docker-app init --single-file registry
+docker app init --single-file registry
 ```
 
 Modify `cicd-env.dockerapp`, fill maintainer and add parameter `port`

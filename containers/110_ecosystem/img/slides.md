@@ -2,21 +2,22 @@
 
 ### kaniko
 
-- https://github.com/GoogleContainerTools/kaniko
-- daemonless, running in userspace
-- uses Dockerfile
+- [Kaniko](https://github.com/GoogleContainerTools/kaniko) created by Google
+- Daemonless, unprivileged
+- Uses Dockerfile
 
 ### buildah
 
-- https://github.com/containers/buildah
-- XXX daemonless? userspace?
-- script based (not using Dockerfile)
+- [Buildah](https://github.com/containers/buildah) created by RedHat
+- Daemonless, unprivileged
+- Script/command based (not using Dockerfile)
 
 ### img
 
-- https://github.com/genuinetools/img
-- daemonless, unprivileged
-- uses Dockerfile
+- [img](https://github.com/genuinetools/img) created by [Jessie Frazelle](https://blog.jessfraz.com/)
+- Based on buildkit
+- Daemonless, unprivileged
+- Uses Dockerfile
 
 --
 

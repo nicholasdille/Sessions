@@ -4,11 +4,18 @@ services:
 
   proxy:
     image: traefik:1.7
-    command: "--debug --docker --docker.endpoint='unix:///var/run/docker.sock' --docker.watch=true --docker.exposedByDefault=false --entryPoints='Name:http Address::80' --defaultEntryPoints='http'"
+    command:
+    - --debug
+    - --docker
+    - --docker.endpoint='unix:///var/run/docker.sock'
+    - --docker.watch=true
+    - --docker.exposedByDefault=false
+    - --entryPoints='Name:http Address::80'
+    - --defaultEntryPoints='http'"
     ports:
-      - 80:80
+    - 80:80
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+    - /var/run/docker.sock:/var/run/docker.sock
 
   registry:
     image: registry:2
@@ -21,7 +28,7 @@ services:
   web:
     image: konradkleine/docker-registry-frontend:v2
     depends_on:
-      - registry
+    - registry
     environment:
       ENV_DOCKER_REGISTRY_HOST: "registry"
       ENV_DOCKER_REGISTRY_PORT: 5000

@@ -9,14 +9,14 @@
 ### Reverse Proxy
 
 - Routing of requests to correct container
-- Based on `Host` header in HTTP
+- Based on `Host` header in HTTP and SNI in HTTPS
 - Well-known: `nginx`, `haproxy`, `traefik`
 
 ### Desired Features
 
 - HTTP(S)
-- Automatic wiring
 - Automatic certificates
+- Dynamic wiring
 
 --
 
@@ -26,9 +26,9 @@ HTTP: Routing based on `Host` header
 
 HTTPS: Routing based on Server Name Indication (SNI)
 
-![](020_advanced/070_reverse_proxy/reverse-proxy.svg) <!-- .element: class="center-image" -->
+![](110_ecosystem/reverse_proxy/reverse-proxy.svg) <!-- .element: class="center-image" -->
 
-XXX maybe use multiple networks (frontend / backend)
+Can even use separate networks for frontend and backend
 
 --
 
@@ -44,18 +44,18 @@ IP=$(
 )
 ```
 
-Instead of publishing ports, you can also use `network_mode: host`.
+Use `network_mode: host` to avoid port publishing
 
 Testing access to the registry frontend:
 
 ```bash
-curl -s --resolve hub.me:80:$IP http://hub.me
+curl -s --resolve hub.dille.io:80:$IP http://hub.dille.io
 ```
 
 Testing access to the registry API:
 
 ```bash
-curl -s --resolve registry.me:$IP http://registry.me/v2/
+curl -s --resolve registry.dille.io:$IP http://registry.dille.io/v2/
 ```
 
 XXX traefik v2

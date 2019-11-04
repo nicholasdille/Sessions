@@ -2,9 +2,9 @@
 
 ### Bootstrapping is hard
 
-- Use cloud provider
-- Do not script yourself
-- Use [kubespray](https://github.com/kubernetes-sigs/kubespray)
+- Use offerings in public clouds
+- Otherwise, do not script yourself
+- Use a project like [kubespray](https://github.com/kubernetes-sigs/kubespray)
 
 ### Mind the focus of KthW
 
@@ -17,4 +17,4 @@
 - Your responsibility
 - Load balancing is much harder
 - DMZ, firewalls and company policies are in your way
-- Host resources and pod eviction XXX
+- Allocatable host resources and pod eviction are yours to configure
