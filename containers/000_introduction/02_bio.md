@@ -1,6 +1,6 @@
 <!-- .slide: id="bio" -->
 
-<img src="images/Nicholas Dille.jpg" /> <!-- .element: style="size: 50%; width: 25%; float: right; border-radius: 8px;" -->
+<img src="images/NicholasDille.jpg" /> <!-- .element: style="size: 50%; width: 25%; float: right; border-radius: 8px;" -->
 
 ## Nicholas Dille
 
