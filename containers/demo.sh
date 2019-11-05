@@ -48,7 +48,8 @@ for DIR in ${DIRS}; do
         echo "    Installing tools"
         # TODO: Decide where to install the tools
         #ssh ${NAME} bash < "${PWD}/${DIR}/prep.sh"
-        ssh docker-hcloud bash < "${PWD}/${DIR}/prep.sh"
+        #ssh docker-hcloud bash < "${PWD}/${DIR}/prep.sh"
+        bash "${PWD}/${DIR}/prep.sh"
     fi
 
     echo "    Done."
