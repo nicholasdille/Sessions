@@ -24,9 +24,11 @@
 
 Easily create bundles with [Duffle](https://github.com/deislabs/duffle)
 
-XXX containerized install script with parameters `install|uninstall|upgrade|downgrade|status`
+Containerized install script
 
-XXX directory layout
+Must accept parameters `install|uninstall|upgrade|downgrade|status`
+
+Directory layout:
 
 ```
 .
@@ -38,13 +40,18 @@ XXX directory layout
 └── duffle.json
 ```
 
-XXX addon for `vscode`: https://marketplace.visualstudio.com/items?itemName=ms-kubernetes-tools.duffle-vscode
+--
 
-XXX demo of example
+## Demo: duffle
+
+Basic example:
 
 ```bash
+# Clone examples
 git clone https://github.com/deislabs/duffle
 cd duffle
+
+# Hello world
 duffle build ./examples/helloworld/
 duffle bundle list
 duffle install helloworld-demo helloworld:0.1.1
@@ -52,9 +59,9 @@ duffle list
 duffle uninstall helloworld-demo
 ```
 
-XXX https://github.com/deislabs/example-bundles
+Many [example bundles](https://github.com/deislabs/example-bundles) are available
 
-XXX fresh start
+Start a new bundle:
 
 ```bash
 duffle create foo
@@ -66,19 +73,23 @@ duffle create foo
 
 Interface with Helm, Terraform etc. using [Porter](https://porter.sh/)
 
-XXX containerized installer
+### What it is
 
-XXX executes commands defined in `porter.yaml`
+Containerized installer
 
-XXX mixins provide interfaces 
+Executes commands defined in `porter.yaml`
 
-XXX publish to OCI registry
+Mixins provide templates for common tasks
 
-XXX use CNAB compliant tool to install from registry
+Publish to OCI registry
 
-XXX examples: https://github.com/deislabs/porter/tree/master/examples
+Use CNAB compliant tool to install from registry
 
-XXX demo
+--
+
+## Demo: porter
+
+Play with a new package:
 
 ```bash
 porter create
@@ -89,19 +100,25 @@ porter install instance-name --tag user/image:tag
 
 --
 
-## CNAB Registries
+## CNAB and Registries
 
 Uses OCI registries as storage
 
 [`cnab-to-oci`](https://github.com/docker/cnab-to-oci) manages bundles in registries
 
-XXX demo
+Convert a CNAB bundle for upload:
 
 ```bash
+# Clone examples
 git clone https://github.com/docker/cnab-to-oci
 cd cnab-to-oci
-cnab-to-oci push examples/helloworld-cnab/bundle.json --target myhubusername/repo
-cnab-to-oci pull myhubusername/repo@sha256:6cabd752cb01d2efb9485225baf7fc26f4322c1f45f537f76c5eeb67ba8d83e0
-# what is this below?!
-cnab-to-oci fixup examples/helloworld-cnab/bundle.json --target myhubusername/repo
+
+# Push and pull
+cnab-to-oci push \
+    examples/helloworld-cnab/bundle.json \
+    --target myhubusername/repo
+cnab-to-oci pull \
+    myhubusername/repo@sha256:6cabd752cb01d2efb9485225baf7fc26f4322c1f45f537f76c5eeb67ba8d83e0
 ```
+
+Better experience with `duffle`, `porter` and `docker-app`

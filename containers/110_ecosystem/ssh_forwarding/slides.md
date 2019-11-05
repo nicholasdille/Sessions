@@ -4,7 +4,14 @@ Do not copy secrets into image layers
 
 Buildkit can forward the SSH agent socket
 
-XXX image representing secrets/forwarding/ssh
+Bad example:
+
+```Dockerfile
+FROM ubuntu
+COPY id_rsa /root/.ssh/
+RUN scp user@somewhere:/tmp/data .
+RUN rm /root/.ssh/id_rsa
+```
 
 --
 

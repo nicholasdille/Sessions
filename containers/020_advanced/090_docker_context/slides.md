@@ -16,7 +16,8 @@ Manage connections to Kubernetes clusters
 
 ```bash
 k3d create --name context --worker 3
-docker context create k3d --docker 'host=unix:///var/run/docker.sock' --kubernetes config-file=$(k3d get-kubeconfig --name=context)
+KUBECONFIG=$(k3d get-kubeconfig --name=context)
+docker context create k3d \
+    --docker 'host=unix:///var/run/docker.sock' \
+    --kubernetes config-file=${KUBECONFIG}
 ```
-
-XXX purpose?!

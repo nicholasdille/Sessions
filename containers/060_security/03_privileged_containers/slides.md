@@ -21,22 +21,6 @@ docker run -it \
 
 --
 
-## Demo: Privileged Containers
-
-Running privileged containers:
-
-```bash
-docker run -it --rm --privileged --pid host alpine
-```
-
-Host breakout from privileged container:
-
-```bash
-nsenter -t 1 -m -u -n -i sh
-```
-
---
-
 ## Taming Privileges Containers
 
 ### For example
@@ -46,8 +30,6 @@ nsenter -t 1 -m -u -n -i sh
 Isolates containers in a lightweight VM
 
 Configured as a container runtime (instead of `runc`)
-
-XXX demo?
 
 --
 

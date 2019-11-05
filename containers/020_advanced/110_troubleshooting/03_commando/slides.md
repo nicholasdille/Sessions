@@ -8,3 +8,12 @@ Container images are created on demand
 docker run -it --rm cmd.cat/curl/jq
 docker run -it --rm cmd.cat/netstat/tcpdump/ip/ifconfig/ping
 ```
+
+Very powerful when troubleshooting networking:
+
+```bash
+docker run -it --rm \
+    --net container:broken \
+    --pid container:broken \
+    cmd.cat/netstat/tcpdump/ip/ifconfig/ping
+```

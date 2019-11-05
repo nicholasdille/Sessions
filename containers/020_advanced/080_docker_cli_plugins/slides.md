@@ -8,7 +8,7 @@ Executable file called `docker-<command>`
 
 Command line parameters are passed as parameters
 
-Plugin must provide metdata using parameter `docker-cli-plugin-metadata`, e.g.
+Plugin metdata via parameter `docker-cli-plugin-metadata`:
 
 ```json
 {
@@ -32,7 +32,7 @@ cp docker-distribution ~/.docker/cli-plugins
 chmod +x ~/.docker/cli-plugins/docker-distribution
 ```
 
-XXX
+Test integration into Docker CLI:
 
 ```bash
 docker
