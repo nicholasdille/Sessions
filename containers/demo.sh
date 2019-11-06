@@ -9,12 +9,17 @@ if [[ -z "${FILE}" ]]; then
     exit 1
 fi
 
+if ! type xmlstarlet; then
+    echo "Please install xmlstarlet"
+    exit 1
+fi
+
 INCLUDES=$(xmlstarlet sel -N x="http://www.w3.org/1999/xhtml" -t -m "//x:section/@data-markdown" -v . -n "${FILE}" | grep -vE '^$')
 DIRS=$(for INCLUDE in ${INCLUDES}; do echo $(dirname ${INCLUDE}); done)
 
 # TODO: Remove
-DIRS=$(echo "${DIRS}" | grep k3s)
-echo "### Processing dirs: ${DIRS}"
+#DIRS=$(echo "${DIRS}" | grep k3s)
+#echo "### Processing dirs: ${DIRS}"
 
 for DIR in ${DIRS}; do
     echo
