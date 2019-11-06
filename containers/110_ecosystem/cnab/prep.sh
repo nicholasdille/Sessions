@@ -13,7 +13,9 @@ for MIXIN in exec kubernetes helm azure terraform az aws gcloud; do
 done
 
 # cnab-to-oci
-docker build --tag cnab2oci:v0.3.0-beta1 --target build github.com/docker/cnab-to-oci#v0.3.0-beta1
+docker build --tag cnab2oci:v0.3.0-beta1 --target build --build-arg BUILDTIME=$(date +%Y%m%d%H%M) --build-arg TAG=v0.3.0-beta1 github.com/docker/cnab-to-oci#v0.3.0-beta1
+docker rm cnab2oci
 docker create --name cnab2oci cnab2oci
 rm /usr/local/bin/cnab-to-oci
 docker cp cnab2oci:/go/src/github.com/docker/cnab-to-oci/bin/cnab-to-oci /usr/local/bin/cnab-to-oci
+docker rm cnab2oci
