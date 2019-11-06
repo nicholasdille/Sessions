@@ -10,8 +10,6 @@ Buildkit can mount secrets using `tmpfs`
 
 Temporary files in `/run/secrets/`
 
-XXX image representing secrets
-
 --
 
 ## Demo: Build Secrets

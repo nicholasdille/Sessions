@@ -47,7 +47,12 @@ docker exec --user 0 img apk add --update-cache curl git bash
 Building and pushing using `img`:
 
 ```bash
+# Enter pod
 docker exec -it img bash
+
+# Build image
 img build --tag localhost:5000/test .
+
+# Push image
 img push --insecure-registry localhost:5000/test
 ```

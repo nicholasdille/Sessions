@@ -2,9 +2,11 @@
 
 `docker build` always downloads from upstream
 
-`dockerd` can use separate registry as cache
+Network uplink can become bottleneck
 
-XXX image representing cache
+Transfer fees can be costly
+
+`dockerd` can use separate registry as cache
 
 --
 

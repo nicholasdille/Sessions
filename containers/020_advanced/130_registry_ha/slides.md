@@ -4,9 +4,9 @@ Docker registry is able to use shared storage
 
 Multiple instances can use the same storage volume
 
-Backend can even be Amazon S3
+Multiple backends are supported, e.g. Amazon S3
 
-### Start
+### Start single instance
 
 Emulate using volume for all instances:
 
@@ -22,8 +22,10 @@ docker-compose up -d
 Basic testing:
 
 ```bash
-# Test registry
+# Check availability of registry API
 curl http://localhost:5000/v2/_catalog
+
+# Push image and check catalog
 docker pull alpine
 docker tag alpine:latest localhost:5000/alpine:latest
 docker push localhost:5000/alpine:latest
