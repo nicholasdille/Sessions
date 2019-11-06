@@ -74,7 +74,7 @@ Image: docker
 
 ## Demo: Building for other Architectures
 
-New sub command `buildx`:
+Prepare for new sub command `buildx`:
 
 ```bash
 # enable experimental mode for client and enable qemu
@@ -82,15 +82,29 @@ export DOCKER_CLI_EXPERIMENTAL=enabled
 docker run --rm --privileged \
     docker/binfmt:820fdd95a9972a5308930a2bdfb8573dd4447ad3
 
+# Create builder
+docker buildx create --name mybuilder --use
+docker buildx inspect --bootstrap
+
+# Add local registry
+docker run -d --net container:buildx_buildkit_mybuilder0 registry:2
+```
+
+--
+
+## Demo: Building for other Architectures
+
+```bash
 # build multi-arch
 docker buildx build \
     --platform linux/arm,linux/arm64,linux/amd64 \
-    --tag nicholasdille/hello \
+    --tag localhost:5000/nicholasdille/hello \
     . \
     --push
 
 # Inspect result
-docker buildx imagetools inspect nicholasdille/hello
+docker buildx imagetools inspect \
+    localhost:5000/nicholasdille/hello
 ```
 
 --
@@ -102,13 +116,13 @@ Build individual images to control tagging
 ```bash
 # arm
 docker buildx build --platform linux/arm \
-    --tag nicholasdille/hello:arm . --push
+    --tag localhost:5000/nicholasdille/hello:arm . --push
 # arm64
 docker buildx build --platform linux/arm64 \
-    --tag nicholasdille/hello:arm64 . --push
+    --tag localhost:5000/nicholasdille/hello:arm64 . --push
 # amd64
 docker buildx build --platform linux/amd64 \
-    --tag nicholasdille/hello:amd64 . --push
+    --tag localhost:5000/nicholasdille/hello:amd64 . --push
 ```
 
 This allows for proper versioning
@@ -120,10 +134,10 @@ This allows for proper versioning
 Create manifest list with all images:
 
 ```bash
-docker manifest create --amend nicholasdille/hello
-    nicholasdille/hello:arm \
-    nicholasdille/hello:arm64 \
-    nicholasdille/hello:amd64
+docker manifest create --amend localhost:5000/nicholasdille/hello
+    localhost:5000/nicholasdille/hello:arm \
+    localhost:5000/nicholasdille/hello:arm64 \
+    localhost:5000/nicholasdille/hello:amd64
 
-docker manifest inspect nicholasdille/hello
+docker manifest inspect localhost:5000/nicholasdille/hello
 ```

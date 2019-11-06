@@ -13,7 +13,7 @@ Very powerful when troubleshooting networking:
 
 ```bash
 docker run -it --rm \
-    --net container:broken \
-    --pid container:broken \
+    --net container:nginx \
+    --pid container:nginx \
     cmd.cat/netstat/tcpdump/ip/ifconfig/ping
 ```

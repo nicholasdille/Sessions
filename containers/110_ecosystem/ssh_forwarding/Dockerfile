@@ -4,5 +4,6 @@ FROM alpine
 
 RUN apk add --no-cache openssh-client
 RUN --mount=type=ssh \
-    printenv | sort \
+    printenv | grep SSH \
  && ssh-add -l
+RUN printenv | sort

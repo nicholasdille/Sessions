@@ -18,11 +18,16 @@ COPY --from=builder ...
 
 --
 
-### Demo: Multi Stage Builds - Separation
+## Demo: Multi Stage Builds - Separation
 
-Internal buildkit is a non-default feature:
+Works with legacy build engine
 
 ```bash
-export DOCKER_BUILDKIT=1
 docker build --tag hello-world-java:multi .
+```
+
+Good chance to get comfortable with builtin buildkit
+
+```bash
+DOCKER_BUILDKIT=1 docker build --tag hello-world-java:multi .
 ```

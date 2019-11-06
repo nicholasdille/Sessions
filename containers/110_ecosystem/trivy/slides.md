@@ -8,10 +8,11 @@
 ```bash
 # Break build with high severity findings
 trivy \
+    --skip-update \
     --ignore-unfixed \
     --exit-code 1 \
     --severity HIGH,CRITICAL \
-    alpine:latest
+    python:3.4-alpine3.9
 ```
 
 ### Cache management

@@ -62,6 +62,7 @@ Test against local registry:
 ```bash
 docker pull alpine
 docker tag alpine localhost:5000/alpine
+docker login localhost:5000
 docker push localhost:5000/alpine
 docker distribution list-tags localhost:5000/alpine
 ```

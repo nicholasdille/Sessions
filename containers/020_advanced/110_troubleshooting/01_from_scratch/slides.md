@@ -10,15 +10,13 @@
 ```bash
 # Container with image FROM scratch
 docker run -d --name traefik traefik:v1.7
-
 # Create local rootfs
+mkdir rootfs
 docker create --name alpine alpine
-docker cp alpine:/ .
-
+docker cp alpine:/ rootfs
 # Copy into container
-rm /etc/hosts /etc/hostname /etc/resolv.conf
-docker cp . traefik:/
-
+rm rootfs/etc/hosts rootfs/etc/hostname rootfs/etc/resolv.conf
+cd rootfs && docker cp . traefik:/ && cd ..
 # Enter container
 docker exec -it traefik /bin/sh
 ```

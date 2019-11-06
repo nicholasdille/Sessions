@@ -12,11 +12,19 @@
 - Run and share network/pid namespace
 - Install tools as required
 
-```bash
-docker run -it --rm \
-    --net container:broken \
-    --pid container:broken \
-    alpine
-```
-
 k8s 1.16 introduces [ephemeral containers](https://kubernetes.io/docs/concepts/workloads/pods/ephemeral-containers/) to troubleshoot pods
+
+--
+
+## Demo: Namespace sharing
+
+Join namespaces of existing container:
+
+```bash
+docker run -d --name nginx nginx
+docker run -it --rm \
+    --net container:nginx \
+    --pid container:nginx \
+    alpine
+ps
+```

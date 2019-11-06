@@ -16,10 +16,11 @@ Start test environment:
 
 ```bash
 # Start registry
+read -s -p "Password: " PASS
 docker run -d --name registry \
     --env REGISTRY_PROXY_REMOTEURL=https://registry-1.docker.io \
     --env REGISTRY_PROXY_USERNAME=nicholasdille \
-    --env REGISTRY_PASSWORD='mypass' \
+    --env REGISTRY_PASSWORD=${PASS} \
     registry:2
 # Start dockerd
 docker run -d --privileged \

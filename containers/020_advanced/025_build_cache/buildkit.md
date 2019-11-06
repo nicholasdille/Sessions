@@ -29,6 +29,7 @@ docker build --cache-from myimage .
 Build image with cache information:
 
 ```bash
+docker run -d -p 127.0.0.1:5000:5000 registry:2
 export DOCKER_BUILDKIT=1
 docker build \
     --tag localhost:5000/test:1 \
