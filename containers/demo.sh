@@ -9,6 +9,9 @@ if [[ -z "${FILE}" ]]; then
     exit 1
 fi
 
+if ! type jq; then
+    apt install jq
+fi
 if ! type xmlstarlet; then
     apt install xmlstarlet
 fi
