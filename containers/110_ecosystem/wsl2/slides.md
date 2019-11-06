@@ -22,6 +22,7 @@
 Run Docker locally:
 
 ```bash
+uname -a
 sudo /etc/init.d/docker start
 docker context ls
 ```
