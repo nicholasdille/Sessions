@@ -13,13 +13,12 @@ if ! type xmlstarlet; then
     echo "Please install xmlstarlet"
     exit 1
 fi
+if ! type hcloud; then
+    curl -sLf https://github.com/hetznercloud/cli/releases/download/v1.13.0/hcloud-linux-amd64-v1.13.0.tar.gz | tar -xvz -C /usr/local/bin/ --strip-components=2 hcloud-linux-amd64-v1.13.0/bin/hcloud hcloud-linux-amd64-v1.13.0/bin/hcloud
+fi
 
 INCLUDES=$(xmlstarlet sel -N x="http://www.w3.org/1999/xhtml" -t -m "//x:section/@data-markdown" -v . -n "${FILE}" | grep -vE '^$')
 DIRS=$(for INCLUDE in ${INCLUDES}; do echo $(dirname ${INCLUDE}); done)
-
-# TODO: Remove
-#DIRS=$(echo "${DIRS}" | grep k3s)
-#echo "### Processing dirs: ${DIRS}"
 
 for DIR in ${DIRS}; do
     echo
