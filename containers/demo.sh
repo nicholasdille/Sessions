@@ -10,8 +10,7 @@ if [[ -z "${FILE}" ]]; then
 fi
 
 if ! type xmlstarlet; then
-    echo "Please install xmlstarlet"
-    exit 1
+    apt install xmlstarlet
 fi
 if ! type hcloud; then
     curl -sLf https://github.com/hetznercloud/cli/releases/download/v1.13.0/hcloud-linux-amd64-v1.13.0.tar.gz | tar -xvz -C /usr/local/bin/ --strip-components=2 hcloud-linux-amd64-v1.13.0/bin/hcloud hcloud-linux-amd64-v1.13.0/bin/hcloud
@@ -54,7 +53,25 @@ for DIR in ${DIRS}; do
     echo "    Done."
 done
 
-bash ~/hcloud2ssh.sh
+rm -f ~/.ssh/config.d/hcloud_*
+hcloud server list -o columns=name,ipv4 | tail -n +2 | while read LINE
+do
+    SERVER_NAME=$(echo $LINE | awk '{print $1}')
+    SERVER_IP=$(echo $LINE | awk '{print $2}')
+
+    echo "Adding SSH configuration for <${SERVER_NAME}> at <${SERVER_IP}>"
+
+    cat > ~/.ssh/config.d/hcloud_${SERVER_NAME} <<EOF
+Host ${SERVER_NAME} ${SERVER_IP}
+    HostName ${SERVER_IP}
+    User root
+    IdentityFile ~/id_rsa_hetzner
+    StrictHostKeyChecking no
+    UserKnownHostsFile /dev/null
+EOF
+    chmod 0640 ~/.ssh/config.d/hcloud_${SERVER_NAME}
+done
+
 
 echo
 echo "Waiting for demo to start. Press enter to continue..."
