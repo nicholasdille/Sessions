@@ -53,6 +53,12 @@ for DIR in ${DIRS}; do
     echo "    Done."
 done
 
+mkdir -p ~/.ssh/config.d
+if ! test -f ~/.ssh/config; then
+    cat > ~/.ssh/config <<EOF
+Include config.d/*
+EOF
+fi
 rm -f ~/.ssh/config.d/hcloud_*
 hcloud server list -o columns=name,ipv4 | tail -n +2 | while read LINE
 do
