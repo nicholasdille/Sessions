@@ -13,11 +13,7 @@ for MIXIN in exec kubernetes helm azure terraform az aws gcloud; do
 done
 
 # cnab-to-oci
-git clone https://github.com/docker/cnab-to-oci
-cd cnab-to-oci
-docker build --tag cnab2oci --target build .
+docker build --tag cnab2oci:v0.3.0-beta1 --target build github.com/docker/cnab-to-oci#v0.3.0-beta1
 docker create --name cnab2oci cnab2oci
 rm /usr/local/bin/cnab-to-oci
 docker cp cnab2oci:/go/src/github.com/docker/cnab-to-oci/bin/cnab-to-oci /usr/local/bin/cnab-to-oci
-cd ..
-rm -rf cnab-to-oci
