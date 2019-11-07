@@ -27,7 +27,7 @@ Standalone usage of buildkit:
 docker run -d -p 127.0.0.1:5000:5000 registry:2
 
 # Start buildkit daemon
-sudo ./buildkitd
+sudo buildkitd &
 
 # Run equivalent of docker build
 buildctl build \
@@ -35,8 +35,8 @@ buildctl build \
     --local context=. \
     --local dockerfile=. \
     --output type=image,name=localhost:5000/test,push=true
-    --export-cache type=inline \
-    --import-cache type=registry,ref=localhost:5000/test
 ```
 
 Working rootless [implementation](https://github.com/moby/buildkit/blob/master/docs/rootless.md)
+
+[Custom frontends](https://matt-rickard.com/building-a-new-dockerfile-frontend/) for buildkit

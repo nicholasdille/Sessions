@@ -12,6 +12,10 @@ docker context ls
 docker version
 ```
 
+--
+
+## `docker context`
+
 Manage connections to Kubernetes clusters
 
 ```bash

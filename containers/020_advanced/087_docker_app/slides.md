@@ -24,16 +24,10 @@ This is an experimental CLI feature:
 export DOCKER_CLI_EXPERIMENTAL=enabled
 ```
 
-Import completion:
-
-```bash
-source <(docker app completion bash)
-```
-
 Start local registry:
 
 ```bash
-docker run -d -p 5000:5000 registry:2
+docker run -d -p 127.0.0.1:5000:5000 registry:2
 ```
 
 --
@@ -48,24 +42,15 @@ docker app init --single-file hello
 
 Add parameters `port` and `text`
 
-Check resulting app and upload to registry:
-
-```bash
-docker app inspect
-docker app render
-docker app render --set text="hello containerconf"
-```
-
---
-
-## docker-app: Deployment
-
-Check app stack from registry:
+Push to registry and check resulting app:
 
 ```bash
 docker app push --tag localhost:5000/hello:1.0
 docker app inspect localhost:5000/hello:1.0
 docker app render localhost:5000/hello:1.0
+docker app render \
+    --set text="hello containerconf" \
+    localhost:5000/hello:1.0
 ```
 
 Deploy:

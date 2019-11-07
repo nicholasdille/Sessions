@@ -45,13 +45,13 @@ Check contents of registry:
 ```bash
 # Check registry
 curl http://localhost:5000/v2/test/tags/list
-curl -H "Accept: application/vnd.oci.image.manifest.v1+json" \
-    http://localhost:5000/v2/test/manifests/latest
+curl -sH "Accept: application/vnd.oci.image.manifest.v1+json" \
+    http://localhost:5000/v2/test/manifests/latest | jq
 
 # Get content
-DIGEST=$(curl -H "Accept: application/vnd.oci.image.manifest.v1+json" \
+DIGEST=$(curl -sH "Accept: application/vnd.oci.image.manifest.v1+json" \
     http://localhost:5000/v2/test/manifests/latest \
     | jq --raw-output '.layers[].digest')
-curl -H "Accept: application/vnd.oci.image.manifest.v1+json" \
+curl -sH "Accept: application/vnd.oci.image.manifest.v1+json" \
     http://localhost:5000/v2/test/blobs/${DIGEST}
 ```

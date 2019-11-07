@@ -19,6 +19,13 @@ if ! type hcloud; then
     curl -sLf https://github.com/hetznercloud/cli/releases/download/v1.13.0/hcloud-linux-amd64-v1.13.0.tar.gz | tar -xvz -C /usr/local/bin/ --strip-components=2 hcloud-linux-amd64-v1.13.0/bin/hcloud hcloud-linux-amd64-v1.13.0/bin/hcloud
 fi
 
+echo
+echo "### Creating new SSH key"
+ssh-keygen -f id_rsa_demo -N ""
+hcloud ssh-key create --name demo --public-key-from-file id_rsa_demo.pub
+echo "    Done."
+
+
 INCLUDES=$(xmlstarlet sel -N x="http://www.w3.org/1999/xhtml" -t -m "//x:section/@data-markdown" -v . -n "${FILE}" | grep -vE '^$')
 DIRS=$(for INCLUDE in ${INCLUDES}; do echo $(dirname ${INCLUDE}); done)
 
@@ -37,7 +44,7 @@ for DIR in ${DIRS}; do
                 --name ${NAME} \
                 --location fsn1 \
                 --image ubuntu-18.04 \
-                --ssh-key 209622 \
+                --ssh-key demo \
                 --type cx21 \
                 --user-data-from-file "${PWD}/${DIR}/user-data.txt"
             hcloud server add-label ${NAME} demo=true
@@ -125,3 +132,5 @@ for DIR in ${DIRS}; do
     NAME=${NAME//_/}
     hcloud server delete ${NAME}
 done
+
+hcloud ssh-key delete demo

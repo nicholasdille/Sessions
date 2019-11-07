@@ -87,7 +87,8 @@ docker buildx create --name mybuilder --use
 docker buildx inspect --bootstrap
 
 # Add local registry
-docker run -d --net container:buildx_buildkit_mybuilder0 registry:2
+docker run -d --volume $(pwd)/registry:/var/lib/registry --net container:buildx_buildkit_mybuilder0 registry:2
+docker run -d --volume $(pwd)/registry:/var/lib/registry -p 127.0.0.1:5000:5000 registry:2
 ```
 
 --
@@ -123,6 +124,11 @@ docker buildx build --platform linux/arm64 \
 # amd64
 docker buildx build --platform linux/amd64 \
     --tag localhost:5000/nicholasdille/hello:amd64 . --push
+
+# Pull and run
+docker run localhost:5000/nicholasdille/hello:arm
+docker run localhost:5000/nicholasdille/hello:arm64
+docker run localhost:5000/nicholasdille/hello:amd64
 ```
 
 This allows for proper versioning
@@ -134,7 +140,8 @@ This allows for proper versioning
 Create manifest list with all images:
 
 ```bash
-docker manifest create --amend localhost:5000/nicholasdille/hello
+docker manifest create --amend \
+    localhost:5000/nicholasdille/hello \
     localhost:5000/nicholasdille/hello:arm \
     localhost:5000/nicholasdille/hello:arm64 \
     localhost:5000/nicholasdille/hello:amd64
