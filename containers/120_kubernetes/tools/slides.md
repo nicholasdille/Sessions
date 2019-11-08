@@ -2,7 +2,7 @@
 
 ### kubectl explain
 
-- Check fields of API objects
+Check fields of API objects
 
 ```bash
 kubectl explain deployment
@@ -13,6 +13,7 @@ kubectl explain deployment.spec
 
 - `kubectx` switches context
 - `kubens` switches namespace
+- Both have completion
 
 --
 
@@ -20,8 +21,9 @@ kubectl explain deployment.spec
 
 ### [kube-capacity](https://github.com/robscott/kube-capacity)
 
-- Display resource usage, requests and limits
-- Prerequisites: k8s metrics server
+Display resource usage, requests and limits
+
+Prerequisites: k8s metrics server
 
 Demo: Run against k8s/k3s cluster:
 
