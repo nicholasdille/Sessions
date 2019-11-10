@@ -20,22 +20,13 @@
 
 ## Demo: buildkit
 
-Standalone usage of buildkit:
+### Standalone usage of buildkit:
 
-```bash
-# Start local registry
-docker run -d -p 127.0.0.1:5000:5000 registry:2
+<!-- include: buildkit-0.command -->
 
-# Start buildkit daemon
-sudo buildkitd &
+<!-- include: buildkit-1.command -->
 
-# Run equivalent of docker build
-buildctl build \
-    --frontend=dockerfile.v0 \
-    --local context=. \
-    --local dockerfile=. \
-    --output type=image,name=localhost:5000/test,push=true
-```
+<!-- include: buildkit-2.command -->
 
 Working rootless [implementation](https://github.com/moby/buildkit/blob/master/docs/rootless.md)
 

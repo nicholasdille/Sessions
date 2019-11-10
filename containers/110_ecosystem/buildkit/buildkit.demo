@@ -1,0 +1,14 @@
+Building a container image using buildkit
+
+# Start local registry
+docker run -d -p 127.0.0.1:5000:5000 registry:2
+
+# Start buildkit daemon
+sudo buildkitd >buildkitd.log 2>&1 &
+
+# Run equivalent of docker build
+buildctl build \
+    --frontend=dockerfile.v0 \
+    --local context=. \
+    --local dockerfile=. \
+    --output type=image,name=localhost:5000/test,push=true

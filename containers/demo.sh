@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. functions.sh
+
 FILE=${1}
 if [[ -z "${FILE}" ]] || [[ ! -f "${FILE}" ]]; then
     FILE=$(ls $(date +%Y-%m-%d)* 2>/dev/null)
@@ -21,17 +23,26 @@ fi
 
 echo
 echo "### Creating new SSH key"
-ssh-keygen -f id_rsa_demo -N ""
+if [[ ! -f id_rsa_demo ]]; then
+    ssh-keygen -f id_rsa_demo -N ""
+fi
 hcloud ssh-key create --name demo --public-key-from-file id_rsa_demo.pub
 echo "    Done."
-
 
 INCLUDES=$(xmlstarlet sel -N x="http://www.w3.org/1999/xhtml" -t -m "//x:section/@data-markdown" -v . -n "${FILE}" | grep -vE '^$')
 DIRS=$(for INCLUDE in ${INCLUDES}; do echo $(dirname ${INCLUDE}); done)
 
+DIRS=$(echo "${DIRS}" | while read DIR; do if [[ "$(ls ${DIR}/*.demo 2>/dev/null)" != "" ]]; then echo ${DIR}; fi; done)
+
 for DIR in ${DIRS}; do
     echo
     echo "### Preparing ${DIR}"
+
+    for FILE in $(ls ${DIR}/*.demo); do
+        DEMO=$(basename ${FILE} .demo)
+        echo "    Splitting demo ${DEMO}"
+        (cd ${DIR}; split ${DEMO})
+    done
 
     NAME=docker-hcloud
     if test -f "${PWD}/${DIR}/user-data.txt"; then
@@ -56,8 +67,8 @@ for DIR in ${DIRS}; do
         echo "    Installing tools"
         # TODO: Decide where to install the tools
         #ssh ${NAME} bash < "${PWD}/${DIR}/prep.sh"
-        #ssh docker-hcloud bash < "${PWD}/${DIR}/prep.sh"
-        bash "${PWD}/${DIR}/prep.sh"
+        ssh docker-hcloud bash < "${PWD}/${DIR}/prep.sh"
+        #bash "${PWD}/${DIR}/prep.sh"
     fi
 
     echo "    Done."
@@ -88,7 +99,6 @@ EOF
     chmod 0640 ~/.ssh/config.d/hcloud_${SERVER_NAME}
 done
 
-
 echo
 echo "Waiting for demo to start. Press enter to continue..."
 read
@@ -104,20 +114,14 @@ for DIR in ${DIRS}; do
     fi
     echo
     cd "${PWD}/${DIR}"
-    bash
-    #cat slides.md | sed -n '/^```/,/^```/ p' | grep -vE '^```$' | csplit - '/```bash/' {*} --prefix=slides.md.bash. --elide-empty-files --quiet
-    #for FILE in $(ls slides.md.bash.*); do
-    #    echo
-    #    COMMANDS=$(cat ${FILE} | grep -v '^```bash$')
-    #    echo ${COMMANDS}
-    #    echo
-    #    echo "Do you want to execute this (Y/n)?"
-    #    read -N 1 REPLY
-    #    if test "${REPLY}" == "" || test "${REPLY}" == "y"; then
-    #        eval ${COMMANDS}
-    #    fi
-    #done
-    #rm slides.md.bash.*
+
+    export SET_PROMPT=1
+    bash --init-file ../../functions.sh
+    unset SET_PROMPT
+
+    echo "### Cleaning up after demo"
+    clean
+
     popd
 done
 
@@ -130,7 +134,10 @@ for DIR in ${DIRS}; do
     echo "### Cleaning up in ${DIR}"
     NAME=${DIR////-}
     NAME=${NAME//_/}
-    hcloud server delete ${NAME}
+    if hcloud server list --selector demo=true,dir=${NAME} | grep --quiet "${NAME}"; then
+        hcloud server delete ${NAME}
+    fi
 done
 
 hcloud ssh-key delete demo
+rm id_rsa_demo*
