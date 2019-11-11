@@ -3,6 +3,11 @@ if [[ "${SET_PROMPT}" == "1" ]]; then
     export PROMPT_DIRTRIM=2
 fi
 
+RED="\e[92m"
+GREEN="\e[92m"
+YELLOW="\e[92m"
+DEFAULT="\e[39m"
+
 demos() {
     DEMOS=$(ls -1 *.demo 2>/dev/null)
     if [[ -n "${DEMOS}" ]]; then
@@ -22,7 +27,7 @@ demo() {
     clear
     for COMMAND in $(ls ${DEMO}-*.command); do
         echo
-        cat ${COMMAND} | grep -vE '^\s*$' | while read LINE; do echo -e "$ \e[92m${LINE}\e[39m"; done
+        cat ${COMMAND} | grep -vE '^\s*$' | while read LINE; do echo -e "$ ${GREEN}${LINE}${DEFAULT}"; done
         read KEY
         . ${COMMAND}
         if [[ "$?" != 0 ]]; then

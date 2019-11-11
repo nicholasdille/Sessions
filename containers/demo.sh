@@ -22,34 +22,39 @@ if ! type hcloud; then
 fi
 
 echo
-echo "### Creating new SSH key"
+echo -e "${YELLOW}### Creating new SSH key${DEFAULT}"
 if [[ ! -f id_rsa_demo ]]; then
     ssh-keygen -f id_rsa_demo -N ""
 fi
 hcloud ssh-key create --name demo --public-key-from-file id_rsa_demo.pub
-echo "    Done."
+echo -e "${YELLOW}    Done.${DEFAULT}"
 
 INCLUDES=$(xmlstarlet sel -N x="http://www.w3.org/1999/xhtml" -t -m "//x:section/@data-markdown" -v . -n "${FILE}" | grep -vE '^$')
 DIRS=$(for INCLUDE in ${INCLUDES}; do echo $(dirname ${INCLUDE}); done)
 
-DIRS=$(echo "${DIRS}" | while read DIR; do if [[ "$(ls ${DIR}/*.demo 2>/dev/null)" != "" ]]; then echo ${DIR}; fi; done)
+#DIRS=$(echo "${DIRS}" | while read DIR; do if [[ "$(ls ${DIR}/*.demo 2>/dev/null)" != "" ]]; then echo ${DIR}; fi; done)
 
 for DIR in ${DIRS}; do
+    if [[ "$(ls ${DIR}/*.demo 2>/dev/null)" == "" ]]; then
+        echo
+        echo -e "${RED}No demos in ${DIR}${DEFAULT}"
+    fi
+
     echo
-    echo "### Preparing ${DIR}"
+    echo -e "${YELLOW}### Preparing ${DIR}${DEFAULT}"
 
     for FILE in $(ls ${DIR}/*.demo); do
         DEMO=$(basename ${FILE} .demo)
-        echo "    Splitting demo ${DEMO}"
+        echo -e "${YELLOW}    Splitting demo ${DEMO}${DEFAULT}"
         (cd ${DIR}; split ${DEMO})
     done
 
     NAME=docker-hcloud
     if test -f "${PWD}/${DIR}/user-data.txt"; then
-        echo "    Deploying VM"
+        echo -e "${YELLOW}    Deploying VM${DEFAULT}"
         NAME=${DIR////-}
         NAME=${NAME//_/}
-        echo "    Name=${NAME}"
+        echo -e "${YELLOW}    Name=${NAME}${DEFAULT}"
         if ! hcloud server list --selector demo=true,dir=${NAME} | grep --quiet "${NAME}"; then
             hcloud server create \
                 --name ${NAME} \
@@ -64,14 +69,14 @@ for DIR in ${DIRS}; do
     fi
 
     if test -f "${PWD}/${DIR}/prep.sh"; then
-        echo "    Installing tools"
+        echo -e "${YELLOW}    Installing tools"
         # TODO: Decide where to install the tools
         #ssh ${NAME} bash < "${PWD}/${DIR}/prep.sh"
         ssh docker-hcloud bash < "${PWD}/${DIR}/prep.sh"
         #bash "${PWD}/${DIR}/prep.sh"
     fi
 
-    echo "    Done."
+    echo -e "${YELLOW}    Done.${DEFAULT}"
 done
 
 mkdir -p ~/.ssh/config.d
@@ -86,7 +91,7 @@ do
     SERVER_NAME=$(echo $LINE | awk '{print $1}')
     SERVER_IP=$(echo $LINE | awk '{print $2}')
 
-    echo "Adding SSH configuration for <${SERVER_NAME}> at <${SERVER_IP}>"
+    echo -e "${YELLOW}Adding SSH configuration for <${SERVER_NAME}> at <${SERVER_IP}>${DEFAULT}"
 
     cat > ~/.ssh/config.d/hcloud_${SERVER_NAME} <<EOF
 Host ${SERVER_NAME} ${SERVER_IP}
@@ -100,23 +105,23 @@ EOF
 done
 
 echo
-echo "Waiting for demo to start. Press enter to continue..."
+echo -e "${YELLOW}Waiting for demo to start. Press enter to continue...${DEFAULT}"
 read
 
 for DIR in ${DIRS}; do
     pushd ${PWD}
     clear
     echo
-    echo -e "\e[93m### Demo for ${DIR}\e[39m"
+    echo -e "${YELLOW}### Demo for ${DIR}${DEFAULT}"
     NAME=${DIR////-}
     NAME=${NAME//_/}
     if hcloud server list --selector demo=true,dir=${NAME} | grep --quiet "${NAME}"; then
-        echo -e "\e[93m    VM ${NAME}\e[39m"
+        echo -e "${YELLOW}    VM ${NAME}${DEFAULT}"
     fi
     cd "${PWD}/${DIR}"
 
     echo
-    echo -e "\e[93m### Preparing demo\e[39m"
+    echo -e "${YELLOW}### Preparing demo${DEFAULT}"
     prepare
 
     export SET_PROMPT=1
@@ -124,19 +129,19 @@ for DIR in ${DIRS}; do
     unset SET_PROMPT
 
     echo
-    echo -e "\e[93m### Cleaning up after demo\e[39m"
+    echo -e "${YELLOW}### Cleaning up after demo${DEFAULT}"
     clean
 
     popd
 done
 
 echo
-echo "Waiting for demo to end. Press enter to continue..."
+echo -e "${YELLOW}Waiting for demos to end. Press enter to continue...${DEFAULT}"
 read
 
 for DIR in ${DIRS}; do
     echo
-    echo "### Cleaning up in ${DIR}"
+    echo -e "${YELLOW}### Cleaning up in ${DIR}${DEFAULT}"
     NAME=${DIR////-}
     NAME=${NAME//_/}
     if hcloud server list --selector demo=true,dir=${NAME} | grep --quiet "${NAME}"; then
