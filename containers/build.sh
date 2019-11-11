@@ -11,7 +11,7 @@ for DIR in ${DIRS}; do
         for FILE in $(ls *.demo); do
             DEMO=$(basename ${FILE} .demo)
             split ${DEMO}
-            include
         done
+        include
     )
 done
