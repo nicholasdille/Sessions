@@ -22,7 +22,7 @@ demo() {
     clear
     for COMMAND in $(ls ${DEMO}-*.command); do
         echo
-        cat ${COMMAND} | grep -vE '^\s*$' | sed 's/^/$ /'
+        cat ${COMMAND} | grep -vE '^\s*$' | while read LINE; do echo -e "$ \e[92m${LINE}\e[39m"; done
         read KEY
         . ${COMMAND}
         if [[ "$?" != 0 ]]; then
@@ -35,9 +35,15 @@ demo() {
     echo
 }
 
+prepare() {
+    if [[ -f prepare.sh ]]; then
+        bash prepare.sh
+    fi
+}
+
 clean() {
-    docker ps -aq | xargs -r docker rm -f
-    docker system prune --all --volumes --force
+    docker ps -aq | xargs -r docker rm -f >/dev/null
+    docker system prune --all --volumes --force >/dev/null
 
     if [[ -f clean.sh ]]; then
         bash clean.sh
