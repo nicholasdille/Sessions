@@ -23,12 +23,4 @@ RUN --mount=type=secret,id=mysite.key \
     ls -l /run/secrets
 ```
 
-Build image with secret from `mysite.key`:
-
-```bash
-export DOCKER_BUILDKIT=1
-docker build \
-    --secret id=mysite.key,src=./mysite.key \
-    --progress plain \
-    .
-```
+<!-- include: mount-1.command -->

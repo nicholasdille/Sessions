@@ -74,39 +74,19 @@ Image: docker
 
 ## Demo: Building for other Architectures
 
-Prepare for new sub command `buildx`:
+Prepare for new sub command `buildx`
 
-```bash
-# enable experimental mode for client and enable qemu
-export DOCKER_CLI_EXPERIMENTAL=enabled
-docker run --rm --privileged \
-    docker/binfmt:820fdd95a9972a5308930a2bdfb8573dd4447ad3
+<!-- include: buildx-0.command -->
 
-# Create builder
-docker buildx create --name mybuilder --use
-docker buildx inspect --bootstrap
-
-# Add local registry
-docker run -d --volume $(pwd)/registry:/var/lib/registry --net container:buildx_buildkit_mybuilder0 registry:2
-docker run -d --volume $(pwd)/registry:/var/lib/registry -p 127.0.0.1:5000:5000 registry:2
-```
+<!-- include: buildx-1.command -->
 
 --
 
 ## Demo: Building for other Architectures
 
-```bash
-# build multi-arch
-docker buildx build \
-    --platform linux/arm,linux/arm64,linux/amd64 \
-    --tag localhost:5000/nicholasdille/hello \
-    . \
-    --push
+<!-- include: buildx-2.command -->
 
-# Inspect result
-docker buildx imagetools inspect \
-    localhost:5000/nicholasdille/hello
-```
+<!-- include: buildx-3.command -->
 
 --
 
@@ -114,22 +94,9 @@ docker buildx imagetools inspect \
 
 Build individual images to control tagging
 
-```bash
-# arm
-docker buildx build --platform linux/arm \
-    --tag localhost:5000/nicholasdille/hello:arm . --push
-# arm64
-docker buildx build --platform linux/arm64 \
-    --tag localhost:5000/nicholasdille/hello:arm64 . --push
-# amd64
-docker buildx build --platform linux/amd64 \
-    --tag localhost:5000/nicholasdille/hello:amd64 . --push
+<!-- include: manifest-0.command -->
 
-# Pull and run
-docker run localhost:5000/nicholasdille/hello:arm
-docker run localhost:5000/nicholasdille/hello:arm64
-docker run localhost:5000/nicholasdille/hello:amd64
-```
+<!-- include: manifest-1.command -->
 
 This allows for proper versioning
 
@@ -137,14 +104,4 @@ This allows for proper versioning
 
 ## Demo: Build multi-arch with proper tags (2)
 
-Create manifest list with all images:
-
-```bash
-docker manifest create --amend \
-    localhost:5000/nicholasdille/hello \
-    localhost:5000/nicholasdille/hello:arm \
-    localhost:5000/nicholasdille/hello:arm64 \
-    localhost:5000/nicholasdille/hello:amd64
-
-docker manifest inspect localhost:5000/nicholasdille/hello
-```
+<!-- include: manifest-2.command -->

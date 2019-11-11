@@ -2,18 +2,6 @@
 
 [Commando](https://github.com/lukaszlach/commando) created by [Docker Captain Łukasz Lach](https://www.docker.com/captains/%C5%82ukasz-lach)
 
-Container images are created on demand
+<!-- include: commando-0.command -->
 
-```bash
-docker run -it --rm cmd.cat/curl/jq
-docker run -it --rm cmd.cat/netstat/tcpdump/ip/ifconfig/ping
-```
-
-Very powerful when troubleshooting networking:
-
-```bash
-docker run -it --rm \
-    --net container:nginx \
-    --pid container:nginx \
-    cmd.cat/netstat/tcpdump/ip/ifconfig/ping
-```
+<!-- include: commando-1.command -->

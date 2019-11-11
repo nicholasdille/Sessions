@@ -24,48 +24,17 @@ Plugin metdata via parameter `docker-cli-plugin-metadata`:
 
 ## Demo: Docker CLI Plugins
 
-Place `docker-distribution` in `~/.docker/cli-plugins`:
+<!-- include: cli-plugin-0.command -->
 
-```bash
-mkdir -p ~/.docker/cli-plugins
-cp docker-distribution ~/.docker/cli-plugins
-chmod +x ~/.docker/cli-plugins/docker-distribution
-```
-
-Test integration into Docker CLI:
-
-```bash
-docker
-docker distribution
-```
+<!-- include: cli-plugin-1.command -->
 
 --
 
 ## Demo: Docker CLI Plugins
 
-Prepare local registry:
+<!-- include: distribution-0.command -->
 
-```bash
-mkdir -p auth
-docker run --entrypoint htpasswd registry:2 \
-    -Bbn testuser testpassword > auth/htpasswd
-docker run -d -p 127.0.0.1:5000:5000 --name registry \
-    --mount type=bind,source=$(pwd)/auth,target=/auth \
-    --env REGISTRY_AUTH=htpasswd \
-    --env REGISTRY_AUTH_HTPASSWD_REALM=registry \
-    --env REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd \
-    registry:2
-```
-
-Test against local registry:
-
-```bash
-docker pull alpine
-docker tag alpine localhost:5000/alpine
-docker login localhost:5000
-docker push localhost:5000/alpine
-docker distribution list-tags localhost:5000/alpine
-```
+<!-- include: distribution-1.command -->
 
 --
 
@@ -87,19 +56,6 @@ expose, publish, showcontext, microscan, dive, runlike, sh, hello
 
 ## Demo: Docker Client Plugins Manager (CLIP)
 
-Install CLIP:
+<!-- include: clip-0.command -->
 
-```bash
-cd ~/.docker/cli-plugins
-FILEPATH=lukaszlach/clip/master/docker-clip
-curl -sLfO https://raw.githubusercontent.com/${FILEPATH}
-chmod +x docker-clip
-```
-
-Test plugin for `dive`:
-
-```bash
-docker clip add lukaszlach/clips:dive
-docker clip ls
-docker dive localhost:5000/alpine
-```
+<!-- include: clip-1.command -->

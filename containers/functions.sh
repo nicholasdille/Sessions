@@ -3,7 +3,7 @@ if [[ "${SET_PROMPT}" == "1" ]]; then
     export PROMPT_DIRTRIM=2
 fi
 
-RED="\e[92m"
+RED="\e[91m"
 GREEN="\e[92m"
 YELLOW="\e[92m"
 DEFAULT="\e[39m"

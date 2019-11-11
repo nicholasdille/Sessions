@@ -5,15 +5,7 @@
 - Covers OS (alpine, Ubuntu, Debian, CentOS, RedHat)
 - Covers package managers (Ruby, Python, PHP, NPM, Rust)
 
-```bash
-# Break build with high severity findings
-trivy \
-    --skip-update \
-    --ignore-unfixed \
-    --exit-code 1 \
-    --severity HIGH,CRITICAL \
-    python:3.4-alpine3.9
-```
+<!-- include: trivy-0.command -->
 
 ### Cache management
 

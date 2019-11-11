@@ -1,0 +1,27 @@
+# Cache warming for BuildKit
+# Build image with cache information
+docker run -d -p 127.0.0.1:5000:5000 registry:2
+export DOCKER_BUILDKIT=1
+docker build \
+    --tag localhost:5000/test:1 \
+    --build-arg BUILDKIT_INLINE_CACHE=1 \
+    .
+docker push localhost:5000/test:1
+# Build with remote cache
+docker system prune --all
+docker build \
+    --cache-from localhost:5000/test:1 \
+    .
+# Check manifest for cache information
+curl -s \
+    -H "Accept: application/vnd.docker.distribution.manifest.v2+json" \
+    localhost:5000/v2/test/manifests/1 \
+    | jq --raw-output '.config.digest' \
+    | while read CONFIG_DIGEST; do \
+        curl -s \
+            -H "Accept: application/vnd.docker.container.image.v1+json" \
+            localhost:5000/v2/test/blobs/${CONFIG_DIGEST} \
+        | jq --raw-output '."moby.buildkit.cache.v0"' \
+        | base64 -d \
+        | jq; \
+    done

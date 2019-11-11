@@ -18,13 +18,4 @@ k8s 1.16 introduces [ephemeral containers](https://kubernetes.io/docs/concepts/w
 
 ## Demo: Namespace sharing
 
-Join namespaces of existing container:
-
-```bash
-docker run -d --name nginx nginx
-docker run -it --rm \
-    --net container:nginx \
-    --pid container:nginx \
-    alpine
-ps
-```
+<!-- include: namespace-0.command -->

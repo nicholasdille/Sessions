@@ -1,0 +1,17 @@
+# Test CLI plugin distribution
+# Prepare local registry
+mkdir -p auth
+docker run --entrypoint htpasswd registry:2 \
+    -Bbn testuser testpassword > auth/htpasswd
+docker run -d -p 127.0.0.1:5000:5000 --name registry \
+    --mount type=bind,source=$(pwd)/auth,target=/auth \
+    --env REGISTRY_AUTH=htpasswd \
+    --env REGISTRY_AUTH_HTPASSWD_REALM=registry \
+    --env REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd \
+    registry:2
+# Test against local registry
+docker pull alpine
+docker tag alpine localhost:5000/alpine
+docker login localhost:5000
+docker push localhost:5000/alpine
+docker distribution list-tags localhost:5000/alpine
