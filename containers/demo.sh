@@ -106,23 +106,25 @@ read
 for DIR in ${DIRS}; do
     pushd ${PWD}
     clear
+    echo
     echo -e "\e[93m### Demo for ${DIR}\e[39m"
     NAME=${DIR////-}
     NAME=${NAME//_/}
     if hcloud server list --selector demo=true,dir=${NAME} | grep --quiet "${NAME}"; then
         echo -e "\e[93m    VM ${NAME}\e[39m"
     fi
-    echo
     cd "${PWD}/${DIR}"
 
-    echo -e "\e[93m    Preparing demo\e[39m"
+    echo
+    echo -e "\e[93m### Preparing demo\e[39m"
     prepare
 
     export SET_PROMPT=1
     bash --init-file ../../functions.sh
     unset SET_PROMPT
 
-    echo -e "\e[93m    Cleaning up after demo\e[39m"
+    echo
+    echo -e "\e[93m### Cleaning up after demo\e[39m"
     clean
 
     popd
