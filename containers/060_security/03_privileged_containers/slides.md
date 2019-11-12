@@ -46,3 +46,11 @@ For example [`sockguard`](https://github.com/buildkite/sockguard)
     -upstream-socket /var/run/docker-raw.sock \
     -filename /var/run/docker.sock
 ```
+
+--
+
+## Demo: sockguard
+
+XXX
+
+<!-- include: sockguard-0.command -->

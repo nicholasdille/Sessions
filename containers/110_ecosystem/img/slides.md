@@ -21,38 +21,12 @@
 
 --
 
-## Demo: img (1)
+## Demo: img
 
-Create a pod with multiple containers using `docker`:
+Building and pushing using `img`
 
-```bash
-docker run -d --name pod alpine \
-    sh -c 'while true; do sleep 10; done'
-docker run -d --name registry \
-    --pid container:pod --network container:pod registry:2
-docker run -d --name img \
-    --pid container:pod --network container:pod \
-    --mount type=bind,source=$(pwd),target=/src --workdir /src \
-    --security-opt seccomp=unconfined \
-    --security-opt apparmor=unconfined \
-    --entrypoint sh r.j3ss.co/img:v0.5.7 \
-    -c 'while true; do sleep 10; done'
-docker exec --user 0 img apk add --update-cache curl git bash
-```
+<!-- include: img-0.command -->
 
---
+<!-- include: img-1.command -->
 
-## Demo: img (2)
-
-Building and pushing using `img`:
-
-```bash
-# Enter pod
-docker exec -it img bash
-
-# Build image
-img build --tag localhost:5000/test .
-
-# Push image
-img push --insecure-registry localhost:5000/test
-```
+<!-- include: img-2.command -->

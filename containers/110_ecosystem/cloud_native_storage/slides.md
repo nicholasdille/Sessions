@@ -22,36 +22,20 @@
 
 Test command line tool [oras](https://github.com/deislabs/oras)
 
-```bash
-# Start registry
-docker run -d -p 127.0.0.1:5000:5000 registry:2
+<!-- include: oras-0.command -->
 
-# Create artifact
-echo blarg >artifact.txt
+<!-- include: oras-1.command -->
 
-# Upload
-oras push localhost:5000/test:latest artifact.txt
+<!-- include: oras-2.command -->
 
-# Download
-oras pull localhost:5000/test:latest --output out
-```
+<!-- include: oras-3.command -->
 
 --
 
 ## Demo: oras Internals
 
-Check contents of registry:
+Check contents of registry
 
-```bash
-# Check registry
-curl http://localhost:5000/v2/test/tags/list
-curl -sH "Accept: application/vnd.oci.image.manifest.v1+json" \
-    http://localhost:5000/v2/test/manifests/latest | jq
+<!-- include: internals-0.command -->
 
-# Get content
-DIGEST=$(curl -sH "Accept: application/vnd.oci.image.manifest.v1+json" \
-    http://localhost:5000/v2/test/manifests/latest \
-    | jq --raw-output '.layers[].digest')
-curl -sH "Accept: application/vnd.oci.image.manifest.v1+json" \
-    http://localhost:5000/v2/test/blobs/${DIGEST}
-```
+<!-- include: internals-1.command -->

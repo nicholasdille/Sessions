@@ -19,16 +19,8 @@
 
 ## Demo: WSL 2
 
-Run Docker locally:
+<!-- include: wsl2-0.command -->
 
-```bash
-uname -a
-sudo /etc/init.d/docker start
-docker context ls
-```
+<!-- include: wsl2-1.command -->
 
-Shutdown tiny VM:
-
-```bash
-wsl --shutdown
-```
+<!-- include: wsl2-2.command -->

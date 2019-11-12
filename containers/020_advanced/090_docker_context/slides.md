@@ -2,15 +2,13 @@
 
 Manage connections to Docker instances
 
-```bash
-docker context ls
-docker context create docker-hcloud \
-    --description 'Remote@Hetzner' \
-    --docker 'host=ssh://docker-hcloud'
-docker context use docker-hcloud
-docker context ls
-docker version
-```
+<!-- include: context-0.command -->
+
+<!-- include: context-1.command -->
+
+<!-- include: context-2.command -->
+
+<!-- include: context-3.command -->
 
 --
 
