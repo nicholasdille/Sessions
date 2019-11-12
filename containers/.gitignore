@@ -1,4 +1,6 @@
 lib/**
 videos/**
 *.command
+*.log
+id_rsa_*
 **/README.md
