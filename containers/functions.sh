@@ -12,7 +12,7 @@ demos() {
     DEMOS=$(ls -1 *.demo 2>/dev/null)
     if [[ -n "${DEMOS}" ]]; then
         echo
-        echo "${DEMOS}" | while read FILE; do echo $(basename ${FILE} .demo): $(cat ${FILE} | head -n 1); done
+        echo "${DEMOS}" | while read FILE; do echo $(basename ${FILE} .demo): $(cat ${FILE} | head -n 1 | sed 's/^#\s*//'); done
         echo
     fi
 }

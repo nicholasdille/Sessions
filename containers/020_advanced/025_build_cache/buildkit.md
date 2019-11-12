@@ -32,6 +32,6 @@ docker build --cache-from myimage .
 
 --
 
-## Demo: Buildkit Cache Warming
+## Demo: Buildkit Cache Internals
 
-<!-- include: buildkit-2.command -->
+<!-- include: internals-0.command -->

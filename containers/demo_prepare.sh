@@ -26,7 +26,9 @@ echo -e "${YELLOW}### Creating new SSH key${DEFAULT}"
 if [[ ! -f id_rsa_demo ]]; then
     ssh-keygen -f id_rsa_demo -N ""
 fi
-hcloud ssh-key create --name demo --public-key-from-file id_rsa_demo.pub
+if hcloud ssh-key list -o columns=name | tail -n +2 | grep -qvE "^demo$"; then
+    hcloud ssh-key create --name demo --public-key-from-file id_rsa_demo.pub
+fi
 echo -e "${YELLOW}    Done.${DEFAULT}"
 
 INCLUDES=$(xmlstarlet sel -N x="http://www.w3.org/1999/xhtml" -t -m "//x:section/@data-markdown" -v . -n "${FILE}" | grep -vE '^$')
@@ -69,7 +71,7 @@ for DIR in ${DIRS}; do
     fi
 
     if test -f "${PWD}/${DIR}/prep.sh"; then
-        echo -e "${YELLOW}    Installing tools"
+        echo -e "${YELLOW}    Installing tools${DEFAULT}"
         # TODO: Decide where to install the tools
         #ssh ${NAME} bash < "${PWD}/${DIR}/prep.sh"
         ssh docker-hcloud bash < "${PWD}/${DIR}/prep.sh"

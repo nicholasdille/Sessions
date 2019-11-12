@@ -28,6 +28,8 @@ Plugin metdata via parameter `docker-cli-plugin-metadata`:
 
 <!-- include: cli-plugins-1.command -->
 
+<!-- include: cli-plugins-2.command -->
+
 --
 
 ## Demo: Docker CLI Plugins

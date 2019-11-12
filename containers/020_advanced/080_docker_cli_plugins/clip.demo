@@ -1,10 +1,8 @@
 # Client Plugin Manager
-# Install CLIP
-cd ~/.docker/cli-plugins
-FILEPATH=lukaszlach/clip/master/docker-clip
-curl -sLfO https://raw.githubusercontent.com/${FILEPATH}
-chmod +x docker-clip
-# Test plugin for `dive`
+
+# Install plugin for `dive`
 docker clip add lukaszlach/clips:dive
 docker clip ls
+
+# Run plugin dive
 docker dive localhost:5000/alpine
