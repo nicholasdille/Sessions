@@ -48,6 +48,7 @@ for DIR in ${DIRS}; do
     prepare
 
     echo
+    echo -e "${YELLOW}### Ready for demo${DEFAULT}"
     export SET_PROMPT=1
     bash --init-file ${BASEDIR}/functions.sh
     unset SET_PROMPT

@@ -20,19 +20,25 @@ Workshop by [Docker Captain Michael Irwin](https://www.docker.com/captains/micha
 
 <!-- include: docker-app-0.command -->
 
-<!-- include: docker-app-1.command -->
-
 --
 
 ## docker-app: Creation
 
-<!-- include: docker-app-2.command -->
+<!-- include: docker-app-1.command -->
 
 Add parameters `port` and `text`
+
+<!-- include: docker-app-2.command -->
+
+--
+
+## docker-app: Deploy
 
 <!-- include: docker-app-3.command -->
 
 <!-- include: docker-app-4.command -->
+
+<!-- include: docker-app-5.command -->
 
 --
 
