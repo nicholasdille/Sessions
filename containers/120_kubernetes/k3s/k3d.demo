@@ -1,0 +1,3 @@
+# k3s in Docker
+# Demo on remote VM
+ssh 120kubernetes-k3s
