@@ -43,7 +43,7 @@ for DIR in ${DIRS}; do
     echo
     echo -e "${YELLOW}### Preparing ${DIR}${DEFAULT}"
 
-    for FILE in $(ls ${DIR}/*.demo ">/dev/null"); do
+    for FILE in $(ls ${DIR}/*.demo >/dev/null); do
         DEMO=$(basename ${FILE} .demo)
         echo -e "${YELLOW}    Splitting demo ${DEMO}${DEFAULT}"
         (cd ${DIR}; split ${DEMO})
