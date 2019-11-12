@@ -21,8 +21,26 @@ Step 7/11 : ADD entrypoint.sh /
 
 --
 
-## Demo: Build Cache
+## Buildkit Cache Warming
 
-1. First build
-1. Consecutive build
-1. Build after changes to `Dockerfile`
+### How it works
+
+- Use remote images to warm cache
+- Image layers will be downloaded as needed
+- Same syntax using `--cache-from`
+- Cache information must be embedded
+- Prerequisites: Docker 19.03
+
+--
+
+### Demo: Buildkit Cache Warming
+
+<!-- include: buildkit-0.command -->
+
+<!-- include: buildkit-1.command -->
+
+--
+
+## Demo: Buildkit Cache Internals
+
+<!-- include: internals-0.command -->

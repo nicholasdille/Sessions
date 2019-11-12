@@ -40,14 +40,16 @@ for DIR in ${DIRS}; do
     if hcloud server list --selector demo=true,dir=${NAME} | grep --quiet "${NAME}"; then
         echo -e "${YELLOW}    VM ${NAME}${DEFAULT}"
     fi
+    BASEDIR=$(pwd)
     cd "${PWD}/${DIR}"
 
     echo
     echo -e "${YELLOW}### Preparing demo${DEFAULT}"
     prepare
 
+    echo
     export SET_PROMPT=1
-    bash --init-file ../../functions.sh
+    bash --init-file ${BASEDIR}/functions.sh
     unset SET_PROMPT
 
     echo
