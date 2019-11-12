@@ -1,5 +1,4 @@
 #!/bin/bash
 
-docker pull -q registry:2
-docker pull -q openjdk:8-jdk
-docker pull -q openjdk:8-jre
+# Start local registry
+docker run -d -p 127.0.0.1:5000:5000 registry:2

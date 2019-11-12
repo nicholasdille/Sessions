@@ -28,6 +28,8 @@
 
 <!-- include: buildkit-2.command -->
 
+<!-- include: buildkit-3.command -->
+
 Working rootless [implementation](https://github.com/moby/buildkit/blob/master/docs/rootless.md)
 
 [Custom frontends](https://matt-rickard.com/building-a-new-dockerfile-frontend/) for buildkit
