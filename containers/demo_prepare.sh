@@ -25,9 +25,8 @@ echo
 echo -e "${YELLOW}### Creating new SSH key${DEFAULT}"
 if [[ ! -f id_rsa_demo ]]; then
     ssh-keygen -f id_rsa_demo -N ""
-fi
-if hcloud ssh-key list -o columns=name | tail -n +2 | grep -qvE "^demo$"; then
     hcloud ssh-key create --name demo --public-key-from-file id_rsa_demo.pub
+    scp id_rsa_demo docker-hcloud:~
 fi
 echo -e "${YELLOW}    Done.${DEFAULT}"
 
@@ -88,7 +87,7 @@ Include config.d/*
 EOF
 fi
 rm -f ~/.ssh/config.d/hcloud_*
-hcloud server list -o columns=name,ipv4 | tail -n +2 | while read LINE
+hcloud server list -l demo=true -o columns=name,ipv4 | tail -n +2 | while read LINE
 do
     SERVER_NAME=$(echo $LINE | awk '{print $1}')
     SERVER_IP=$(echo $LINE | awk '{print $2}')
@@ -99,7 +98,7 @@ do
 Host ${SERVER_NAME} ${SERVER_IP}
     HostName ${SERVER_IP}
     User root
-    IdentityFile ~/id_rsa_hetzner
+    IdentityFile ~/id_rsa_demo
     StrictHostKeyChecking no
     UserKnownHostsFile /dev/null
 EOF
