@@ -1,0 +1,18 @@
+# Distribute apps using docker-app
+# This is an experimental CLI feature
+cp ~/.docker/config.json ~/.docker/config.json.bak
+cat ~/.docker/config.json.bak | jq '. + {"experimental": "true"}' >~/.docker/config.json
+# Start local registry
+docker run -d -p 127.0.0.1:5000:5000 registry:2
+# Create an app stack in hello.dockerapp
+docker app init --single-file hello
+# Push to registry and check resulting app
+docker app push --tag localhost:5000/hello:1.0
+docker app inspect localhost:5000/hello:1.0
+docker app render localhost:5000/hello:1.0
+docker app render \
+    --set text="hello containerconf" \
+    localhost:5000/hello:1.0
+# Deploy app
+docker-compose down
+docker app render hello | docker-compose -f - up -d

@@ -18,47 +18,21 @@ Workshop by [Docker Captain Michael Irwin](https://www.docker.com/captains/micha
 
 ## docker-app: Preparation
 
-This is an experimental CLI feature:
+<!-- include: docker-app-0.command -->
 
-```bash
-export DOCKER_CLI_EXPERIMENTAL=enabled
-```
-
-Start local registry:
-
-```bash
-docker run -d -p 127.0.0.1:5000:5000 registry:2
-```
+<!-- include: docker-app-1.command -->
 
 --
 
 ## docker-app: Creation
 
-Create an app stack in `registry.dockerapp`:
-
-```bash
-docker app init --single-file hello
-```
+<!-- include: docker-app-2.command -->
 
 Add parameters `port` and `text`
 
-Push to registry and check resulting app:
+<!-- include: docker-app-3.command -->
 
-```bash
-docker app push --tag localhost:5000/hello:1.0
-docker app inspect localhost:5000/hello:1.0
-docker app render localhost:5000/hello:1.0
-docker app render \
-    --set text="hello containerconf" \
-    localhost:5000/hello:1.0
-```
-
-Deploy:
-
-```bash
-docker-compose down
-docker app render hello | docker-compose -f - up -d
-```
+<!-- include: docker-app-4.command -->
 
 --
 
@@ -66,19 +40,8 @@ docker app render hello | docker-compose -f - up -d
 
 Stored like an image
 
-```bash
-# Image manifest
-MANIFEST=$(curl -sH \
-    "Accept: application/vnd.docker.distribution.manifest.v2+json" \
-    http://localhost:5000/v2/hello/manifests/1.0)
+<!-- include: internals-0.command -->
 
-# Image configuration is boring
-CONFIG=$(echo "${MANIFEST}" | jq --raw-output '.config.digest')
-curl -o - \
-    http://localhost:5000/v2/hello/blobs/${CONFIG} | jq
+<!-- include: internals-1.command -->
 
-# Layer contains packaged app
-LAYER=$(echo "${MANIFEST}" | jq --raw-output '.layers[0].digest')
-curl -o - \
-    http://localhost:5000/v2/hello/blobs/${LAYER} | tar -tvz
-```
+<!-- include: internals-2.command -->

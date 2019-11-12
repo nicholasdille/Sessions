@@ -46,18 +46,17 @@ Directory layout:
 
 Basic example:
 
-```bash
-# Clone examples
-git clone https://github.com/deislabs/duffle
-cd duffle
+<!-- include: duffle-0.command -->
 
-# Hello world
-duffle build ./examples/helloworld/
-duffle bundle list
-duffle install helloworld-demo helloworld:0.1.1
-duffle list
-duffle uninstall helloworld-demo
-```
+<!-- include: duffle-1.command -->
+
+<!-- include: duffle-2.command -->
+
+<!-- include: duffle-3.command -->
+
+<!-- include: duffle-4.command -->
+
+<!-- include: duffle-5.command -->
 
 Many [example bundles](https://github.com/deislabs/example-bundles) are available
 
