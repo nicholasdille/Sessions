@@ -1,2 +1,4 @@
 lib/**
 videos/**
+*.command
+**/README.md
