@@ -66,8 +66,13 @@ split() {
 }
 
 include() {
+    FILE=${1}
+    if [[ -z "${FILE}" ]]; then
+        echo "Usage: $0 <basename>"
+        return
+    fi
     PATTERN="^\s*<!--\s*include\:\s*(.+\.command)\s*-->\s*$"
-    cat slides.md | while read LINE; do
+    cat ${FILE}.template.md | while read LINE; do
 		if [[ ${LINE} =~ ${PATTERN} ]]; then
 			FILE=$(echo ${LINE} | sed -E "s/${PATTERN}/\1/")
             TEXT=$(cat ${FILE} | grep -E "^#" | head -n 1 | sed -E 's/^#\s*(.+)$/\1/')
@@ -79,5 +84,5 @@ include() {
         else
             echo ${LINE}
 		fi
-	done >README.md
+	done >${FILE}.final.md
 }
