@@ -6,6 +6,9 @@ eval $(ssh-agent -s)
 ssh-add id_rsa_test
 ssh-add -l
 
+# Check contents of Dockerfile
+cat Dockerfile
+
 # Forward into build
 export DOCKER_BUILDKIT=1
 docker build --ssh default --progress plain .

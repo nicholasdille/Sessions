@@ -7,10 +7,14 @@
 
 ### Solution: Dump root partition content into container
 
-<!-- include: from-scratch-0.demo -->
+--
 
-<!-- include: from-scratch-1.demo -->
+## Demo: Troubleshooting `FROM scratch`
 
-<!-- include: from-scratch-2.demo -->
+<!-- include: from-scratch-0.command -->
 
-<!-- include: from-scratch-3.demo -->
+<!-- include: from-scratch-1.command -->
+
+<!-- include: from-scratch-2.command -->
+
+<!-- include: from-scratch-3.command -->

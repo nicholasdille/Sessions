@@ -19,14 +19,8 @@ RUN rm /root/.ssh/id_rsa
 
 Buildkit forwards the SSH agent socket
 
-```bash
-# Prepare SSH agent
-ssh-keygen -f id_rsa_test
-eval $(ssh-agent -s)
-ssh-add id_rsa_test
-ssh-add -l
+<!-- include: ssh-agent-0.command -->
 
-# Forward into build
-export DOCKER_BUILDKIT=1
-docker build --ssh default --progress plain .
-```
+<!-- include: ssh-agent-2.command -->
+
+<!-- include: ssh-agent-3.command -->

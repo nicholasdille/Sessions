@@ -84,9 +84,9 @@ Prepare for new sub command `buildx`
 
 ## Demo: Building for other Architectures
 
-<!-- include: buildx-2.command -->
-
 <!-- include: buildx-3.command -->
+
+<!-- include: buildx-4.command -->
 
 --
 

@@ -2,7 +2,15 @@
 
 Manage connections to Docker instances
 
+Like `docker-machine` without the deployment
+
+Supports remoting via SSH
+
 <!-- include: context-0.command -->
+
+--
+
+## Demo: `docker context`
 
 <!-- include: context-1.command -->
 

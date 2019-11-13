@@ -52,6 +52,10 @@ Basic example:
 
 <!-- include: duffle-2.command -->
 
+--
+
+## Demo: duffle
+
 <!-- include: duffle-3.command -->
 
 <!-- include: duffle-4.command -->
@@ -88,14 +92,13 @@ Use CNAB compliant tool to install from registry
 
 ## Demo: porter
 
-Play with a new package:
+Play with a new package
 
-```bash
-porter create
-porter build
-porter publish
-porter install instance-name --tag user/image:tag
-```
+<!-- include: porter-0.command -->
+
+<!-- include: porter-1.command -->
+
+<!-- include: porter-2.command -->
 
 --
 
@@ -110,11 +113,10 @@ Convert a CNAB bundle for upload:
 ```bash
 # Clone examples
 git clone https://github.com/docker/cnab-to-oci
-cd cnab-to-oci
 
 # Push and pull
 cnab-to-oci push \
-    examples/helloworld-cnab/bundle.json \
+    cnab-to-oci/examples/helloworld-cnab/bundle.json \
     --target myhubusername/repo
 cnab-to-oci pull \
     myhubusername/repo@sha256:6cabd752cb01d2efb9485225baf7fc26f4322c1f45f537f76c5eeb67ba8d83e0

