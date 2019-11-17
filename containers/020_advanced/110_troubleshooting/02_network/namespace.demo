@@ -1,8 +1,0 @@
-# Troubleshooting networking issues
-
-# Join namespaces with existing container
-docker run -d --name nginx nginx
-docker run -it --rm \
-    --net container:nginx \
-    --pid container:nginx \
-    alpine
